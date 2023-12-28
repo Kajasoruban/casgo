@@ -1,21 +1,22 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
+import Job from "../models/jobModel.js";
 import generateToken from "../utils/generateToken.js";
-import path from "path";
 
 
-const home=asyncHandler(async(req,res)=>{
-    res.sendFile("/home/uki01/Desktop/casgo/frontend/casgo-page/index.html");
+
+// const home=asyncHandler(async(req,res)=>{
+//     res.sendFile("/home/uki01/Desktop/casgo/frontend/casgo-page/index.html");
     
-})
+// })
 
-const login=asyncHandler(async(req,res)=>{
-    res.sendFile("/home/uki01/Desktop/casgo/frontend/casgo-page/login.html");
-})
+// const login=asyncHandler(async(req,res)=>{
+//     res.sendFile("/home/uki01/Desktop/casgo/frontend/casgo-page/login.html");
+// })
 
-const register=asyncHandler(async(req,res)=>{
-    res.sendFile("/home/uki01/Desktop/casgo/frontend/casgo-page/register.html");
-})
+// const register=asyncHandler(async(req,res)=>{
+//     res.sendFile("/home/uki01/Desktop/casgo/frontend/casgo-page/register.html");
+// })
 
 
 const authUser= asyncHandler(async(req,res)=>{
@@ -30,7 +31,7 @@ const authUser= asyncHandler(async(req,res)=>{
             name:user.name,
             email:user.email
         });
-        res.redirect("home")
+        
     }else{
         res.status(401);
         throw new Error("Invalid Credentials");
@@ -40,7 +41,7 @@ const authUser= asyncHandler(async(req,res)=>{
 
 
 const registerUser= asyncHandler(async(req,res)=>{
-    const {name,age,email,password}=req.body;
+    const {name,email,password}=req.body;
     const userExist=await User.findOne({email});
 
     if(userExist){
@@ -48,19 +49,18 @@ const registerUser= asyncHandler(async(req,res)=>{
     }
 
     const user=await User.create({
-        name,age,email,password
+        name,email,password
     });
 
     if(user){
         generateToken(res,user._id)
-        // res.status(201).json({
-        //     _id:user._id,
-        //     name:user.name,
-        //     age:user.age,
-        //     email:user.email,
-        //     password:user.password
-        // });
-         res.redirect("login")
+        res.status(201).json({
+            _id:user._id,
+            name:user.name,
+            email:user.email,
+            password:user.password
+        });
+        
     }else{
         res.status(400);
         throw new Error("Invalid user data");
@@ -81,7 +81,6 @@ const getUserProfile= asyncHandler(async(req,res)=>{
     const user={
         _id:req.user._id,
         name:req.user.name,
-        age:req.user.age,
         email:req.user.email
     }
     res.status(200).json(user);
@@ -93,7 +92,6 @@ const updateUserProfile= asyncHandler(async(req,res)=>{
 
     if(user){
         user.name=req.body.name || user.name;
-        user.age=req.body.age ||user.age;
         user.email=req.body.email ||user.email;
 
         if(req.body.password){
@@ -105,7 +103,6 @@ const updateUserProfile= asyncHandler(async(req,res)=>{
         res.status(200).json({
             _id:updatedUser._id,
             name:updatedUser.name,
-            age:updatedUser.age,
             email:updatedUser.email
         })
         
@@ -117,12 +114,33 @@ const updateUserProfile= asyncHandler(async(req,res)=>{
 
 
 
+const postJob= asyncHandler(async(req,res)=>{
+    const {name,email,password}=req.body;
+
+    const job=await Job.create({
+        name,email,password
+    });
+
+    if(job){
+        res.status(201).json({
+            _id:job._id,
+            name:job.name,
+            email:job.email,
+            password:job.password
+        });
+        
+    }else{
+        res.status(400);
+        throw new Error("Invalid user data");
+    }
+});
+
 
 export{
-    home,login,register,
     authUser,
     registerUser,
     logoutUser,
     getUserProfile,
-    updateUserProfile
+    updateUserProfile,
+    postJob
 };

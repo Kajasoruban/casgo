@@ -6,8 +6,8 @@ body {
 }
 
 .nvco{
-    background-color: #002d2b !important;
-    color: #00968f !important;
+    background-color: #00ffee !important;
+    color: #9200FB !important;
 }
 
 .logo{
@@ -17,7 +17,7 @@ body {
 }
 .nvco a{
     font-size: 1.5rem;
-    color: #00968f !important;
+    color: #9200FB !important;
 }
 .navlis{
     margin-right: 10rem;

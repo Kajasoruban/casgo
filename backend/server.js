@@ -17,7 +17,7 @@ app.use(cookieParser());
 
 app.use("/api/users", userRoutes);
 
-app.use(express.static("frontend/casgo-page"))
+// app.use(express.static("frontend/casgo-page"))
 
 app.get("/",(req,res)=> res.send("server running"))
 

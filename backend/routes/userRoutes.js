@@ -1,14 +1,14 @@
 import express from "express";
 const router =express.Router();
-import {home,login,register,authUser,registerUser,logoutUser,getUserProfile,updateUserProfile } from "../controlers/userControler.js";
+import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,postJob } from "../controlers/userControler.js";
 import { protect } from "../middleware/authMiddleware.js";
 
 
-router.get("/home",home);
+// router.get("/home",home);
 
-router.get("/login",login);
+// router.get("/login",login);
 
-router.get("/register",register);
+// router.get("/register",register);
 
 router.post("/",registerUser);
 
@@ -20,6 +20,7 @@ router.get("/profile",protect,getUserProfile);
 
 router.put("/profile",protect,updateUserProfile);
 
+router.post("jobPost",postJob);
 
 
 
