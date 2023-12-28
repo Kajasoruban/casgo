@@ -114,25 +114,56 @@ const updateUserProfile= asyncHandler(async(req,res)=>{
 
 
 
+
+
 const postJob= asyncHandler(async(req,res)=>{
-    const {name,email,password}=req.body;
+    const {name,
+           address,
+           salary,
+           noOfWorkers,
+           requirements,
+           contactNo,
+           role,
+           ageLimit,
+           jobDescription,
+           closingTime,
+           gender }=req.body;
 
     const job=await Job.create({
-        name,email,password
+        name,
+        address,
+        salary,
+        noOfWorkers,
+        requirements,
+        contactNo,
+        role,
+        ageLimit,
+        jobDescription,
+        closingTime,
+        gender
     });
 
     if(job){
         res.status(201).json({
             _id:job._id,
             name:job.name,
-            email:job.email,
-            password:job.password
-        });
+            address:job.address,
+            salary:job.salary,
+            noOfWorkers:job.noOfWorkers,
+            requirements:job.requirements,
+            contactNo:job. contactNo,
+            role:job.role,
+            ageLimit:job. ageLimit,
+            jobDescription:job.jobDescription,
+            closingTime:job.closingTime,
+            gender:job.gender
+         });
         
     }else{
         res.status(400);
         throw new Error("Invalid user data");
     }
+    
 });
 
 

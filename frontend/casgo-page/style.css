@@ -6,8 +6,8 @@ body {
 }
 
 .nvco{
-    background-color: #00ffee !important;
-    color: #9200FB !important;
+    background-color: #00d2af!important;
+    color: #0079FF !important;
 }
 
 .logo{
@@ -17,7 +17,7 @@ body {
 }
 .nvco a{
     font-size: 1.5rem;
-    color: #9200FB !important;
+    color: #00009b !important;
 }
 .navlis{
     margin-right: 10rem;
@@ -109,7 +109,7 @@ color: #fff;
 
 .red-btn:hover{
 background: #1c376c;
-color: #fff;
+color: #00009b;
 border-color: #ffffff;
 }
 
@@ -119,8 +119,8 @@ background-color: #222023;
 background-image: -webkit-linear-gradient( top, #222023, #1e2c47 );
 background-image: -moz-linear-gradient( top, #222023, #1e2c47 );
 background-image: -o-linear-gradient( top, #222023, #1e2c47 );
-background-image: linear-gradient( to bottom, #222023, #1e2c47 );
-color: #fff;
+background-image: linear-gradient( to bottom, #F6FA70, #f0f55d);
+color: #00009b;
 padding: 220px 0;
 font-size: 17px;
 }
@@ -151,7 +151,7 @@ margin-top: 40px;
 }
 
 footer a {
-color: #fff;
+color: #00009b;
 }
 
 footer a:hover {
@@ -175,7 +175,7 @@ margin-right: 16px;
 ul.footer-social i {
 width: 30px;
 height: 30px;
-background: #fff;
+background: #00009b;
 color: #222025;
 text-align: center;
 line-height: 30px;
@@ -194,7 +194,7 @@ margin-right: 0px;
 
 ul.footer-social i:hover {
 background: #ed1b24;
-color: #fff;
+color: #00009b;
 }
 
 .page-more-info li {

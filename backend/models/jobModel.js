@@ -5,7 +5,7 @@ const jobSchema =mongoose.Schema({
         type: String,
         required:true
     },
-    location:{
+    address:{
         type: String,
         required:true
     },
@@ -15,6 +15,34 @@ const jobSchema =mongoose.Schema({
     },
     noOfWorkers:{
         type: Number,
+        required:true
+    },
+    requirements:{
+        type:String,
+        required:true
+    },
+    contactNo:{
+        type:String,
+        required:true
+    },
+    role:{
+        type:String,
+        required:true
+    },
+    ageLimit:{
+        type: String,
+        required:true
+    },
+    jobDescription:{
+        type: String,
+        required:true
+    },
+    closingTime:{
+        type: String,
+        required:true
+    },
+    gender:{
+        type: String,
         required:true
     }
 },{

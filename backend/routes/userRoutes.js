@@ -20,7 +20,10 @@ router.get("/profile",protect,getUserProfile);
 
 router.put("/profile",protect,updateUserProfile);
 
-router.post("jobPost",postJob);
+
+
+
+router.post("/jobPost",postJob);
 
 
 
