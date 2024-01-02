@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const jobSchema =mongoose.Schema({
     name:{
@@ -48,6 +49,8 @@ const jobSchema =mongoose.Schema({
 },{
     timestamps:true
 });
+
+
 
 const Job =mongoose.model("job",jobSchema);
 

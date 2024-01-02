@@ -1,6 +1,7 @@
 import express from "express";
 const router =express.Router();
-import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,postJob } from "../controlers/userControler.js";
+import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,
+        postJob,getJob,updatejob } from "../controlers/userControler.js";
 import { protect } from "../middleware/authMiddleware.js";
 
 
@@ -23,8 +24,11 @@ router.put("/profile",protect,updateUserProfile);
 
 
 
-router.post("/jobPost",postJob);
+router.post("/jobPost",protect,postJob);
 
+router.get("/getJob",protect,getJob);
+
+router.put("/updatejob",protect,updatejob);
 
 
 export default router;

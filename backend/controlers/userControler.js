@@ -5,32 +5,27 @@ import generateToken from "../utils/generateToken.js";
 
 
 
-// const home=asyncHandler(async(req,res)=>{
-//     res.sendFile("/home/uki01/Desktop/casgo/frontend/casgo-page/index.html");
-    
-// })
-
-// const login=asyncHandler(async(req,res)=>{
-//     res.sendFile("/home/uki01/Desktop/casgo/frontend/casgo-page/login.html");
-// })
-
-// const register=asyncHandler(async(req,res)=>{
-//     res.sendFile("/home/uki01/Desktop/casgo/frontend/casgo-page/register.html");
-// })
-
-
 const authUser= asyncHandler(async(req,res)=>{
     const {email,password}=req.body;
     const user=await User.findOne({email});
 
     if(user && (await user.matchPassword(password))){
+
+        if(user.role=="admin"){
+            generateToken(res,user._id)
+        
+            res.status(200).json({
+                _id:user._id,
+                name:user.name,
+                email:user.email,
+                role:user.role
+            }); 
+        }else{
+
         generateToken(res,user._id)
         
-        res.status(201).json({
-            _id:user._id,
-            name:user.name,
-            email:user.email
-        });
+        res.status(202).json(user);
+       }
         
     }else{
         res.status(401);
@@ -46,6 +41,7 @@ const registerUser= asyncHandler(async(req,res)=>{
 
     if(userExist){
         res.status(400);
+        throw new Error("user already exist");
     }
 
     const user=await User.create({
@@ -113,7 +109,7 @@ const updateUserProfile= asyncHandler(async(req,res)=>{
 });
 
 
-
+//for posting jobs
 
 
 const postJob= asyncHandler(async(req,res)=>{
@@ -153,7 +149,7 @@ const postJob= asyncHandler(async(req,res)=>{
             requirements:job.requirements,
             contactNo:job. contactNo,
             role:job.role,
-            ageLimit:job. ageLimit,
+            ageLimit:job.ageLimit,
             jobDescription:job.jobDescription,
             closingTime:job.closingTime,
             gender:job.gender
@@ -167,11 +163,43 @@ const postJob= asyncHandler(async(req,res)=>{
 });
 
 
+const getJob= asyncHandler(async(req,res)=>{
+    const job =await Job.find();
+    res.status(200).json(job);
+});
+
+
+const updatejob= asyncHandler(async(req,res)=>{
+    const job =await Job.findById(req.body._id);
+
+    if(job){
+        job.name=req.body.name || job.name  
+        job.address=req.body.address || job.address
+        job.salary=req.body.salary || job.salary
+        job.noOfWorkers=req.body.noOfWorkers || job.noOfWorkers
+        job.requirements =req.body.requirements || job.requirements 
+        job.contactNo=req.body.contactNo || job.contactNo  
+        job.role=req.body.role || job.role
+        job.ageLimit=req.body.ageLimit || job.ageLimit
+        job.jobDescription=req.body.jobDescription || job.jobDescription
+        job.closingTime=req.body.closingTime || job.closingTime
+        job.gender=req.body.gender || job.gender
+
+        
+
+        const updatedJob= await job.save();
+
+        res.status(200).json(updatedJob);
+        
+    }else{
+        res.status(404);
+        throw new Error("job not found")
+    }
+});
+
+
+
 export{
-    authUser,
-    registerUser,
-    logoutUser,
-    getUserProfile,
-    updateUserProfile,
-    postJob
+    authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,
+    postJob,getJob,updatejob
 };
