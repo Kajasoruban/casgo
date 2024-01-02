@@ -6,8 +6,8 @@ body {
 }
 
 .nvco{
-    background-color: #00d2af!important;
-    color: #0079FF !important;
+    background-color: #b9dbe7!important;
+    color: #08a2da!important;
 }
 
 .logo{
@@ -17,7 +17,7 @@ body {
 }
 .nvco a{
     font-size: 1.5rem;
-    color: #00009b !important;
+    color: #08a2da !important;
 }
 .navlis{
     margin-right: 10rem;
@@ -108,8 +108,8 @@ color: #fff;
 }
 
 .red-btn:hover{
-background: #1c376c;
-color: #00009b;
+background: #ffffff;
+color: #08a2da;
 border-color: #ffffff;
 }
 
