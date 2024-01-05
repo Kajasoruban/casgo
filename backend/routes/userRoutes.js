@@ -8,11 +8,7 @@ import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,
 import { protect } from "../middleware/authMiddleware.js";
 
 
-// router.get("/home",home);
 
-// router.get("/login",login);
-
-// router.get("/register",register);
 
 //for user login
 router.post("/",registerUser);

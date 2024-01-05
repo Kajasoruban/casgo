@@ -7,8 +7,8 @@ import jobSeek from "../models/jobSeekerModel.js";
 
 import generateToken from "../utils/generateToken.js";
 
-
-
+import cloudinary from "../utils/cloudinary.js";
+import { upload } from "../middleware/multer.js";
 
 const authUser= asyncHandler(async(req,res)=>{
     const {email,password}=req.body;
@@ -250,20 +250,7 @@ const postJob= asyncHandler(async(req,res)=>{
     });
 
     if(job){
-        res.status(201).json({
-            _id:job._id,
-            name:job.name,
-            address:job.address,
-            salary:job.salary,
-            noOfWorkers:job.noOfWorkers,
-            requirements:job.requirements,
-            contactNo:job. contactNo,
-            role:job.role,
-            ageLimit:job.ageLimit,
-            jobDescription:job.jobDescription,
-            closingTime:job.closingTime,
-            gender:job.gender
-         });
+        res.status(201).json(job);
         
     }else{
         res.status(400);

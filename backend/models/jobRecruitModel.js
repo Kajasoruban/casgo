@@ -12,6 +12,10 @@ const jobRecruitSchema =mongoose.Schema({
     contactNo:{
         type:String,
         require:true
+    }, 
+    image:{
+        type:String,
+        require:true
     },
     role:{
         type:String,
