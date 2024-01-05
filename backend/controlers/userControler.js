@@ -8,7 +8,7 @@ import jobSeek from "../models/jobSeekerModel.js";
 import generateToken from "../utils/generateToken.js";
 
 import cloudinary from "../utils/cloudinary.js";
-import { upload } from "../middleware/multer.js";
+
 
 const authUser= asyncHandler(async(req,res)=>{
     const {email,password}=req.body;
@@ -117,15 +117,28 @@ const updateUserProfile= asyncHandler(async(req,res)=>{
 
 const jobRecCreate= asyncHandler(async(req,res)=>{
     const {nameOfOrganization,address,contactNo}=req.body;
+    let image=req.body.image;
+    
     const Exist=await jobRec.findOne({nameOfOrganization});
 
     if(Exist){
         res.status(400);
         throw new Error("Name already exist");
     }
+    const images =await cloudinary.uploader.upload(req.file.path,(err,result)=>{
+        if(err){
+            console.log(err);
+        }
+       
+    })
+    
+    image=images.url;
+
+    
+    
 
     const user=await jobRec.create({
-        nameOfOrganization,address,contactNo
+        nameOfOrganization,address,contactNo,image
     });
 
     if(user){

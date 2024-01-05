@@ -15,7 +15,6 @@ const jobRecruitSchema =mongoose.Schema({
     }, 
     image:{
         type:String,
-        require:true
     },
     role:{
         type:String,

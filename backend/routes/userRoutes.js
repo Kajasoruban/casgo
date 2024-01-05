@@ -7,7 +7,7 @@ import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,
                                        } from "../controlers/userControler.js";
 import { protect } from "../middleware/authMiddleware.js";
 
-
+import { upload } from "../middleware/multer.js";
 
 
 //for user login
@@ -18,7 +18,7 @@ router.get("/profile",protect,getUserProfile);
 router.put("/profile",protect,updateUserProfile);
 
 //for job recruit
-router.post("/jobRecruit",protect,jobRecCreate);
+router.post("/jobRecruit",protect,upload.single("image"),jobRecCreate);
 router.get("/getJobRecruit",protect,getJobRecProfile);
 router.put("/updateJobRecruit",protect,updateJobRecProfile);
 
