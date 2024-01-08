@@ -117,7 +117,7 @@ const updateUserProfile= asyncHandler(async(req,res)=>{
 
 const jobRecCreate= asyncHandler(async(req,res)=>{
     const {nameOfOrganization,address,contactNo}=req.body;
-    let image=req.body.image;
+    
     
     const Exist=await jobRec.findOne({nameOfOrganization});
 
@@ -131,12 +131,13 @@ const jobRecCreate= asyncHandler(async(req,res)=>{
         }
        
     })
-    
-    image=images.url;
+    const{public_id,url}=images;
+    const image={
+        public_id:public_id,
+        url:url
+    };
 
     
-    
-
     const user=await jobRec.create({
         nameOfOrganization,address,contactNo,image
     });
