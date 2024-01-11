@@ -136,10 +136,11 @@ const jobRecCreate= asyncHandler(async(req,res)=>{
         public_id:public_id,
         url:url
     };
+    const userId=req.user._id;
 
     
     const user=await jobRec.create({
-        nameOfOrganization,address,contactNo,image
+        userId,nameOfOrganization,address,contactNo,image
     });
 
     if(user){
@@ -247,7 +248,7 @@ const postJob= asyncHandler(async(req,res)=>{
            ageLimit,
            jobDescription,
            closingTime,
-           gender }=req.body;
+           gender,user }=req.body;
 
     const job=await Job.create({
         name,
@@ -260,7 +261,7 @@ const postJob= asyncHandler(async(req,res)=>{
         ageLimit,
         jobDescription,
         closingTime,
-        gender
+        gender,user
     });
 
     if(job){

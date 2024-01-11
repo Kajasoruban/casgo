@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
+const { ObjectId } = mongoose.Schema;
 
 const jobRecruitSchema =mongoose.Schema({
+    userId: {
+        type: ObjectId,
+        ref: "users",
+        required: true
+    },
     nameOfOrganization:{
         type: String,
         required:true

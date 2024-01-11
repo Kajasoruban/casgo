@@ -5,7 +5,7 @@ import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,
         jobRecCreate,getJobRecProfile,updateJobRecProfile,
         jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile
                                        } from "../controlers/userControler.js";
-import { protect } from "../middleware/authMiddleware.js";
+import { protect,isAdmin } from "../middleware/authMiddleware.js";
 
 import { upload } from "../middleware/multer.js";
 
@@ -30,7 +30,7 @@ router.put("/updateJobSeeker",protect,updateJobSeekerProfile);
 
 //for job manage
 router.post("/jobPost",protect,postJob);
-router.get("/getJob",protect,getJob);
+router.get("/getJob",protect,isAdmin,getJob);
 router.put("/updateJob",protect,updatejob);
 router.delete("/deleteJob",protect,delJob);
 

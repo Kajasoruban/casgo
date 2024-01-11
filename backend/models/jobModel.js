@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+const { ObjectId } = mongoose.Schema;
 
 const jobSchema =mongoose.Schema({
     name:{
@@ -44,6 +45,11 @@ const jobSchema =mongoose.Schema({
     gender:{
         type: String,
         required:true
+    },
+    user: {
+        type: ObjectId,
+        ref: "users",
+        required: true
     }
 },{
     timestamps:true
