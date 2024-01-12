@@ -13,9 +13,8 @@ import cloudinary from "../utils/cloudinary.js";
 const authUser= asyncHandler(async(req,res)=>{
     const {email,password}=req.body;
     const user=await User.findOne({email});
-
     if(user && (await user.matchPassword(password))){
-
+        
         if(user.role=="admin"){
             generateToken(res,user._id)
         
@@ -24,7 +23,8 @@ const authUser= asyncHandler(async(req,res)=>{
                 name:user.name,
                 email:user.email,
                 role:user.role
-            }); 
+            });    
+
         }else{
 
         generateToken(res,user._id)

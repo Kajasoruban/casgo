@@ -5,19 +5,20 @@ body {
 }
 .land{
     height: 100vh; 
-    background-image: url(https://i.ytimg.com/vi/GywiwrYcWzU/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGH8gOygjMA8=&rs=AOn4CLDouGhgj2sYfnzspMMNNvYeIR-7cg); 
+    background-image: url(https://www.forbesindia.com/fbimages/900x600/proportional/jpeg/blog/wp-content/uploads/2023/04/shutterstock_1586797216_BG.jpg); 
     background-size: cover;
     background-position: center;
+    
 }
 .land > div{
     top: 0;
      right: 0;
       bottom: 0;
        left: 0;
-        background-color: #42424295;
+       background-color: rgba(249, 252, 174, 0.6);
 }
 .nvco{
-    background-color: #e3e4d9!important;
+    background-color: #d5d6cb!important;
     color: #08a2da!important;
 }
 
@@ -60,9 +61,10 @@ body {
 .container2{
     padding: 0 30vw;
     /* margin-top: 10rem; */
-    background-image: url(https://png.pngtree.com/background/20210714/original/pngtree-christmas-card-bow-pine-needles-background-picture-image_1243904.jpg);
+    /* background-image: url(https://png.pngtree.com/background/20210714/original/pngtree-christmas-card-bow-pine-needles-background-picture-image_1243904.jpg); */
     background-size: cover;
     background-position: center;
+    background-color: #f1f1ed;
 }
 
 /* .loginc{
@@ -147,10 +149,8 @@ border-color: #ffffff;
 /*---------footer---------*/
 footer {
 background-color: #222023;
-background-image: -webkit-linear-gradient( top, #222023, #1e2c47 );
-background-image: -moz-linear-gradient( top, #222023, #1e2c47 );
-background-image: -o-linear-gradient( top, #222023, #1e2c47 );
-background-image: linear-gradient( to bottom, rgba(158, 192, 147, 0.7), rgba(158, 192, 147, 0.7));
+
+background-image: linear-gradient( to bottom, rgb(255, 255, 255), rgb(232, 226, 226));
 color: #00009b;
 padding: 220px 0;
 font-size: 17px;
