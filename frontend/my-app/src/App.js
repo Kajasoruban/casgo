@@ -2,27 +2,33 @@
 import './App.css';
 import "./Assets/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Navbar from './components/Navbar';
 import Landing from './components/Landing';
 import Footer from './components/Footer';
-import Login from './components/Login';
+import Login from './pages/Login';
 import Register from './components/Register';
+import Home from './pages/Home';
 
 function App() {
   return (
+    <>
+    
+    <ToastContainer/>
     <BrowserRouter>
-    <Navbar/>
     <Routes>
     
-    <Route path="/" element={<Landing/>}/>
+    <Route path="/" element={<Home/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/register" element={<Register/>}/>
 
     </Routes>
-    <Footer/>
     </BrowserRouter>
+
+
+    </>
   );
 }
 

@@ -1,5 +1,7 @@
 
 import { useState } from "react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 
 function Login (){
@@ -8,7 +10,8 @@ function Login (){
 
     return(
         <>
-        
+        <Navbar/>
+
         <div class="container2">
         
         <div class="loginc border border-primary p-2 mb-2 border-opacity-75">
@@ -77,6 +80,7 @@ function Login (){
     </div>
 
     <div class="space"></div>
+    <Footer/>
         
         
         </>

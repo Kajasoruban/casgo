@@ -1,7 +1,6 @@
-import Navbar from './Navbar';
-import Landing from './Landing';
-import Footer from './Footer';
-import Login from './Login';
+import Navbar from '../components/Navbar';
+import Landing from '../components/Landing';
+import Footer from '../components/Footer';
 function Home(){
     return (
         <>
