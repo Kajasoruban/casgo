@@ -1,86 +1,120 @@
 
-import { useState } from "react";
+import React, { useEffect } from 'react'
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Avatar, Box } from '@mui/material'
+import LockClockOutlined from '@mui/icons-material/LockClockOutlined'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { userSignInAction } from "../redux/actions/userAction";
+
+
+
+const validationSchema = yup.object({
+  email: yup
+      .string('Enter your email')
+      .email('Enter a valid email')
+      .required('Email is required'),
+  password: yup
+      .string('Enter your password')
+      .min(8, 'Password should be of minimum 8 characters length')
+      .required('Password is required'),
+});
+
 
 
 function Login (){
+     
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isAuthenticated, userInfo } = useSelector(state => state.signIn);
+  useEffect(() => {
+
+      if (isAuthenticated) {
+              if (userInfo.role === 1) {
+                  navigate('/');
+              } else {
+                  navigate('/');
+              }
+          }
+
+          // if (isAuthenticated) {
+          //     navigate('/user/dashboard');
+          // }
+      }, [isAuthenticated])
+
+      const formik = useFormik({
+          initialValues: {
+              email: '',
+              password: ''
+          },
+          validationSchema: validationSchema,
+          onSubmit: (values, actions) => {
+              //  alert(JSON.stringify(values, null, 2));
+              dispatch(userSignInAction(values));
+              actions.resetForm();
+          }
+
+      })
     
 
     return(
         <>
         <Navbar/>
 
-        <div class="container2">
-        
-        <div class="loginc border border-primary p-2 mb-2 border-opacity-75">
-    {/* <!-- Pills navs --> */}
-   <ul class="nav nav-pills nav-justified mb-3  spa" id="ex1" role="tablist">
-    <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="/login" role="tab"
-        aria-controls="pills-login" aria-selected="true">Login</a>
-    </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="/register" role="tab"
-        aria-controls="pills-register" aria-selected="false">Register</a>
-    </li>
-  </ul>
-  {/* <!-- Pills navs --> */}
-  
-  {/* <!-- Pills content --> */}
-  <div class="tab-content">
-    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-      <form action="/api/users/login"method="post">
-       
-  
-        {/* <!-- Email input --> */}
-        <div class="form-outline mb-4">
-          <input type="email" id="loginName" placeholder="                                                                           Email" class="form-control" />
-          {/* <!-- <label class="form-label" for="loginName">Email or username</label> --> */}
-        </div>
-  
-        {/* <!-- Password input --> */}
-        <div class="form-outline mb-4"> 
-          <input type="password" id="loginPassword" placeholder="                                                                        Password"  class="form-control" />
-          {/* <!-- <label class="form-label" for="loginPassword">Password</label> --> */}
-        </div>
-  
-        {/* <!-- 2 column grid layout --> */}
-        <div class="row mb-4">
-          <div class="col-md-6 d-flex justify-content-center">
-            {/* <!-- Checkbox --> */}
-            <div class="form-check mb-3 mb-md-0">
-              <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-              <label class="form-check-label" for="loginCheck"> Remember me </label>
-            </div>
-          </div>
-  
-          <div class="col-md-6 d-flex justify-content-center">
-            {/* <!-- Simple link --> */}
-            <a href="#!">Forgot password?</a>
-          </div>
-        </div>
-  
-        {/* <!-- Submit button --> */}
-        <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button></div>
-  
-        {/* <!-- Register buttons --> */}
-        <div class="text-center spa2">
-          <p>Not a member? <a href="#!">Register</a></p>
-        </div>
-      </form>
-    </div>
-    
-    
-  </div>
-</div>
-  {/* <!-- Pills content --> */}
-    </div>
+        <Box sx={{ height: '81vh', display: "flex", alignItems: "center", justifyContent: "center" }}>
 
-    <div class="space"></div>
-    <Footer/>
+
+        <Box onSubmit={formik.handleSubmit} component="form" className='form_style border-style' >
+            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
+                <Avatar sx={{ m: 1, bgcolor: "primary.main", mb: 3 }}>
+                    <LockClockOutlined />
+                </Avatar>
+                <TextField sx={{ mb: 3 }}
+                    fullWidth
+                    id="email"
+                    label="E-mail"
+                    name='email'
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    placeholder="E-mail"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.email && Boolean(formik.errors.email)}
+                    helperText={formik.touched.email && formik.errors.email}
+                />
+                <TextField sx={{ mb: 3 }}
+                    fullWidth
+                    id="password"
+                    name="password"
+                    label="Password"
+                    type="password"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    placeholder="Password"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.password && Boolean(formik.errors.password)}
+                    helperText={formik.touched.password && formik.errors.password}
+                />
+
+                <Button fullWidth variant="contained" type='submit' >Log In</Button>
+            </Box>
+        </Box>
+        </Box>
+
+
+        
+       <Footer/>
         
         
         </>
