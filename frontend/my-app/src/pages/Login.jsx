@@ -36,8 +36,8 @@ function Login (){
   useEffect(() => {
 
       if (isAuthenticated) {
-              if (userInfo.role === 1) {
-                  navigate('/');
+              if (userInfo.role === "admin") {
+                  navigate('/auth');
               } else {
                   navigate('/');
               }
@@ -67,11 +67,11 @@ function Login (){
         <>
         <Navbar/>
 
-        <Box sx={{ height: '81vh', display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Box sx={{ height: '50vh', display: "flex", alignItems: "center", justifyContent: "center" }}>
 
 
         <Box onSubmit={formik.handleSubmit} component="form" className='form_style border-style' >
-            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
+            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "30vw" }}>
                 <Avatar sx={{ m: 1, bgcolor: "primary.main", mb: 3 }}>
                     <LockClockOutlined />
                 </Avatar>
@@ -109,6 +109,7 @@ function Login (){
 
                 <Button fullWidth variant="contained" type='submit' >Log In</Button>
             </Box>
+            <Box sx={{mt:2}}>if you're not register <a href="/register">click here</a></Box>
         </Box>
         </Box>
 

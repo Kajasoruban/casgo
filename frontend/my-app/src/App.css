@@ -15,7 +15,7 @@ body {
      right: 0;
       bottom: 0;
        left: 0;
-       background-color: rgba(249, 252, 174, 0.6);
+       background-color: rgba(237, 239, 183, 0.4);
 }
 .nvco{
     background-color: #d5d6cb!important;
@@ -45,7 +45,8 @@ body {
 }
 
 .doex p{
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+    font-weight: bold;
     color: #f7b71d;
 }
 
