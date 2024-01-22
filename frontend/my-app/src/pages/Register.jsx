@@ -37,7 +37,7 @@ const validationSchema = yup.object({
 const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-  const { isAuthenticated, userInfo } = useSelector(state => state.signIn);
+  const { isAuthenticated, userInfo } = useSelector(state => state.signUp);
   useEffect(() => {
 
       if (isAuthenticated) {

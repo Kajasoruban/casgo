@@ -33,7 +33,7 @@ export const userReducerSignUp = (state = {}, action) => {
         case USER_SIGNUP_SUCCESS:
             return {
                 loading: false,
-                userSignUp: action.payload,
+                userInfo: action.payload,
                 isAuthenticated: true
             }
         case USER_SIGNUP_FAIL:
@@ -44,3 +44,5 @@ export const userReducerSignUp = (state = {}, action) => {
             return state;
     }
 }
+
+
