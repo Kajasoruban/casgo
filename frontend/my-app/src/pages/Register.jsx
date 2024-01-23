@@ -10,7 +10,7 @@ import { userSignUpAction } from '../redux/actions/userAction'
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 
 
 const validationSchema = yup.object({
@@ -68,6 +68,8 @@ const Register = () => {
         }
 
     })
+
+    const [show,setShow]=useState(false)
 
     return (
         <>
@@ -151,7 +153,7 @@ const Register = () => {
                         />
                         <TextField
                             sx={{
-                                mb: 3,
+                                mb: 0,
                                 "& .MuiInputBase-root": {
                                     color: 'text.secondary'
                                 },
@@ -161,7 +163,7 @@ const Register = () => {
                             id="password"
                             name="password"
                             label="Password"
-                            type="password"
+                            type={show?"text":"password"}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -171,7 +173,12 @@ const Register = () => {
                             onBlur={formik.handleBlur}
                             error={formik.touched.password && Boolean(formik.errors.password)}
                             helperText={formik.touched.password && formik.errors.password}
+                        /><Box sx={{mr:10}}>
+                        <input 
+                        type="checkbox"
+                        onClick={()=>setShow(!show)}
                         />
+                        Show password</Box>
 
                         <Button fullWidth variant="contained" type='submit' >Register</Button>
                     </Box>

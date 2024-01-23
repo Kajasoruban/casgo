@@ -1,7 +1,10 @@
 
-import React, { useEffect } from 'react'
+import React, { useEffect ,useState} from 'react'
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
+
 import { Avatar, Box } from '@mui/material'
 import LockClockOutlined from '@mui/icons-material/LockClockOutlined'
 import TextField from '@mui/material/TextField';
@@ -61,6 +64,8 @@ function Login (){
           }
 
       })
+
+      const [show,setShow]=useState(false)
     
 
     return(
@@ -90,12 +95,12 @@ function Login (){
                     error={formik.touched.email && Boolean(formik.errors.email)}
                     helperText={formik.touched.email && formik.errors.email}
                 />
-                <TextField sx={{ mb: 3 }}
+                <TextField sx={{ mb: 0 }}
                     fullWidth
                     id="password"
                     name="password"
                     label="Password"
-                    type="password"
+                    type={show?"text":"password"}
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -105,11 +110,19 @@ function Login (){
                     onBlur={formik.handleBlur}
                     error={formik.touched.password && Boolean(formik.errors.password)}
                     helperText={formik.touched.password && formik.errors.password}
-                />
+                    
+                /><Box sx={{mr:10}}>
+                    <input 
+                    type="checkbox"
+                    onClick={()=>setShow(!show)}
+                    />
+                    Show password</Box>
 
                 <Button fullWidth variant="contained" type='submit' >Log In</Button>
             </Box>
             <Box sx={{mt:2}}>if you're not register <a href="/register">click here</a></Box>
+            
+            
         </Box>
         </Box>
 

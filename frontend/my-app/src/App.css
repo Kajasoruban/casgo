@@ -10,6 +10,16 @@ body {
     background-position: center;
     
 }
+/* .eyeco{
+    display: flex;
+    align-items: center;
+}
+ .eye{
+    position: absolute;
+    top: 24rem;
+    right: 24rem;
+} */
+
 .land > div{
     top: 0;
      right: 0;
