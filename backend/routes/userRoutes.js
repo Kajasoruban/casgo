@@ -1,10 +1,11 @@
 import express from "express";
 const router =express.Router();
 import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,
-        postJob,getJob,updatejob,delJob,
+       
         jobRecCreate,getJobRecProfile,updateJobRecProfile,
         jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile
                                        } from "../controlers/userControler.js";
+import{ postJob,getJob,updatejob,delJob,} from "../controlers/jobControllers.js"
 import { protect,isAdmin } from "../middleware/authMiddleware.js";
 
 import { upload } from "../middleware/multer.js";
@@ -30,7 +31,7 @@ router.put("/updateJobSeeker",protect,updateJobSeekerProfile);
 
 //for job manage
 router.post("/jobPost",protect,postJob);
-router.get("/getJob",protect,isAdmin,getJob);
+router.get("/getJob",protect,getJob);
 router.put("/updateJob",protect,updatejob);
 router.delete("/deleteJob",protect,delJob);
 

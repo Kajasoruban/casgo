@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
+const { ObjectId } = mongoose.Schema;
 
 const jobSeekerSchema =mongoose.Schema({
-    userName:{
-        type: String,
-        required:true
+    userId: {
+        type: ObjectId,
+        ref: "users",
+        required: true
     },
     age:{
         type: String,

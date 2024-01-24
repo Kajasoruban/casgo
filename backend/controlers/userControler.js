@@ -1,7 +1,6 @@
 import asyncHandler from "express-async-handler";
 
 import User from "../models/userModel.js";
-import Job from "../models/jobModel.js";
 import jobRec from "../models/jobRecruitModel.js";
 import jobSeek from "../models/jobSeekerModel.js";
 
@@ -181,16 +180,16 @@ const updateJobRecProfile= asyncHandler(async(req,res)=>{
 //for job seeker
 
 const jobSeekerCreate= asyncHandler(async(req,res)=>{
-    const {userName,age,gender,address,contactNo}=req.body;
+    const {age,gender,address,contactNo}=req.body;
     const alreadyExist=await jobSeek.findOne({userName});
 
     if(alreadyExist){
         res.status(400);
         throw new Error("userName already exist");
     }
-
+    const userId=req.user._id;
     const user=await jobSeek.create({
-        userName,age,gender,address,contactNo
+        userId,age,gender,address,contactNo
     });
 
     if(user){
@@ -232,92 +231,13 @@ const updateJobSeekerProfile=asyncHandler(async(req,res)=>{
     }
 });
 
-//for posting jobs
 
-const postJob= asyncHandler(async(req,res)=>{
-    const {name,
-           address,
-           salary,
-           noOfWorkers,
-           requirements,
-           contactNo,
-           role,
-           ageLimit,
-           jobDescription,
-           closingTime,
-           gender,user }=req.body;
-
-    const job=await Job.create({
-        name,
-        address,
-        salary,
-        noOfWorkers,
-        requirements,
-        contactNo,
-        role,
-        ageLimit,
-        jobDescription,
-        closingTime,
-        gender,user
-    });
-
-    if(job){
-        res.status(201).json(job);
-        
-    }else{
-        res.status(400);
-        throw new Error("Invalid user data");
-    }
-    
-});
-
-
-const getJob= asyncHandler(async(req,res)=>{
-    const job =await Job.find();
-    res.status(200).json(job);
-});
-
-
-const updatejob= asyncHandler(async(req,res)=>{
-    const job =await Job.findById(req.body._id);
-
-    if(job){
-        job.name=req.body.name || job.name  
-        job.address=req.body.address || job.address
-        job.salary=req.body.salary || job.salary
-        job.noOfWorkers=req.body.noOfWorkers || job.noOfWorkers
-        job.requirements =req.body.requirements || job.requirements 
-        job.contactNo=req.body.contactNo || job.contactNo  
-        job.role=req.body.role || job.role
-        job.ageLimit=req.body.ageLimit || job.ageLimit
-        job.jobDescription=req.body.jobDescription || job.jobDescription
-        job.closingTime=req.body.closingTime || job.closingTime
-        job.gender=req.body.gender || job.gender
-
-        
-
-        const updatedJob= await job.save();
-
-        res.status(200).json(updatedJob);
-        
-    }else{
-        res.status(404);
-        throw new Error("job not found")
-    }
-});
-
-
-const delJob= asyncHandler(async(req,res)=>{
-    const jobId =await Job.findById(req.body._id);
-    Job.findByIdAndDelete(jobId)
-    res.status(200).json(`job with id ${jobId._id} deleted`);
-});
 
 
 
 export{
     authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,
-    postJob,getJob,updatejob,delJob,
+    
     jobRecCreate,getJobRecProfile,updateJobRecProfile,
     jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile
 
