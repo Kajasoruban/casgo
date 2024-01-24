@@ -22,6 +22,10 @@ const jobSeekerSchema =mongoose.Schema({
     contactNo:{
         type:String,
         require:true
+    }, 
+    image:{
+        public_id:{type:String},
+        url:{type:String}
     },
     role:{
         type:String,

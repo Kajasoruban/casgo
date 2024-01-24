@@ -5,7 +5,7 @@ body {
 }
 .land{
     height: 100vh; 
-    background-image: url(https://www.forbesindia.com/fbimages/900x600/proportional/jpeg/blog/wp-content/uploads/2023/04/shutterstock_1586797216_BG.jpg); 
+    /* background-image: url(https://www.forbesindia.com/fbimages/900x600/proportional/jpeg/blog/wp-content/uploads/2023/04/shutterstock_1586797216_BG.jpg);  */
     background-size: cover;
     background-position: center;
     

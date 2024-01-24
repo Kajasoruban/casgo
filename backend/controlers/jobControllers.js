@@ -18,8 +18,9 @@ const postJob= asyncHandler(async(req,res)=>{
            gender }=req.body;
            
            const userId=req.user._id;
-
+    
     const job=await Job.create({
+        userId,
         name,
         address,
         salary,
@@ -30,7 +31,8 @@ const postJob= asyncHandler(async(req,res)=>{
         ageLimit,
         jobDescription,
         closingTime,
-        gender,userId
+        gender,
+        
     });
 
     if(job){
@@ -45,7 +47,7 @@ const postJob= asyncHandler(async(req,res)=>{
 
 
 const getJob= asyncHandler(async(req,res)=>{
-    const job =await Job.find();
+    const job =await Job.find().populate("userId","name")
     res.status(200).json(job);
 });
 

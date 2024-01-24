@@ -1,14 +1,12 @@
 import express from "express";
 const router =express.Router();
-import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,
-       
-        jobRecCreate,getJobRecProfile,updateJobRecProfile,
-        jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile
-                                       } from "../controlers/userControler.js";
+import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile } from "../controlers/userControler.js";
 import{ postJob,getJob,updatejob,delJob,} from "../controlers/jobControllers.js"
+import{jobRecCreate,getJobRecProfile,updateJobRecProfile,
+        jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile} from "../controlers/jobAccountController.js"
 import { protect,isAdmin } from "../middleware/authMiddleware.js";
 
-import { upload } from "../middleware/multer.js";
+import { upload} from "../middleware/multer.js";
 
 
 //for user login
@@ -25,7 +23,7 @@ router.put("/updateJobRecruit",protect,updateJobRecProfile);
 
 
 //for job seeker
-router.post("/jobSeeker",protect,jobSeekerCreate);
+router.post("/jobSeeker",protect,upload.single("images"),jobSeekerCreate);
 router.get("/getJobSeeker",protect,getJobSeekerProfile);
 router.put("/updateJobSeeker",protect,updateJobSeekerProfile);
 
