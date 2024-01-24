@@ -3,108 +3,132 @@
 function Footer(){
     return(
         <>
+
         
-        <footer>
-      <div className="container">
-          <div className="footer-top">
-              <div className="row">
-                  <div className="col-md-6 col-lg-3 about-footer">
-                      <h3>Lorem Ipsum dummy text </h3>
-                      <ul>
-                          <li><a href="tel:(010) 1234 4321"><i className="fas fa-phone fa-flip-horizontal"></i>(010) 1234 4321</a></li>
-                          <li><i className="fas fa-map-marker-alt"></i>
-                              1 / 105 Bay Lights,
-                              <br/>Lorem Ipsum,
-                              <br/>LIC 3201
-                          </li>
-                      </ul>
-                      <a href="" className="btn red-btn">Book Now</a>
-                  </div>
-                  <div className="col-md-6 col-lg-2 page-more-info">
-                      <div className="footer-title">
-                          <h4>Page links</h4>
-                      </div>
-                      <ul>
-                          <li><a href="#">Home</a></li>
-                          <li><a href="#">About</a></li>
-                          <li><a href="#">Testimonial</a></li>
-                          <li><a href="#">Blog</a></li>
-                          <li><a href="#">Contact</a></li>
-                      </ul>
-                  </div>
-  
-                  <div className="col-md-6 col-lg-3 page-more-info">
-                      <div className="footer-title">
-                          <h4>More Info</h4>
-                      </div>
-                      <ul>
-                          <li><a href="#">Lorem ipsum</a></li>
-                          <li><a href="#">Dolor sit amet</a></li>
-                          <li><a href="#">Consectetur Adipisicing </a></li>
-                          <li><a href="#">Ed do eiusmod tempor incididunt</a></li>
-                      </ul>
-                  </div>
-                  <div className="col-md-6 col-lg-4 open-hours">
-                      <div className="footer-title">
-                          <h4>Open hours</h4>
-                          <ul className="footer-social">
-                              <li><a href="" target="_blank"><i className="fab fa-facebook-f"></i></a></li>
-                              <li><a href="" target="_blank"><i className="fab fa-instagram"></i></a></li>
-                              <li><a href="" target="_blank"><i className="fab fa-linkedin-in"></i></a></li>
-  
-                          </ul>
-                      </div>
-                      <table className="table">
-                          <tbody>
-                              <tr>
-                                  <td><i className="far fa-clock"></i>Monday Thursday</td>
-                                  <td>9:00am - 5:00pm</td>
-                              </tr>
-                              <tr>
-                                  <td><i className="far fa-clock"></i>Friday</td>
-                                  <td>9:00am - 4:00pm</td>
-                              </tr>
-                              <tr>
-                                  <td><i className="far fa-clock"></i>Sturday</td>
-                                  <td>9:00am - 1:30pm</td>
-                              </tr>
-                              <tr>
-                                  <td><i className="far fa-clock"></i>Sunday</td>
-                                  <td>9:30am - 12:00pm</td>
-                              </tr>
-                          </tbody>
-                      </table>
-                      <hr/>
-                      <div className="footer-logo">
-  
-                      <table>
-                          <tbody>
-                              <tr>
-                                  <td><img src="https://i.ibb.co/vxc577d/dummy-logo3.jpg"/></td>
-                                  <td><img src="https://i.ibb.co/vxc577d/dummy-logo3.jpg"/></td>
-                                  <td><img src="https://i.ibb.co/vxc577d/dummy-logo3.jpg"/></td>
-                                  <td><img src="https://i.ibb.co/vxc577d/dummy-logo3.jpg"/></td>
-                                  <td><img src="https://i.ibb.co/vxc577d/dummy-logo3.jpg"/></td>
-                                  </tr>
-                          </tbody>
-                      </table>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <hr/>
-          <div className="footer-bottom">
-              <div className="row">
-                  <div className="col-sm-4">
-                      <a href="">Privacy policy</a>
-                  </div>
-                  <div className="col-sm-8">
-                      <p>Lorem ipsum dolor sit amet @ 2019 All rights reserved</p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </footer>
+        
+        {/* <!-- Footer --> */}
+        
+        <footer className="text-center text-lg-start bg-body-tertiary text-muted">
+        {/* <!-- Section: Social media --> */}
+        <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            {/* <!-- Left --> */}
+            <div className="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+            </div>
+            {/* <!-- Left --> */}
+
+            {/* <!-- Right --> */}
+            <div>
+            <a href="" className="me-4 text-reset">
+                <i className="bi bi-facebook"></i>
+            </a>
+            <a href="" className="me-4 text-reset">
+                <i className="bi bi-twitter"></i>
+            </a>
+            <a href="" className="me-4 text-reset">
+                <i className="bi-google"></i>
+            </a>
+            <a href="" className="me-4 text-reset">
+                <i className="bi-instagram"></i>
+            </a>
+            <a href="" className="me-4 text-reset">
+                <i className="bi-linkedin"></i>
+            </a>
+            <a href="" className="me-4 text-reset">
+                <i className="bi-github"></i>
+            </a>
+            </div>
+            {/* <!-- Right --> */}
+        </section>
+        {/* <!-- Section: Social media --> */}
+
+        {/* <!-- Section: Links  --> */}
+        <section className="">
+            <div className="container text-center text-md-start mt-5">
+            {/* <!-- Grid row --> */}
+            <div className="row mt-3">
+                {/* <!-- Grid column --> */}
+                <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                {/* <!-- Content --> */}
+                <h6 className="text-uppercase fw-bold mb-4">
+                    <i className="bi bi-gem me-3"></i>Casgo
+                </h6>
+                <p>
+                    Here you can use rows and columns to organize your footer content. Lorem ipsum
+                    dolor sit amet, consectetur adipisicing elit.
+                </p>
+                </div>
+                {/* <!-- Grid column --> */}
+
+                {/* <!-- Grid column --> */}
+                <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                {/* <!-- Links --> */}
+                <h6 className="text-uppercase fw-bold mb-4">
+                    Products
+                </h6>
+                <p>
+                    <a href="#!" className="text-reset">Angular</a>
+                </p>
+                <p>
+                    <a href="#!" className="text-reset">React</a>
+                </p>
+                <p>
+                    <a href="#!" className="text-reset">Vue</a>
+                </p>
+                <p>
+                    <a href="#!" className="text-reset">Laravel</a>
+                </p>
+                </div>
+                {/* <!-- Grid column --> */}
+
+                {/* <!-- Grid column --> */}
+                <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                {/* <!-- Links --> */}
+                <h6 className="text-uppercase fw-bold mb-4">
+                    Useful links
+                </h6>
+                <p>
+                    <a href="#!" className="text-reset">Pricing</a>
+                </p>
+                <p>
+                    <a href="#!" className="text-reset">Settings</a>
+                </p>
+                <p>
+                    <a href="#!" className="text-reset">Orders</a>
+                </p>
+                <p>
+                    <a href="#!" className="text-reset">Help</a>
+                </p>
+                </div>
+                {/* <!-- Grid column --> */}
+
+                {/* <!-- Grid column --> */}
+                <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                {/* <!-- Links --> */}
+                <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
+                <p><i className="bi bi-house me-3"></i> Jaffna, Sri Lanka</p>
+                <p>
+                    <i className="bi bi-envelope me-3"></i>
+                    kajan@gmail.com
+                </p>
+                <p><i className="bi bi-phone me-3"></i> + 01 234 567 88</p>
+                
+                </div>
+                {/* <!-- Grid column --> */}
+            </div>
+            {/* <!-- Grid row --> */}
+            </div>
+        </section>
+        {/* <!-- Section: Links  --> */}
+
+        {/* <!-- Copyright --> */}
+        <div className="text-center p-4 foot">
+            © 2024 Copyright:
+            <a className="text-reset fw-bold" href="">casgo.com</a>
+        </div>
+        {/* <!-- Copyright --> */}
+        </footer>
+        {/* <!-- Footer --> */}
         
         </>
     )

@@ -40,7 +40,7 @@ function Login (){
 
       if (isAuthenticated) {
               if (userInfo.role === "admin") {
-                  navigate('/auth');
+                  navigate('/');
               } else {
                   navigate('/');
               }

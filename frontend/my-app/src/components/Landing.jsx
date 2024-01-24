@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 
@@ -5,56 +6,62 @@ function Landing(){
     return (
         <>
 
-    <div className="position-relative w-100 land">
-        <div className="position-absolute text-white d-flex flex-column align-items-start justify-content-center" >
-            <div className="container">
+    
+       
             
-        
-                <div class="bd-example">
-                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="..." class="d-block w-100" alt="..."/>
-                            <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src={"https://www.forbesindia.com/fbimages/900x600/proportional/jpeg/blog/wp-content/uploads/2023/04/shutterstock_1586797216_BG.jpg"} class="d-block w-100" alt="..."/>
-                            <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                        
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
+        <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+            <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            
             </div>
+
+            <div class="carousel-inner">
+            <div class="carousel-item active c-item">
+                <img src="https://images.unsplash.com/photo-1579033461380-adb47c3eb938?fit=crop&w=1964&q=100" class="d-block w-100 c-img" alt="Slide 1"/>
+                <div class="carousel-caption top-0 mt-4">
+                <p class="mt-5 fs-3 text-uppercase">Are you looking for a part time job in your weekends?</p>
+                <h1 class="display-1 fw-bolder text-capitalize">Do Extra Earn Extra</h1>
+                <Link to="/jobseeker">
+                <button class="btn btn-primary px-4 py-2 fs-5 mt-5">Go</button>
+                </Link>
+                </div>
+            </div>
+            <div class="carousel-item c-item">
+                <img src="https://images.unsplash.com/photo-1516466723877-e4ec1d736c8a?fit=crop&w=2134&q=100" class="d-block w-100 c-img" alt="Slide 2"/>
+                <div class="carousel-caption top-0 mt-4">
+                <p class="text-uppercase fs-3 mt-5">Are you looking for part time workers on your busy days?</p>
+                <p class="display-1 fw-bolder text-capitalize">Your are at the right place</p>
+                
+
+
+                     <Link to="/jobgiver">
+                     <button class="btn btn-primary px-4 py-2 fs-5 mt-5">Go</button>
+                     </Link>
+                            
+
+                </div>
+            </div>
+            
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        </div>
+
+         
+            
+
+
+
+        
+       
+        
 
         </>
     )

@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import JobGiver from './pages/Login2';
+import Profile from './pages/Profile';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
     <Route path="/login" element={<Login/>}/>
     <Route path="/register" element={<Register/>}/>
     <Route path="/jobgiver" element={<JobGiver/>}/>
+    <Route path="/profile" element={<Profile/>}/>
     </Routes>
     </BrowserRouter>
 

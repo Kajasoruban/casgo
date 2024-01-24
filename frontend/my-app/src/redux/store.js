@@ -1,14 +1,16 @@
 import { createStore,combineReducers, applyMiddleware } from 'redux';
 import {thunk} from 'redux-thunk'
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { userReducerSignIn, userReducerSignUp } from './reducers/userReducer';
+import { jobGiverReducerSignUp, userReducerLogout, userReducerSignIn, userReducerSignUp } from './reducers/userReducer';
 
 
 
 //combine reducers
 const reducer = combineReducers({
     signIn: userReducerSignIn,
-    signUp: userReducerSignUp
+    signUp: userReducerSignUp,
+    jobGiverSignUp:jobGiverReducerSignUp,
+    logOut: userReducerLogout
 });
 
 
