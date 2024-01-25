@@ -19,7 +19,8 @@ export const userSignInAction = (user) => async (dispatch) => {
             type: USER_SIGNIN_FAIL,
             payload: error.response.data.error
         });
-        toast.error(error.response.data.error);
+        toast.error(error.response.data.message);
+        console.log(error.response.data.message)
     }
 }
 

@@ -8,6 +8,7 @@ import cloudinary from "../utils/cloudinary.js";
 
 
 const authUser= asyncHandler(async(req,res)=>{
+    
     const {email,password}=req.body;
     const user=await User.findOne({email});
     if(user && (await user.matchPassword(password))){
@@ -21,8 +22,9 @@ const authUser= asyncHandler(async(req,res)=>{
         
     }else{
         res.status(401);
-        throw new Error("Invalid Credentials");
+       throw new Error('Invalid email or password');
     }
+   
    
 });
 

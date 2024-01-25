@@ -42,15 +42,15 @@ function Navbar() {
                 </Link> */}
               
               {  !userInfo ? 
-              <Link className="nav-link" to="/login">
-                Login <i class="bi bi-box-arrow-in-right h2"></i> 
+              <Link className="btn  btn-warning" to="/login">
+                Login <i className="bi bi-box-arrow-in-right h2"></i> 
                 </Link>
                                 
                               
                               :
 
                               <Link className="nav-link" to="/profile">
-                              <i class="bi bi-person-circle h1  "></i>
+                              <i className="bi bi-person-circle h1  "></i>
                               </Link>
                               
                               
