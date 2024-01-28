@@ -1,7 +1,8 @@
 import asyncHandler from "express-async-handler";
 
 import User from "../models/userModel.js";
-
+import jobRec from "../models/jobRecruitModel.js";
+import jobSeek from "../models/jobSeekerModel.js";
 import generateToken from "../utils/generateToken.js";
 
 import cloudinary from "../utils/cloudinary.js";
@@ -65,12 +66,38 @@ const logoutUser= asyncHandler(async(req,res)=>{
 
 
 const getUserProfile= asyncHandler(async(req,res)=>{
-    const user={
-        _id:req.user._id,
-        name:req.user.name,
-        email:req.user.email
-    }
-    res.status(200).json(user);
+   try{
+    const use_Id=req.user._id;
+    const profile=await User.find(use_Id)
+    
+    if(profile){
+    
+        const jobgiver=await jobRec.findOne({userId:use_Id});
+        const jobseeker=await jobSeek.findOne({userId:use_Id});
+
+        // console.log(jobgiver);
+        // console.log(jobseeker);
+
+        if(jobgiver){
+            
+            res.status(200).json({user:[profile,jobgiver]});
+
+
+        }else if(jobseeker){
+
+            res.status(200).json({user:[profile,jobseeker]});
+
+        }else{
+            // console.log(profile);
+            res.status(200).json(profile);
+        }
+
+   }
+
+   }catch(err){
+    res.status(404)
+    throw new Error(err)
+   }
 });
 
 

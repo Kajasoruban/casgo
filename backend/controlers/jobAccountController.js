@@ -8,8 +8,9 @@ import cloudinary from "../utils/cloudinary.js";
 // for job recruit
 
 const jobRecCreate= asyncHandler(async(req,res)=>{
+    
     const userId=req.user._id;
-    const {nameOfOrganization,address,contactNo}=req.body;
+    const {nameOfOrganization,address,contactNo,image}=req.body;
     // const alreadyExist=await jobSeek.findOne({userId});
 
     // if(alreadyExist){
@@ -23,22 +24,24 @@ const jobRecCreate= asyncHandler(async(req,res)=>{
         res.status(400);
         throw new Error("Name already exist");
     }
-    const images =await cloudinary.uploader.upload(req.file.path,{ folder: "jobgiver" },(err,result)=>{
+    const result =await cloudinary.uploader.upload(image,{ folder: "jobgiver" },(err,result)=>{
         if(err){
             console.log(err);
         }
        
     })
-    const{public_id,url}=images;
-    const image={
-        public_id:public_id,
-        url:url
-    };
+    console.log(result)
+    const{public_id,url}=result;
+   
    
 
     
     const user=await jobRec.create({
-        userId,nameOfOrganization,address,contactNo,image
+        userId,nameOfOrganization,address,contactNo,
+        image:{
+            public_id:public_id,
+            url:url
+        }
     });
 
     if(user){
@@ -83,7 +86,7 @@ const updateJobRecProfile= asyncHandler(async(req,res)=>{
 
 const jobSeekerCreate= asyncHandler(async(req,res)=>{
     const userId=req.user._id;
-    const {age,gender,address,contactNo}=req.body;
+    const {age,gender,address,contactNo,image}=req.body;
     // const alreadyExist=await jobSeek.findOne({userId});
 
     // if(alreadyExist){
@@ -92,21 +95,22 @@ const jobSeekerCreate= asyncHandler(async(req,res)=>{
     // }
     
 
-    const images =await cloudinary.uploader.upload(req.file.path,{ folder: "jobseeker" },(err,result)=>{
+    const result =await cloudinary.uploader.upload(image,{ folder: "jobseeker" },(err,result)=>{
         if(err){
             console.log(err);
         }
        
     })
-    const{public_id,url}=images;
-    const image={
-        public_id:public_id,
-        url:url
-    };
+    const{public_id,url}=result;
+    
 
 
     const user=await jobSeek.create({
-        userId,age,gender,address,contactNo,image
+        userId,age,gender,address,contactNo,
+        image:{
+            public_id:public_id,
+            url:url
+        }
     });
 
     if(user){

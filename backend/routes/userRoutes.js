@@ -17,13 +17,13 @@ router.get("/profile",protect,getUserProfile);
 router.put("/profile",protect,updateUserProfile);
 
 //for job recruit
-router.post("/jobRecruit",protect,upload.single("image"),jobRecCreate);
+router.post("/jobRecruit",protect,jobRecCreate);
 router.get("/getJobRecruit",protect,getJobRecProfile);
 router.put("/updateJobRecruit",protect,updateJobRecProfile);
 
 
 //for job seeker
-router.post("/jobSeeker",protect,upload.single("images"),jobSeekerCreate);
+router.post("/jobSeeker",protect,jobSeekerCreate);
 router.get("/getJobSeeker",protect,getJobSeekerProfile);
 router.put("/updateJobSeeker",protect,updateJobSeekerProfile);
 

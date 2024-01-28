@@ -1,18 +1,30 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userProfileAction } from "../redux/actions/userAction";
+import { useEffect } from "react";
 
 function Navbar() {
 
+   const dispatch=useDispatch();
 
   const { userInfo } = useSelector(state => state.signIn);
 
 
+  // const profile =()=>{
+  //   dispatch(userProfileAction())
+  // }
 
+  useEffect(() => {
+    dispatch(userProfileAction());
+  },[]);
+
+  const {user} =useSelector(state => state.userProfile);
 
     return (
         
       <div className="Navbar">
-      <nav className="navbar navbar-expand-lg bg-body-tertiary nvco">
+      <nav className="navbar navbar-expand-md bg-body-tertiary nvco">
         <div className="container-fluid">
           
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +47,7 @@ function Navbar() {
               <img src={require("../Assets/img/casgoLogo.png")} className="logo" alt=""/>
                 </Link>
               
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 navlis2">
+            <ul className="navbar-nav  ms-auto  mb-2  mb-lg-0 navlis2">
               
               {/* <Link className="nav-link"to="/faq">
                 FAQ
@@ -43,14 +55,16 @@ function Navbar() {
               
               {  !userInfo ? 
               <Link className="btn  btn-warning" to="/login">
-                Login <i className="bi bi-box-arrow-in-right h2"></i> 
+                Login <i className="bi bi-box-arrow-in-right h3"></i> 
                 </Link>
                                 
                               
                               :
 
                               <Link className="nav-link" to="/profile">
-                              <i className="bi bi-person-circle h1  "></i>
+                              {/* <i className="bi bi-person-circle h1  "></i> */}
+                              <img src={ user?user[1].image.url  :"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"  } alt="" style={{width:"4rem",height:"4rem",borderRadius:"50%"}} />
+                              <p className="small">{userInfo?userInfo.name:"user"}</p>
                               </Link>
                               
                               

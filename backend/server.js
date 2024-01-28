@@ -10,9 +10,14 @@ import cors from "cors";
 const port =3200;
 
 const app=express();
+app.use(express.json({limit: '100mb'}));
+app.use(express.urlencoded({     // to support URL-encoded bodies
+    limit: '100mb',
+    extended: true
+    }));
 
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+// app.use(express.json());
+// app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(cors());
 

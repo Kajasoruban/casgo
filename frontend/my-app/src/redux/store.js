@@ -1,7 +1,7 @@
 import { createStore,combineReducers, applyMiddleware } from 'redux';
 import {thunk} from 'redux-thunk'
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { jobGiverReducerSignUp, userReducerLogout, userReducerSignIn, userReducerSignUp } from './reducers/userReducer';
+import { jobGiverReducerSignUp, jobSeekerReducerSignUp, userReducerLogout, userReducerProfile, userReducerSignIn, userReducerSignUp } from './reducers/userReducer';
 
 
 
@@ -9,17 +9,16 @@ import { jobGiverReducerSignUp, userReducerLogout, userReducerSignIn, userReduce
 const reducer = combineReducers({
     signIn: userReducerSignIn,
     signUp: userReducerSignUp,
+    logOut: userReducerLogout,
+    userProfile: userReducerProfile,
     jobGiverSignUp:jobGiverReducerSignUp,
-    logOut: userReducerLogout
+    jobSeekerSignUp:jobSeekerReducerSignUp,
 });
 
 
 //initial state
 let initialState = {
     signIn: {
-        userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
-    },
-    signUp: {
         userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
     }
 };
