@@ -186,8 +186,8 @@ function Profile() {
 
                         </div>
                         </div>
-                        <div className="row">
-                        {/* <div className="col-md-6">
+                        {/* <div className="row">
+                        <div className="col-md-6">
                             <div className="card mb-4 mb-md-0">
                             <div className="card-body">
                                 <p className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status
@@ -219,8 +219,8 @@ function Profile() {
                                 </div>
                             </div>
                             </div>
-                        </div> */}
-                        {/* <div className="col-md-6">
+                        </div>
+                        <div className="col-md-6">
                             <div className="card mb-4 mb-md-0">
                               <div className="card-body">
                                 <p className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status
@@ -252,8 +252,8 @@ function Profile() {
                               </div>
                               </div>
                             </div>
-                        </div> */}
                         </div>
+                        </div> */}
                     </div>
                     </div>
                 </div>
