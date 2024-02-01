@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userProfileAction } from "../redux/actions/userAction";
 import { useEffect } from "react";
+import LoginModel from "./LoginModel";
 
 function Navbar() {
 
@@ -31,21 +32,22 @@ function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0 navlis">
-              <li className="nav-item">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 navlis">
+              {/* <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">Jobs</a>
-              </li>
-              
-              </ul> */}
-              
-              
-
-              <Link className="nav-link" to="/">
+              </li> */}
+               <Link className="nav-item" to="/">
               <img src={require("../Assets/img/casgoLogo.png")} className="logo" alt=""/>
                 </Link>
+              
+              </ul>
+              
+              
+             
+             
               
             <ul className="navbar-nav  ms-auto  mb-2  mb-lg-0 navlis2">
               
@@ -54,16 +56,39 @@ function Navbar() {
                 </Link> */}
               
               {  !userInfo ? 
-              <Link className="btn  btn-warning" to="/login">
-                Login <i className="bi bi-box-arrow-in-right h3"></i> 
-                </Link>
+              // <Link className="btn  btn-warning" to="/login">
+              //   Login <i className="bi bi-box-arrow-in-right h3"></i> 
+              //   </Link>
+               <>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Login
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <LoginModel/>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                </>
+              
                                 
                               
                               :
 
                               <Link className="nav-link" to="/profile">
                               {/* <i className="bi bi-person-circle h1  "></i> */}
-                              <img src={ user?user[1].image.url  :"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"  } alt="" style={{width:"4rem",height:"4rem",borderRadius:"50%"}} />
+                              <img src={ user?user[1].image.url  :"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"  } alt="" style={{width:"5rem",height:"5rem",borderRadius:"50%"}} />
                               <p className="small">{userInfo?userInfo.name:"user"}</p>
                               </Link>
                               

@@ -118,7 +118,7 @@ function JobGiver() {
           // error={formik.touched.contactNo && Boolean(formik.errors.contactNo)}
           // helperText={formik.touched.contactNo && formik.errors.contactNo}
         />
- 
+    
     </div>
 
     <div className="form-group">
@@ -132,14 +132,14 @@ function JobGiver() {
           name='image'
           onChange={(e)=>{
            
-            console.log(e.target.files[0]);
+            // console.log(e.target.files[0]);
             const reader = new FileReader();
             reader.readAsDataURL(e.target.files[0]);
             reader.onloadend = () =>{
-              console.log();
+             console.log(reader.result);
               formik.setFieldValue("image",reader.result);
         
-    }
+          }
           }}
           // value={formik.values.image}
           // onChange={formik.handleChange}
@@ -150,7 +150,7 @@ function JobGiver() {
  
     </div>
 
-    <img className="img-fluid" src={image} alt="" />
+    <img className="img-fluid" src={formik.values.image}  alt="" /> <br/>
    
     
     <button type="submit" className="btn btn-primary">Go</button>

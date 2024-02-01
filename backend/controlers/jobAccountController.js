@@ -31,7 +31,7 @@ const jobRecCreate= asyncHandler(async(req,res)=>{
        
     })
     console.log(result)
-    const{public_id,url}=result;
+    const{public_id,secure_url}=result;
    
    
 
@@ -40,7 +40,7 @@ const jobRecCreate= asyncHandler(async(req,res)=>{
         userId,nameOfOrganization,address,contactNo,
         image:{
             public_id:public_id,
-            url:url
+            url:secure_url
         }
     });
 
@@ -101,7 +101,7 @@ const jobSeekerCreate= asyncHandler(async(req,res)=>{
         }
        
     })
-    const{public_id,url}=result;
+    const{public_id,secure_url}=result;
     
 
 
@@ -109,7 +109,7 @@ const jobSeekerCreate= asyncHandler(async(req,res)=>{
         userId,age,gender,address,contactNo,
         image:{
             public_id:public_id,
-            url:url
+            url:secure_url
         }
     });
 

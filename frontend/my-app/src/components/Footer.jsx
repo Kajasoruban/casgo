@@ -54,8 +54,7 @@ function Footer(){
                     <i className="bi bi-gem me-3"></i>Casgo
                 </h6>
                 <p>
-                    Here you can use rows and columns to organize your footer content. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit.
+                    We value your time
                 </p>
                 </div>
                 {/* <!-- Grid column --> */}
@@ -67,9 +66,9 @@ function Footer(){
                     Products
                 </h6>
                 <p>
-                    <a href="#!" className="text-reset">Angular</a>
+                    <a href="#!" className="text-reset">Job Posting</a>
                 </p>
-                <p>
+                {/* <p>
                     <a href="#!" className="text-reset">React</a>
                 </p>
                 <p>
@@ -77,7 +76,7 @@ function Footer(){
                 </p>
                 <p>
                     <a href="#!" className="text-reset">Laravel</a>
-                </p>
+                </p> */}
                 </div>
                 {/* <!-- Grid column --> */}
 
@@ -93,9 +92,9 @@ function Footer(){
                 <p>
                     <a href="#!" className="text-reset">Settings</a>
                 </p>
-                <p>
+                {/* <p>
                     <a href="#!" className="text-reset">Orders</a>
-                </p>
+                </p> */}
                 <p>
                     <a href="#!" className="text-reset">Help</a>
                 </p>

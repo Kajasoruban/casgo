@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import LoginModel from "./LoginModel";
 
 
 
@@ -53,7 +54,19 @@ function Landing(){
             <span className="visually-hidden">Next</span>
             </button>
         </div>
+        
 
+        <div className="about-section my-5">
+        <h1 className="my-5">About Us</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero ex inventore numquam voluptatem. Minus, aliquid?</p>
+       
+                
+                
+                
+                      
+              </div>
+        
          
             
 

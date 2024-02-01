@@ -36,16 +36,23 @@ body {
     top: 24rem;
     right: 24rem;
 } */
-
-
+.texco{
+    color: #2b580c;
+}
+.about-section {
+    padding: 50px;
+    text-align: center;
+    background-color: #ffffff;
+    color: rgb(1, 1, 1);
+  }
 .nvco{
     background-color: #d5d6cb!important;
     color: #08a2da!important;
 }
 
 .logo{
-    width: 12rem;
-    height: 8rem;
+    width: 14rem;
+    height: 10rem;
     margin: auto 4rem;
 }
 .nvco a{
