@@ -66,7 +66,7 @@ function JobSeeker() {
             <>
             <Navbar/>
             <div className='container'>
-            <form className='my-5'onSubmit={formik.handleSubmit} encType="multipart/form-data">
+            <form className='m-5'onSubmit={formik.handleSubmit} encType="multipart/form-data">
 
             <div className="form-group">
                 <label htmlFor="age">age</label>

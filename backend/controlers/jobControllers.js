@@ -1,12 +1,12 @@
 import asyncHandler from "express-async-handler";
 import Job from "../models/jobModel.js";
-
+import JobType from "../models/jobTypeModel.js";
 
 //for posting jobs
 
 const postJob= asyncHandler(async(req,res)=>{
     const {name,
-           address,
+           location,
            salary,
            noOfWorkers,
            requirements,
@@ -22,7 +22,7 @@ const postJob= asyncHandler(async(req,res)=>{
     const job=await Job.create({
         userId,
         name,
-        address,
+        location,
         salary,
         noOfWorkers,
         requirements,
@@ -50,6 +50,73 @@ const getJob= asyncHandler(async(req,res)=>{
     const job =await Job.find().populate("userId","name")
     res.status(200).json(job);
 });
+
+
+
+const showJobs = async (req, res) => {
+
+    //enable search 
+    const keyword = req.query.keyword ? {
+        name: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {}
+
+
+    // filter jobs by category ids
+    // let ids = [];
+    // const jobTypeCategory = await JobType.find({}, { _id: 1 });
+    // jobTypeCategory.forEach(cat => {
+    //     ids.push(cat._id);
+    // })
+
+    // let cat = req.query.cat;
+    // let categ = cat !== '' ? cat : ids;
+
+
+    //jobs by location
+    let locations = [];
+    const jobByLocation = await Job.find({}, { location: 1 });
+    jobByLocation.forEach(val => {
+        locations.push(val.location);
+    });
+    let setUniqueLocation = [...new Set(locations)];
+    let location = req.query.location;
+    let locationFilter = location !== '' ? location : setUniqueLocation;
+
+
+    //enable pagination
+    const pageSize = 5;
+    const page = Number(req.query.pageNumber) || 1;
+    //const count = await Job.find({}).estimatedDocumentCount();  jobType: categ, .populate('jobType', 'jobTypeName')
+    const count = await Job.find({ ...keyword, location: locationFilter }).countDocuments();
+
+    try {
+        
+        const jobs = await Job.find({ ...keyword, location: locationFilter }).sort({ createdAt: -1 }).populate("userId","name").skip(pageSize * (page - 1)).limit(pageSize)
+        res.status(200).json({
+            success: true,
+            jobs,
+            page,
+            pages: Math.ceil(count / pageSize),
+            count,
+            setUniqueLocation
+
+        })
+    } catch (error) {
+        res.status(400).json({
+            success:false,
+            message:error
+
+        })
+    }
+}
+
+
+
+
+
 
 
 const updatejob= asyncHandler(async(req,res)=>{
@@ -88,4 +155,9 @@ const delJob= asyncHandler(async(req,res)=>{
 });
 
 
-export{postJob,getJob,updatejob,delJob,}
+
+
+
+
+
+export{postJob,getJob,updatejob,delJob,showJobs}
