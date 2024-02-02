@@ -72,7 +72,7 @@ function LoginModel() {
 
 
     <Box onSubmit={formik.handleSubmit} component="form" className='form_style border-style' >
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "30vw" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "25vw" }}>
             <Avatar sx={{ m: 1, bgcolor: "primary.main", mb: 3 }}>
                 <LockClockOutlined />
             </Avatar>
