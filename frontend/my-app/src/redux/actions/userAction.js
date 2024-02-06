@@ -106,7 +106,7 @@ export const jobGiverSignUpAction = (user,image) => async (dispatch) => {
 }
 
 // jobSeekerSignUpAction action
-export const jobSeekerSignUpAction = (user,image) => async (dispatch) => {
+export const jobSeekerSignUpAction = (user) => async (dispatch) => {
     dispatch({ type: jobSeekerAction_REQUEST });
     try {
         const { data } = await axios.post("/api/users/jobSeeker", user);

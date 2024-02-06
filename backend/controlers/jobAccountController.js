@@ -30,7 +30,7 @@ const jobRecCreate= asyncHandler(async(req,res)=>{
         }
        
     })
-    console.log(result)
+    // console.log(result)
     const{public_id,secure_url}=result;
    
    

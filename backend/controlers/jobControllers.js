@@ -83,9 +83,10 @@ const showJobs = async (req, res) => {
     });
     let setUniqueLocation = [...new Set(locations)];
     let location = req.query.location;
-    let locationFilter = location !== '' ? location : setUniqueLocation;
+    let locationFilter = location !== undefined ? location : setUniqueLocation;
 
-
+    
+    // console.log({...keyword,location: locationFilter});
     //enable pagination
     const pageSize = 5;
     const page = Number(req.query.pageNumber) || 1;
@@ -112,7 +113,6 @@ const showJobs = async (req, res) => {
         })
     }
 }
-
 
 
 

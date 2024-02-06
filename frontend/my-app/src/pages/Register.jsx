@@ -37,21 +37,7 @@ const validationSchema = yup.object({
 const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-  const { isAuthenticated, userInfo } = useSelector(state => state.signUp);
-  useEffect(() => {
-
-      if (isAuthenticated) {
-              if (userInfo.role === "admin") {
-                  navigate('/auth');
-              } else {
-                  navigate('/');
-              }
-          }
-
-          // if (isAuthenticated) {
-          //     navigate('/user/dashboard');
-          // }
-      }, [isAuthenticated])
+  
 
 
     const formik = useFormik({

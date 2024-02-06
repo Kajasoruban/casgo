@@ -98,7 +98,7 @@ export const jobGiverReducerSignUp = (state = {}, action) => {
         case jobGiverAction_SUCCESS:
             return {
                 loading: false,
-                
+                jobGiverSignUp: action.payload
                 
             }
         case jobGiverAction_FAIL:
@@ -119,7 +119,7 @@ export const jobSeekerReducerSignUp = (state = {}, action) => {
         case jobSeekerAction_SUCCESS:
             return {
                 loading: false,
-                
+                jobSeekerSignUp: action.payload
                 
             }
         case jobSeekerAction_FAIL:

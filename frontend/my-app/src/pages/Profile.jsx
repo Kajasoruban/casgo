@@ -2,34 +2,27 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import {  useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogoutAction } from '../redux/actions/userAction';
+import { userLogoutAction, userProfileAction } from '../redux/actions/userAction';
+import { useEffect } from 'react';
 
 function Profile() {
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { userInfo } = useSelector(state => state.signIn);
-    const {user} =useSelector(state => state.userProfile);
-    // console.log(user[1].image.url);
+    const {user,loading} =useSelector(state => state.userProfile);
+
+    // console.log(user);
     
 
      
+//    useEffect(() => {
+//     dispatch(userProfileAction());
+//   },[]);
 
 
-//      if(user!==null){
-
-
-//     if(user[1].image.url){
-//         console.log(user[1].image.url);
-//         setImg(user[1].image.url)
-//     }else{
-//         console.log('not found');
-//         setImg("https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp")
-//     }
-    
-//    }
     
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    
 
     const logOutUser = () => {
         dispatch(userLogoutAction());
@@ -123,7 +116,12 @@ function Profile() {
                             </div>
                             </div>
 
-                         {  user?
+                          {loading? <><br/><br/><button className="btn btn-primary" type="button" disabled>
+                                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Loading...
+                                        </button> </>:
+
+                           user?
                             <>
 
                              {
@@ -182,7 +180,8 @@ function Profile() {
                             </div>
                            
                             </>  : null
-                         }
+                         
+                        }
 
                         </div>
                         </div>
