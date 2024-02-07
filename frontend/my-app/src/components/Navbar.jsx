@@ -8,7 +8,7 @@ import LoginModel from "./LoginModel";
 function Navbar() {
 
    const dispatch=useDispatch();
-   const[no,setNo]=useState(0)
+   const[no,setNo]=useState(0);
   const { userInfo } = useSelector(state => state.signIn);
 
 
@@ -22,7 +22,7 @@ function Navbar() {
 
    useEffect(() => {
     dispatch(userProfileAction());
-  },[]);
+  },[no]);
 
     return (
         
@@ -61,28 +61,7 @@ function Navbar() {
               <Link className="btn  btn-warning" to="/login">
                 Login <i className="bi bi-box-arrow-in-right h3"></i> 
                 </Link>
-              //  <>
-              // <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              //     Login
-              //   </button>
-              //   <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              //     <div className="modal-dialog modal-dialog-centered">
-              //       <div className="modal-content">
-              //         <div className="modal-header">
-              //           <h5 className="modal-title" id="exampleModalLabel">Login</h5>
-              //           <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              //         </div>
-              //         <div className="modal-body">
-              //           <LoginModel/>
-              //         </div>
-              //         <div className="modal-footer">
-              //           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              //         </div>
-              //       </div>
-              //     </div>
-              //   </div>
-
-              //   </>
+             
               
                                 
                               
@@ -91,8 +70,8 @@ function Navbar() {
                               <Link className="nav-link"  to="/profile">
                               {/* <i className="bi bi-person-circle h1  "></i> */}
                               {loading?
-                              <div class="spinner-border" style={{width: "3rem",height: "3rem"}}>
-                                        <span class="sr-only"></span>
+                              <div className="spinner-border" style={{width: "3rem",height: "3rem"}}>
+                                        <span className="sr-only"></span>
                                       </div>
                                       :
                                       <>

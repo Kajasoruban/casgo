@@ -71,6 +71,7 @@ export const userProfileAction = () => async (dispatch) => {
     dispatch({ type: USER_PROFILE_REQUEST });
     try {
         const { data } = await axios.get("/api/users/profile");
+        localStorage.setItem('userInfoExtra', JSON.stringify(data));
         // console.log(data);
         dispatch({
             type: USER_PROFILE_SUCCESS,

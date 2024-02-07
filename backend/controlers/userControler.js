@@ -80,16 +80,13 @@ const getUserProfile= asyncHandler(async(req,res)=>{
 
         if(jobgiver){
             
-            res.status(200).json({user:[profile,jobgiver]});
+            res.status(200).json(jobgiver);
 
 
         }else if(jobseeker){
 
-            res.status(200).json({user:[profile,jobseeker]});
+            res.status(200).json(jobseeker);
 
-        }else{
-            // console.log(profile);
-            res.status(200).json(profile);
         }
 
    }

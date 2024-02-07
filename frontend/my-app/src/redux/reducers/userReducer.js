@@ -69,7 +69,7 @@ export const userReducerLogout = (state = {}, action) => {
 }
 
 //user profile
-export const userReducerProfile = (state = { user: null }, action) => {
+export const userReducerProfile = (state = {}, action) => {
     // console.log(action);
     switch (action.type) {
         case USER_PROFILE_REQUEST:
@@ -78,10 +78,11 @@ export const userReducerProfile = (state = { user: null }, action) => {
             // console.log( action.payload.user);
             return {
                 loading: false,
-                user: action.payload.user,
+                userProfile: action.payload
+                
             }
         case USER_PROFILE_FAIL:
-            return { loading: false, user: null, error: action.payload }
+            return { loading: false, userProfile: null, error: action.payload }
         case USER_PROFILE_RESET:
             return {}
         default:
