@@ -1,9 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import LoginModel from "./LoginModel";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { jobLoadAction } from "../redux/actions/jobAction";
 
 
 
 function Landing(){
+    const { jobs, setUniqueLocation, pages, loading } = useSelector(state => state.loadJobs);
+
+    const dispatch = useDispatch();
+    const { keyword, location } = useParams();
+
+    const [page, setPage] = useState(1);
+    // const [cat, setCat] = useState('');
+
+    useEffect(() => {
+        dispatch(jobLoadAction(page, keyword, location));
+    }, [page, keyword, location]);
+
     return (
         <>
 
@@ -68,7 +83,38 @@ function Landing(){
               </div>
         
 
-        
+        <div className="jobsection text-center">
+
+            <h1 >Job Name</h1>
+         
+         
+         {
+         
+         loading?
+
+         <div >
+         <div className="spinner-border text-warning " role="status">
+         <span className="visually-hidden">Loading...</span>
+         </div>
+         </div> :
+
+         jobs && jobs.length === 0 ?
+
+         <p className="lead">No jobs available right now</p>
+
+         :
+
+         jobs && jobs.map((job, i) => (
+            <h1 className="lead"key={i}>{job.name}</h1>
+         ))
+
+
+            
+            }
+            
+            
+
+        </div>
          
             
 

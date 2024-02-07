@@ -9,7 +9,7 @@ function Profile() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { userInfo } = useSelector(state => state.signIn);
-    const {loading,userProfile} =useSelector(state => state.userProfile);
+    const {loading,userInfoExtra} =useSelector(state => state.userProfile);
      
     // console.log(userInfoExtra);
     
@@ -57,7 +57,7 @@ function Profile() {
                     <div className="col-lg-4">
                         <div className="card mb-4">
                         <div className="card-body text-center">
-                            <img src={ userProfile?userProfile.image.url  :"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"  } alt="avatar"
+                            <img src={ userInfoExtra?userInfoExtra.image.url  :"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"  } alt="avatar"
                             className="rounded-circle img-fluid" style={{width: "150px"}}/>
                             <h5 className="my-3">{userInfo?userInfo.name:"name"}</h5>
                             <p className="text-muted mb-1">{userInfo?userInfo.email:"email"}</p>
@@ -121,11 +121,11 @@ function Profile() {
                                         Loading...
                                         </button> </>:
 
-                           userProfile?
+                           userInfoExtra?
                             <>
 
                              {
-                             userProfile[1].role==="jobSeeker"?
+                             userInfoExtra.role==="jobSeeker"?
                              <>
                              <hr/>
                             <div className="row">
@@ -133,7 +133,7 @@ function Profile() {
                                 <p className="mb-0">age</p>
                             </div>
                             <div className="col-sm-9">
-                                <p className="text-muted mb-0">{ userProfile?userProfile.age:"100"}</p>
+                                <p className="text-muted mb-0">{ userInfoExtra?userInfoExtra.age:"100"}</p>
                             </div>
                             </div>
                             <hr/>
@@ -142,7 +142,7 @@ function Profile() {
                                 <p className="mb-0">gender</p>
                             </div>
                             <div className="col-sm-9">
-                                <p className="text-muted mb-0">{ userProfile?userProfile.gender:"null"}</p>
+                                <p className="text-muted mb-0">{ userInfoExtra?userInfoExtra.gender:"null"}</p>
                             </div>
                             </div>
                              </>
@@ -153,7 +153,7 @@ function Profile() {
                                 <p className="mb-0">Organization</p>
                             </div>
                             <div className="col-sm-9">
-                                <p className="text-muted mb-0">{ userProfile?userProfile.nameOfOrganization:"vip"}</p>
+                                <p className="text-muted mb-0">{ userInfoExtra?userInfoExtra.nameOfOrganization:"vip"}</p>
                             </div>
                             </div>
                             </>} 
@@ -165,7 +165,7 @@ function Profile() {
                                 <p className="mb-0">Phone</p>
                             </div>
                             <div className="col-sm-9">
-                                <p className="text-muted mb-0">{ userProfile?userProfile.contactNo:"00000000"}</p>
+                                <p className="text-muted mb-0">{ userInfoExtra?userInfoExtra.contactNo:"00000000"}</p>
                             </div>
                             </div>
                             <hr/>
@@ -175,7 +175,7 @@ function Profile() {
                                 <p className="mb-0">Address</p>
                             </div>
                             <div className="col-sm-9">
-                                <p className="text-muted mb-0">{userProfile?userProfile.address :"dubai road cross street"}</p>
+                                <p className="text-muted mb-0">{userInfoExtra?userInfoExtra.address :"dubai road cross street"}</p>
                             </div>
                             </div>
                            

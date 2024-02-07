@@ -18,11 +18,17 @@ function Navbar() {
 
  
 
-  const {user,loading} =useSelector(state => state.userProfile);
+  const {userInfoExtra,loading} =useSelector(state => state.userProfile);
 
    useEffect(() => {
-    dispatch(userProfileAction());
-  },[no]);
+    if(userInfo){
+      if(!userInfoExtra){
+        dispatch(userProfileAction());
+      }
+    }
+    
+   
+  },[userInfoExtra]);
 
     return (
         
@@ -75,7 +81,7 @@ function Navbar() {
                                       </div>
                                       :
                                       <>
-                              <img src={ user?user[1].image.url  :"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"  } alt="" style={{width:"5rem",height:"5rem",borderRadius:"50%"}} />
+                              <img src={ userInfoExtra?userInfoExtra.image.url  :"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"  } alt="" style={{width:"5rem",height:"5rem",borderRadius:"50%"}} />
                               <p className="small">{userInfo?userInfo.name:"user"}</p> </>}
                               </Link>
                               

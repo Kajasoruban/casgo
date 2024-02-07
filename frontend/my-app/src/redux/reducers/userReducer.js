@@ -73,16 +73,16 @@ export const userReducerProfile = (state = {}, action) => {
     // console.log(action);
     switch (action.type) {
         case USER_PROFILE_REQUEST:
-            return { loading: true, user: null }
+            return { loading: true, userInfoExtra: null }
         case USER_PROFILE_SUCCESS:
             // console.log( action.payload.user);
             return {
                 loading: false,
-                userProfile: action.payload
+                userInfoExtra: action.payload
                 
             }
         case USER_PROFILE_FAIL:
-            return { loading: false, userProfile: null, error: action.payload }
+            return { loading: false, userInfoExtra: null, error: action.payload }
         case USER_PROFILE_RESET:
             return {}
         default:

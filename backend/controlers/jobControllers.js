@@ -83,7 +83,7 @@ const showJobs = async (req, res) => {
     });
     let setUniqueLocation = [...new Set(locations)];
     let location = req.query.location;
-    let locationFilter = location !== undefined ? location : setUniqueLocation;
+    let locationFilter = location !== "" ? location : setUniqueLocation;
 
     
     // console.log({...keyword,location: locationFilter});
