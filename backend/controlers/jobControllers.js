@@ -5,6 +5,7 @@ import JobType from "../models/jobTypeModel.js";
 //for posting jobs
 
 const postJob= asyncHandler(async(req,res)=>{
+    
     const {name,
            location,
            salary,
@@ -18,9 +19,11 @@ const postJob= asyncHandler(async(req,res)=>{
            gender }=req.body;
            
            const userId=req.user._id;
+           const{jobGiverId}=req.user
     
     const job=await Job.create({
         userId,
+        jobGiverId,
         name,
         location,
         salary,
@@ -47,7 +50,7 @@ const postJob= asyncHandler(async(req,res)=>{
 
 
 const getJob= asyncHandler(async(req,res)=>{
-    const job =await Job.find().populate("userId","name")
+    const job =await Job.find().populate("userId","name").populate("jobGiverId","image")
     res.status(200).json(job);
 });
 
@@ -92,6 +95,7 @@ const showJobs = async (req, res) => {
     const page = Number(req.query.pageNumber) || 1;
     //const count = await Job.find({}).estimatedDocumentCount();  jobType: categ, .populate('jobType', 'jobTypeName')
     const count = await Job.find({ ...keyword, location: locationFilter }).countDocuments();
+    
 
     try {
         

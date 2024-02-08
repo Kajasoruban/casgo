@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
+import jobRec from "../models/jobRecruitModel.js";
+import jobSeek from "../models/jobSeekerModel.js";
 
 const protect =asyncHandler(async(req,res,next)=>{
     let token;
@@ -10,6 +12,20 @@ const protect =asyncHandler(async(req,res,next)=>{
             const decoded =jwt.verify(token,process.env.JWT_SECRET);
 
             req.user=await User.findById(decoded.userId).select("-password");
+            
+            if(req.user){
+                const jobgiver=await jobRec.findOne({userId:decoded.userId});
+                const jobseeker=await jobSeek.findOne({userId:decoded.userId});
+                if(jobgiver){
+                    console.log(jobgiver._id)
+                    req.user.jobGiverId=jobgiver._id;
+
+                }else if(jobseeker){
+                    console.log(jobseeker._id)
+                    req.user.jobSeekerId=jobseeker._id
+
+                }
+            }
             next();
 
         }catch(error){

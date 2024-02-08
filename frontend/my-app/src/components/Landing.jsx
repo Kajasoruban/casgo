@@ -3,6 +3,8 @@ import LoginModel from "./LoginModel";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { jobLoadAction } from "../redux/actions/jobAction";
+import { Pagination, Stack } from "@mui/material";
+import Card from "./Card";
 
 
 
@@ -105,16 +107,26 @@ function Landing(){
          :
 
          jobs && jobs.map((job, i) => (
-            <h1 className="lead"key={i}>{job.name}</h1>
+            <Card 
+            key={job._id}
+            id={job._id}
+            jobTitle={job.name}
+            description={job.jobDescription}
+            img={job}
+            closingTime={job.closingTime}
+            location={job.location}
+            />
          ))
 
 
             
             }
-            
-            
-
+            <Stack spacing={2} >
+                <Pagination color="primary" variant="outlined" page={page} count={pages === 0 ? 1 : pages} onChange={(event, value) => setPage(value)} />
+            </Stack>
+           
         </div>
+        
          
             
 

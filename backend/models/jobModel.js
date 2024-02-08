@@ -7,6 +7,11 @@ const jobSchema =mongoose.Schema({
         ref: "users",
         required: true
     },
+    jobGiverId:{
+        type: ObjectId,
+        ref: "jobRecruit",
+        required: true
+    },
     name:{
         type: String,
         required:true
