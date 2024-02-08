@@ -8,8 +8,8 @@ import { useEffect } from 'react';
 function Profile() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { userInfo } = useSelector(state => state.signIn);
-    const {loading,userInfoExtra} =useSelector(state => state.userProfile);
+    const { userInfo,loading } = useSelector(state => state.signIn);
+    const {userInfoExtra} =useSelector(state => state.userProfile);
      
     // console.log(userInfoExtra);
     
@@ -116,10 +116,7 @@ function Profile() {
                             </div>
                             </div>
 
-                          {loading? <><br/><br/><button className="btn btn-primary" type="button" disabled>
-                                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                        Loading...
-                                        </button> </>:
+                          {
 
                            userInfoExtra?
                             <>

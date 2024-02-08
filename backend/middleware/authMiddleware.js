@@ -17,11 +17,11 @@ const protect =asyncHandler(async(req,res,next)=>{
                 const jobgiver=await jobRec.findOne({userId:decoded.userId});
                 const jobseeker=await jobSeek.findOne({userId:decoded.userId});
                 if(jobgiver){
-                    console.log(jobgiver._id)
+                   
                     req.user.jobGiverId=jobgiver._id;
 
                 }else if(jobseeker){
-                    console.log(jobseeker._id)
+                    
                     req.user.jobSeekerId=jobseeker._id
 
                 }

@@ -91,7 +91,7 @@ const showJobs = async (req, res) => {
     
     // console.log({...keyword,location: locationFilter});
     //enable pagination
-    const pageSize = 5;
+    const pageSize = 6;
     const page = Number(req.query.pageNumber) || 1;
     //const count = await Job.find({}).estimatedDocumentCount();  jobType: categ, .populate('jobType', 'jobTypeName')
     const count = await Job.find({ ...keyword, location: locationFilter }).countDocuments();
@@ -99,7 +99,7 @@ const showJobs = async (req, res) => {
 
     try {
         
-        const jobs = await Job.find({ ...keyword, location: locationFilter }).sort({ createdAt: -1 }).populate("userId","name").skip(pageSize * (page - 1)).limit(pageSize)
+        const jobs = await Job.find({ ...keyword, location: locationFilter }).sort({ createdAt: -1 }).populate("userId","name").populate("jobGiverId","image").skip(pageSize * (page - 1)).limit(pageSize)
         res.status(200).json({
             success: true,
             jobs,

@@ -9,7 +9,7 @@ function Navbar() {
 
    const dispatch=useDispatch();
    const[no,setNo]=useState(0);
-  const { userInfo } = useSelector(state => state.signIn);
+  const { userInfo ,loading} = useSelector(state => state.signIn);
 
 
   // const profile =()=>{
@@ -18,7 +18,7 @@ function Navbar() {
 
  
 
-  const {userInfoExtra,loading} =useSelector(state => state.userProfile);
+  const {userInfoExtra} =useSelector(state => state.userProfile);
 
    useEffect(() => {
     if(userInfo){
