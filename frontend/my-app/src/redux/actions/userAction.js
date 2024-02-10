@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, USER_PROFILE_FAIL, USER_PROFILE_REQUEST, USER_PROFILE_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS, jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_SUCCESS, jobSeekerAction_FAIL, jobSeekerAction_REQUEST, jobSeekerAction_SUCCESS } from '../constants/userConstant';
 
 
-
+// user sign in action
 export const userSignInAction = (user) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST });
     try {
@@ -92,6 +92,8 @@ export const jobGiverSignUpAction = (user,image) => async (dispatch) => {
     dispatch({ type: jobGiverAction_REQUEST });
     try {
         const { data } = await axios.post("/api/users/jobRecruit", user);
+        localStorage.removeItem('userInfoExtra');
+        setTimeout(window.location.reload(true), 6000)
         dispatch({
             type: jobGiverAction_SUCCESS,
             payload: data
@@ -112,6 +114,8 @@ export const jobSeekerSignUpAction = (user) => async (dispatch) => {
     dispatch({ type: jobSeekerAction_REQUEST });
     try {
         const { data } = await axios.post("/api/users/jobSeeker", user);
+        localStorage.removeItem('userInfoExtra');
+        setTimeout(window.location.reload(true), 6000)
         dispatch({
             type: jobSeekerAction_SUCCESS,
             payload: data

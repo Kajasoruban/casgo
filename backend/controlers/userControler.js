@@ -87,6 +87,8 @@ const getUserProfile= asyncHandler(async(req,res)=>{
 
             res.status(200).json(jobseeker);
 
+        }else{
+            res.status(200).json({message:"basic account"});
         }
 
    }

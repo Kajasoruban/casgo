@@ -57,7 +57,7 @@ function Profile() {
                     <div className="col-lg-4">
                         <div className="card mb-4">
                         <div className="card-body text-center">
-                            <img src={ userInfoExtra?userInfoExtra.image.url  :"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"  } alt="avatar"
+                            <img src={ !userInfoExtra ?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU":!userInfoExtra.message  ? userInfoExtra.image.url  :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU"} alt="avatar"
                             className="rounded-circle img-fluid" style={{width: "150px"}}/>
                             <h5 className="my-3">{userInfo?userInfo.name:"name"}</h5>
                             <p className="text-muted mb-1">{userInfo?userInfo.email:"email"}</p>
@@ -118,7 +118,7 @@ function Profile() {
 
                           {
 
-                           userInfoExtra?
+                           !userInfoExtra.message?
                             <>
 
                              {

@@ -3,10 +3,12 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import { jobGiverSignUpAction } from '../redux/actions/userAction';
-import { useState } from 'react';
+import '../Assets/css/JobGiverRegister.css';
+import GoogleMap from '../components/GoogleMap';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = yup.object({
   nameOfOrganization: yup
@@ -28,10 +30,10 @@ const validationSchema = yup.object({
 
 function JobGiver() {
 
-  const [image, setImage] = useState([]);
+  
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
+  const navigate = useNavigate();
+  const { userInfo ,loading} = useSelector(state => state.signIn);
   
 
 
@@ -48,9 +50,12 @@ function JobGiver() {
         //  alert(JSON.stringify(values, null, 2));
         // const data={...values,image:image}
         
-        console.log(values);
+        // console.log(values);
         dispatch(jobGiverSignUpAction(values));
         actions.resetForm();
+        navigate('/');
+       
+        
     }
 
 })
@@ -61,72 +66,22 @@ function JobGiver() {
   return (
     <>
     <Navbar/>
-    <div className='container'>
-    <form className='my-5'onSubmit={formik.handleSubmit} encType="multipart/form-data">
-
-    <div className="form-group">
-        <label htmlFor="nameOfOrganization">nameOfOrganization</label>
-
-        <input
-          type="text"
-          className="form-control" 
-          placeholder="Enter nameOfOrganization"
-          id="nameOfOrganization"
-          name='nameOfOrganization'
-          
-          value={formik.values.nameOfOrganization}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          // error={formik.touched.nameOfOrganization && Boolean(formik.errors.nameOfOrganization)}
-          // helperText={formik.touched.nameOfOrganization && formik.errors.nameOfOrganization}
-        />
- 
-    </div>
-
-    <div className="form-group">
-        <label htmlFor="address">address</label>
-
-        <input
-          type="text"
-          className="form-control" 
-          placeholder="Enter address"
-          id="address"
-          name='address'
-          
-          value={formik.values.address}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          // error={formik.touched.address && Boolean(formik.errors.address)}
-          // helperText={formik.touched.address && formik.errors.address}
-        />
- 
-    </div>
-
-    <div className="form-group">
-        <label htmlFor="contactNo">contactNo</label>
-
-        <input
-          type="text"
-          className="form-control" 
-          placeholder="Enter contactNo"
-          id="contactNo"
-          name='contactNo'
-          
-          value={formik.values.contactNo}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          // error={formik.touched.contactNo && Boolean(formik.errors.contactNo)}
-          // helperText={formik.touched.contactNo && formik.errors.contactNo}
-        />
+    <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
+      
+      <h1 className='display-6 text-center heading-1 fw-bold'>Job Giver Register</h1>
+    <form className=''onSubmit={formik.handleSubmit} encType="multipart/form-data">
     
-    </div>
-
-    <div className="form-group">
-        <label htmlFor="image">image</label>
+      <div className='row align-items-center'>
+        <div className='col-2'>
+      <img className="img-fluid" src={!formik.values.image?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU":formik.values.image} style={{width:'10rem',borderRadius:'50%'}} alt="" /> 
+      </div>
+    <div className="col-10">
+    
+        
 
         <input
           type="file"
-          className="form-control" 
+          className="" 
           
           id="image"
           name='image'
@@ -149,16 +104,93 @@ function JobGiver() {
         />
  
     </div>
-
-    <img className="img-fluid" src={formik.values.image}  alt="" /> <br/>
-   
+    </div>
     
-    <button type="submit" className="btn btn-primary">Go</button>
-    
-    </form>
+    <br/>
+    <div className="row">
+      <div className="form-group col-md-6">
+        <label htmlFor="inputEmail4">Email</label>
+        <input type="email" className="form-control" value={!userInfo?'':userInfo.email} readOnly id="inputEmail4" placeholder="Email"/>
+      </div>
+      <div className="form-group col-md-6">
+        <label htmlFor="inputPassword4">User Name</label>
+        <input type="text" className="form-control" id="inputPassword4" value={!userInfo?'':userInfo.name} readOnly placeholder="Password"/>
+      </div>
+    </div>
+     
+    <br/>
+    <div className="form-group">
+        <label htmlFor="nameOfOrganization">Name Of Organization:</label>
 
+        <input
+          type="text"
+          className="form-control" 
+          placeholder="Enter nameOfOrganization"
+          id="nameOfOrganization"
+          name='nameOfOrganization'
+          
+          value={formik.values.nameOfOrganization}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          // error={formik.touched.nameOfOrganization && Boolean(formik.errors.nameOfOrganization)}
+          // helperText={formik.touched.nameOfOrganization && formik.errors.nameOfOrganization}
+        />
+ 
+    </div>
+
+    <br/>
+
+    <div className="form-group">
+        <label htmlFor="address">Location:</label>
+
+        <input
+          type="text"
+          className="form-control" 
+          placeholder="Enter address"
+          id="address"
+          name='address'
+          
+          value={formik.values.address}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          // error={formik.touched.address && Boolean(formik.errors.address)}
+          // helperText={formik.touched.address && formik.errors.address}
+        />
+ 
+    </div>
+
+    <br/>
+
+    <div className="form-group">
+        <label htmlFor="contactNo">Contact No:</label>
+
+        <input
+          type="text"
+          className="form-control" 
+          placeholder="Enter contactNo"
+          id="contactNo"
+          name='contactNo'
+          
+          value={formik.values.contactNo}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          // error={formik.touched.contactNo && Boolean(formik.errors.contactNo)}
+          // helperText={formik.touched.contactNo && formik.errors.contactNo}
+        />
     
     </div>
+
+    <br/>
+   
+    <div className='go'>
+    <button type="submit" className="btn btn-warning py-2 px-5 fs-5 mx-5">Go</button>
+    </div>
+    </form>
+
+   
+    </div>
+
+    {/* <GoogleMap/> */}
     
     <Footer/>
   </>

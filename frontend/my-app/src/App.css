@@ -1,86 +1,116 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
+
+
 body {
   font-family: "Poppins", sans-serif !important;
-}
-.land{
-    height: 100vh; 
-    /* background-image: url(https://www.forbesindia.com/fbimages/900x600/proportional/jpeg/blog/wp-content/uploads/2023/04/shutterstock_1586797216_BG.jpg);  */
-    background-size: cover;
-    background-position: center;
-    
-}
-
-
-
-
-.c-item {
-    height: 480px;
-  }
   
-  .c-img {
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6);
-  }
-
-
-
-
-/* .eyeco{
-    display: flex;
-    align-items: center;
 }
- .eye{
-    position: absolute;
-    top: 24rem;
-    right: 24rem;
+
+
+/* for navbar section start*/
+
+.nvco{
+    background-color: #ffffff!important;
+    filter: brightness(0.9);
+    color: #ffc107!important;
+}
+.nvco a{
+    font-size: 1.2rem;
+    color: #2b580c ;
+    font-weight: bolder;
+}
+.logo{
+    width: 8rem;
+    height: 6rem;  
+}
+
+/* .navlis2{
+    margin-right: 10rem;
 } */
-.texco{
+
+.navbott{
+    width: 100vw;
+    height: 15vh;
+}
+.jobpost{
+    color: #ffc107 !important;
+    background-color: #2b580c !important;
+}
+
+/* for navbar section end*/
+
+
+
+/* for carousel start*/
+
+.text-stroke-p{
+    -webkit-text-stroke: 1px #ffc107;
     color: #2b580c;
 }
+
+.text-stroke-s{
+    -webkit-text-stroke: 2px #2b580c;
+    color: #ffc107;
+}
+
+/* #2b580c
+#ffc107 */
+
+.go-btn{
+    border: #2b580c 1px solid !important;
+}
+
+.c-item {
+    height: 560px;
+    width: 100vw;
+  }
+  
+.c-img {
+height: 100%;
+width: 90%;
+margin: 0 auto;
+/* filter: brightness(0.9); */
+}
+
+/* for carousel end*/
+
+
+/* for about section start*/
+
 .about-section {
     padding: 50px;
     text-align: center;
     background-color: #ffffff;
     color: rgb(1, 1, 1);
   }
-.nvco{
-    background-color: #d5d6cb!important;
-    color: #08a2da!important;
-}
 
-.logo{
-    width: 14rem;
-    height: 10rem;
-    margin: auto 4rem;
-}
-.nvco a{
-    font-size: 1.2rem;
-    color: #2b580c !important;
-}
-.navlis2{
-    margin-right: 10rem;
-}
 
-.navlis li,.navlis2 li{
-    margin-right: 5rem;
-}
+/* for about section end*/
 
+
+/*for how it work section start*/
+
+
+
+/*for how it work section end*/
 
 .pagination{
     
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin:0 auto;
     width: 30vw;
 }
 
 
 
-
+/* for footer section start*/
 .foot{
     background-color: rgba(0, 0, 0, 0.05);
 }
+/* for footer section end*/
+
+
 
 
 

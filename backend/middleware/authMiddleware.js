@@ -25,6 +25,8 @@ const protect =asyncHandler(async(req,res,next)=>{
                     req.user.jobSeekerId=jobseeker._id
 
                 }
+                   
+                
             }
             next();
 

@@ -12,6 +12,7 @@ import JobGiver from './pages/JobGiverRegister';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 import JobSeeker from './pages/JobSeekerRegister';
+import JobPost from './pages/JobPost';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
     <Route path="/profile" element={<Profile/>}/>
     <Route path="/jobgiver" element={<JobGiver/>}/>
     <Route path="/jobseeker" element={<JobSeeker/>}/>
+    <Route path="/jobPost" element={<JobPost/>}/>
     <Route path="*" element={<NotFound/>}/>
 
     </Routes>

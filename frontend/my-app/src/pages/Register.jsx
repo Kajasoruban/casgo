@@ -38,7 +38,11 @@ const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
   
+//    const {userSignUp}=useSelector(state => state.signUp);
 
+//    if(userSignUp){
+//     navigate("/login")
+//    }
 
     const formik = useFormik({
         initialValues: {
