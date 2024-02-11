@@ -105,7 +105,7 @@ export const jobGiverSignUpAction = (user,image) => async (dispatch) => {
             type: jobGiverAction_FAIL,
             payload: error.response.data.error
         });
-        toast.error(error.response.data.error);
+        toast.error(error.response.data.message);
     }
 }
 
@@ -125,8 +125,8 @@ export const jobSeekerSignUpAction = (user) => async (dispatch) => {
         console.log(error);
         dispatch({
             type: jobSeekerAction_FAIL,
-            payload: error.response.data.error
+            payload: error.response.data.message
         });
-        toast.error(error.response.data.error);
+        toast.error(error.response.data.message);
     }
 }

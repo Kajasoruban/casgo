@@ -58,7 +58,7 @@ function Navbar() {
                     Contact
                   </Link>
 
-                  <Link className="nav-link mx-5" to="/job">
+                  <Link className="nav-link mx-5" to="/jobs">
                     Jobs
                   </Link>
 

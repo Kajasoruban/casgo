@@ -1,4 +1,4 @@
-import { JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_RESET, JOB_LOAD_SUCCESS } from "../constants/jobConstant"
+import { JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_RESET, JOB_LOAD_SUCCESS, JOB_REGISTER_FAIL, JOB_REGISTER_REQUEST, JOB_REGISTER_RESET, JOB_REGISTER_SUCCESS } from "../constants/jobConstant"
 
 
 
@@ -26,4 +26,32 @@ export const loadJobReducer = (state = { jobs: [] }, action) => {
         default:
             return state;
     }
+}
+
+export const jobPostReducer = (state = {}, action) => {
+    
+    switch (action.type) {
+        case JOB_REGISTER_REQUEST:
+            return {
+              loading: true
+            }
+
+        case JOB_REGISTER_SUCCESS:
+            return {
+                loading: false,
+                job: action.payload,
+            }
+
+        case JOB_REGISTER_FAIL:
+            return {
+                loading: false,
+                error: action.payload  
+            }
+
+        case JOB_REGISTER_RESET:
+            return {}
+        default:
+            return state;
+    }
+
 }

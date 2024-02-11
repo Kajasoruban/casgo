@@ -4,27 +4,28 @@ import Footer from '../components/Footer';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
 import { jobGiverSignUpAction } from '../redux/actions/userAction';
 import '../Assets/css/JobGiverRegister.css';
-import GoogleMap from '../components/GoogleMap';
+
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const validationSchema = yup.object({
   nameOfOrganization: yup
       .string('Enter your nameOfOrganization')
       
-      .required('nameOfOrganization is required'),
+      .required('NameOfOrganization is required'),
   
       address: yup
       .string('Enter your address')
-      .required('address is required'),  
+      .required('Address is required'),  
 
       contactNo: yup
       .string('Enter your contactNo')
-      .min(10, 'contact no should be of minimum 10 characters length')
-      .required('contactNo is required'),  
-
+      .min(10, 'Contact number should be of minimum 10 characters length')
+      .required('Contact number is required'),  
+      
+      image: yup.mixed().required("image required")
  
 });
 
@@ -33,6 +34,7 @@ function JobGiver() {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [imageValid,setImageValid]=useState(false);
   const { userInfo ,loading} = useSelector(state => state.signIn);
   
 
@@ -81,7 +83,7 @@ function JobGiver() {
 
         <input
           type="file"
-          className="" 
+          className={` ${formik.touched.image && formik.errors.image?'is-invalid':''}`} 
           
           id="image"
           name='image'
@@ -89,9 +91,11 @@ function JobGiver() {
            
             // console.log(e.target.files[0]);
             const reader = new FileReader();
+            {e.target.files[0]!==undefined ? !e.target.files[0].type.includes("image")&&setImageValid(true):setImageValid(false)}
+            (e.target.files[0]!==undefined && e.target.files[0].type.includes("image"))&&
             reader.readAsDataURL(e.target.files[0]);
             reader.onloadend = () =>{
-             console.log(reader.result);
+            //  console.log(reader.result);
               formik.setFieldValue("image",reader.result);
         
           }
@@ -101,7 +105,9 @@ function JobGiver() {
           onBlur={formik.handleBlur}
           // error={formik.touched.image && Boolean(formik.errors.image)}
           // helperText={formik.touched.image && formik.errors.image}
-        />
+        />{formik.touched.image && formik.errors.image ? (
+          <div id="org" className="form-text invalid-feedback">{formik.errors.image}</div>
+        ) : null}{imageValid&&<div id="org2" className="form-text invalid-feedback">It should be an image</div>}
  
     </div>
     </div>
@@ -124,7 +130,7 @@ function JobGiver() {
 
         <input
           type="text"
-          className="form-control" 
+          className={`form-control ${formik.touched.nameOfOrganization && formik.errors.nameOfOrganization?'is-invalid':''}`} 
           placeholder="Enter nameOfOrganization"
           id="nameOfOrganization"
           name='nameOfOrganization'
@@ -134,18 +140,23 @@ function JobGiver() {
           onBlur={formik.handleBlur}
           // error={formik.touched.nameOfOrganization && Boolean(formik.errors.nameOfOrganization)}
           // helperText={formik.touched.nameOfOrganization && formik.errors.nameOfOrganization}
+          aria-describedby="org"
         />
+        {/* <div >{formik.touched.nameOfOrganization && formik.errors.nameOfOrganization}</div> */}
+        {formik.touched.nameOfOrganization && formik.errors.nameOfOrganization ? (
+             <div id="org" className="form-text invalid-feedback">{formik.errors.nameOfOrganization}</div>
+           ) : null}
  
     </div>
 
     <br/>
 
     <div className="form-group">
-        <label htmlFor="address">Location:</label>
+        <label htmlFor="address">Address:</label>
 
         <input
           type="text"
-          className="form-control" 
+          className={`form-control ${formik.touched.address && formik.errors.address?'is-invalid':''}`} 
           placeholder="Enter address"
           id="address"
           name='address'
@@ -155,7 +166,9 @@ function JobGiver() {
           onBlur={formik.handleBlur}
           // error={formik.touched.address && Boolean(formik.errors.address)}
           // helperText={formik.touched.address && formik.errors.address}
-        />
+        />{formik.touched.address && formik.errors.address ? (
+          <div id="org" className="form-text invalid-feedback">{formik.errors.address}</div>
+        ) : null}
  
     </div>
 
@@ -166,7 +179,7 @@ function JobGiver() {
 
         <input
           type="text"
-          className="form-control" 
+          className={`form-control ${formik.touched.contactNo && formik.errors.contactNo?'is-invalid':''}`} 
           placeholder="Enter contactNo"
           id="contactNo"
           name='contactNo'
@@ -176,7 +189,9 @@ function JobGiver() {
           onBlur={formik.handleBlur}
           // error={formik.touched.contactNo && Boolean(formik.errors.contactNo)}
           // helperText={formik.touched.contactNo && formik.errors.contactNo}
-        />
+        />{formik.touched.contactNo && formik.errors.contactNo ? (
+          <div id="org" className="form-text invalid-feedback">{formik.errors.contactNo}</div>
+        ) : null}
     
     </div>
 
@@ -197,4 +212,22 @@ function JobGiver() {
   );
 }
 
+
+
+{/* <form>
+  <div className="mb-3">
+    <label for="exampleInputEmail1" className="form-label">Email address</label>
+    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div className="mb-3">
+    <label for="exampleInputPassword1" className="form-label">Password</label>
+    <input type="password" className="form-control" id="exampleInputPassword1">
+  </div>
+  <div className="mb-3 form-check">
+    <input type="checkbox" className="form-check-input" id="exampleCheck1">
+    <label className="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" className="btn btn-primary">Submit</button>
+</form> */}
 export default JobGiver;

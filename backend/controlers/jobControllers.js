@@ -1,40 +1,46 @@
 import asyncHandler from "express-async-handler";
 import Job from "../models/jobModel.js";
-import JobType from "../models/jobTypeModel.js";
+import jobRec from "../models/jobRecruitModel.js";
 
 //for posting jobs
 
 const postJob= asyncHandler(async(req,res)=>{
     
-    const {name,
-           location,
-           salary,
-           noOfWorkers,
-           requirements,
-           contactNo,
-           role,
-           ageLimit,
-           jobDescription,
-           closingTime,
-           gender }=req.body;
+    const {
+            title,
+            jobDescription,
+            salary,
+            noOfWorkers,
+            ageLimit,
+            closingTime,
+            gender,
+            requirements
+           }=req.body;
+          
+
            
            const userId=req.user._id;
            const{jobGiverId}=req.user
+
+           const gobGiver=await jobRec.find(jobGiverId);
+           const address = gobGiver[0].address;
+           const nameOfOrganization =  gobGiver[0].nameOfOrganization;
+           
     
     const job=await Job.create({
         userId,
         jobGiverId,
-        name,
-        location,
+        title,
+        jobDescription,
         salary,
         noOfWorkers,
-        requirements,
-        contactNo,
-        role,
         ageLimit,
-        jobDescription,
         closingTime,
         gender,
+        requirements,
+        nameOfOrganization,
+        address
+        
         
     });
 
@@ -50,7 +56,7 @@ const postJob= asyncHandler(async(req,res)=>{
 
 
 const getJob= asyncHandler(async(req,res)=>{
-    const job =await Job.find().populate("userId","name").populate("jobGiverId","image")
+    const job =await Job.find().populate("userId","name").populate("jobGiverId","nameOfOrganization address contactNo image")
     res.status(200).json(job);
 });
 
@@ -60,7 +66,7 @@ const showJobs = async (req, res) => {
 
     //enable search 
     const keyword = req.query.keyword ? {
-        name: {
+        title: {
             $regex: req.query.keyword,
             $options: 'i'
         }
@@ -79,14 +85,14 @@ const showJobs = async (req, res) => {
 
 
     //jobs by location
-    let locations = [];
-    const jobByLocation = await Job.find({}, { location: 1 });
+    let addresses = [];
+    const jobByLocation = await Job.find({}, { address: 1 });
     jobByLocation.forEach(val => {
-        locations.push(val.location);
+        addresses.push(val.address);
     });
-    let setUniqueLocation = [...new Set(locations)];
-    let location = req.query.location;
-    let locationFilter = location !== "" ? location : setUniqueLocation;
+    let setUniqueLocation = [...new Set(addresses)];
+    let address = req.query.address;
+    let addressFilter = address !== undefined ? address : setUniqueLocation;
 
     
     // console.log({...keyword,location: locationFilter});
@@ -94,12 +100,12 @@ const showJobs = async (req, res) => {
     const pageSize = 6;
     const page = Number(req.query.pageNumber) || 1;
     //const count = await Job.find({}).estimatedDocumentCount();  jobType: categ, .populate('jobType', 'jobTypeName')
-    const count = await Job.find({ ...keyword, location: locationFilter }).countDocuments();
+    const count = await Job.find({ ...keyword, address: setUniqueLocation }).countDocuments();
     
 
     try {
         
-        const jobs = await Job.find({ ...keyword, location: locationFilter }).sort({ createdAt: -1 }).populate("userId","name").populate("jobGiverId","image").skip(pageSize * (page - 1)).limit(pageSize)
+        const jobs = await Job.find({ ...keyword, address: addressFilter }).sort({ createdAt: -1 }).populate("userId","name").populate("jobGiverId","contactNo image").skip(pageSize * (page - 1)).limit(pageSize)
         res.status(200).json({
             success: true,
             jobs,

@@ -13,6 +13,7 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 import JobSeeker from './pages/JobSeekerRegister';
 import JobPost from './pages/JobPost';
+import Jobs from './pages/Jobs';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
     <Route path="/jobgiver" element={<JobGiver/>}/>
     <Route path="/jobseeker" element={<JobSeeker/>}/>
     <Route path="/jobPost" element={<JobPost/>}/>
+    <Route path="/jobs" element={<Jobs/>}/>
     <Route path="*" element={<NotFound/>}/>
 
     </Routes>

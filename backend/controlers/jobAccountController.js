@@ -11,12 +11,13 @@ const jobRecCreate= asyncHandler(async(req,res)=>{
     
     const userId=req.user._id;
     const {nameOfOrganization,address,contactNo,image}=req.body;
-    // const alreadyExist=await jobSeek.findOne({userId});
+    const joseekAlreadyExist=await jobSeek.findOne({userId});
+    const  joRecAlreadyExist=await jobRec.findOne({userId});
 
-    // if(alreadyExist){
-    //     res.status(400);
-    //     throw new Error("you already have account");
-    // }
+    if(joseekAlreadyExist||joRecAlreadyExist){
+        res.status(400);
+        throw new Error("you already have account");
+    }
     
     const Exist=await jobRec.findOne({nameOfOrganization});
 
@@ -87,12 +88,13 @@ const updateJobRecProfile= asyncHandler(async(req,res)=>{
 const jobSeekerCreate= asyncHandler(async(req,res)=>{
     const userId=req.user._id;
     const {age,gender,address,contactNo,image}=req.body;
-    // const alreadyExist=await jobSeek.findOne({userId});
+    const joseekAlreadyExist=await jobSeek.findOne({userId});
+    const joRecAlreadyExist=await jobRec.findOne({userId});
 
-    // if(alreadyExist){
-    //     res.status(400);
-    //     throw new Error("you already have account");
-    // }
+    if(joseekAlreadyExist||joRecAlreadyExist){
+        res.status(400);
+        throw new Error("you already have an Account");
+    }
     
 
     const result =await cloudinary.uploader.upload(image,{ folder: "jobseeker" },(err,result)=>{

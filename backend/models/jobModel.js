@@ -12,11 +12,11 @@ const jobSchema =mongoose.Schema({
         ref: "jobRecruit",
         required: true
     },
-    name:{
+    title:{
         type: String,
         required:true
     },
-    location:{
+    jobDescription:{
         type: String,
         required:true
     },
@@ -28,23 +28,7 @@ const jobSchema =mongoose.Schema({
         type: Number,
         required:true
     },
-    requirements:{
-        type:String,
-        required:true
-    },
-    contactNo:{
-        type:String,
-        required:true
-    },
-    role:{
-        type:String,
-        required:true
-    },
     ageLimit:{
-        type: String,
-        required:true
-    },
-    jobDescription:{
         type: String,
         required:true
     },
@@ -54,6 +38,17 @@ const jobSchema =mongoose.Schema({
     },
     gender:{
         type: String,
+        required:true
+    },
+    requirements:{
+        type: String,  
+    },
+    address:{
+        type: String,  
+        required:true
+    },
+    nameOfOrganization:{
+        type: String,  
         required:true
     }
     

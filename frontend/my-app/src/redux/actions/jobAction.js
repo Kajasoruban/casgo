@@ -1,5 +1,6 @@
 import axios from "axios";
-import { JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_SUCCESS } from "../constants/jobConstant";
+import { JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_SUCCESS, JOB_REGISTER_FAIL, JOB_REGISTER_REQUEST, JOB_REGISTER_SUCCESS } from "../constants/jobConstant";
+import { toast } from "react-toastify";
 
 
 
@@ -17,5 +18,25 @@ export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '')
             type: JOB_LOAD_FAIL,
             payload: error.response.data.error
         });
+    }
+}
+
+export const jobPostAction =(job) => async (dispatch) => {
+    dispatch({type:JOB_REGISTER_REQUEST});
+    try {
+        const {data}= await axios.post("/api/users/jobPost",job)
+        
+        dispatch({
+            type:JOB_REGISTER_SUCCESS,
+            payload:data
+        })
+        toast.success("Job Posted Successfully")
+        
+    } catch (error) {
+        dispatch({
+            type:JOB_REGISTER_FAIL,
+            payload:error.response.data.message
+        })
+        toast.error(error.response.data.message)
     }
 }
