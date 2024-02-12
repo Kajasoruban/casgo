@@ -13,7 +13,7 @@ function Profile() {
      
     // console.log(userInfoExtra);
     
-
+    console.log(userInfoExtra.message)
      
 //    useEffect(() => {
 //     dispatch(userProfileAction());
@@ -116,69 +116,69 @@ function Profile() {
                             </div>
                             </div>
 
-                          {
+                              {
 
-                           !userInfoExtra.message?
-                            <>
+                                  !userInfoExtra.message ?
+                                      <>
 
-                             {
-                             userInfoExtra.role==="jobSeeker"?
-                             <>
-                             <hr/>
-                            <div className="row">
-                            <div className="col-sm-3">
-                                <p className="mb-0">age</p>
-                            </div>
-                            <div className="col-sm-9">
-                                <p className="text-muted mb-0">{ userInfoExtra?userInfoExtra.age:"100"}</p>
-                            </div>
-                            </div>
-                            <hr/>
-                            <div className="row">
-                            <div className="col-sm-3">
-                                <p className="mb-0">gender</p>
-                            </div>
-                            <div className="col-sm-9">
-                                <p className="text-muted mb-0">{ userInfoExtra?userInfoExtra.gender:"null"}</p>
-                            </div>
-                            </div>
-                             </>
-                             :<>
-                             <hr/>
-                            <div className="row">
-                            <div className="col-sm-3">
-                                <p className="mb-0">Organization</p>
-                            </div>
-                            <div className="col-sm-9">
-                                <p className="text-muted mb-0">{ userInfoExtra?userInfoExtra.nameOfOrganization:"vip"}</p>
-                            </div>
-                            </div>
-                            </>} 
-                            
+                                          {
+                                              userInfoExtra.role === "jobSeeker" ?
+                                                  <>
+                                                      <hr />
+                                                      <div className="row">
+                                                          <div className="col-sm-3">
+                                                              <p className="mb-0">age</p>
+                                                          </div>
+                                                          <div className="col-sm-9">
+                                                              <p className="text-muted mb-0">{userInfoExtra ? userInfoExtra.age : "100"}</p>
+                                                          </div>
+                                                      </div>
+                                                      <hr />
+                                                      <div className="row">
+                                                          <div className="col-sm-3">
+                                                              <p className="mb-0">gender</p>
+                                                          </div>
+                                                          <div className="col-sm-9">
+                                                              <p className="text-muted mb-0">{userInfoExtra ? userInfoExtra.gender : "null"}</p>
+                                                          </div>
+                                                      </div>
+                                                  </>
+                                                  : <>
+                                                      <hr />
+                                                      <div className="row">
+                                                          <div className="col-sm-3">
+                                                              <p className="mb-0">Organization</p>
+                                                          </div>
+                                                          <div className="col-sm-9">
+                                                              <p className="text-muted mb-0">{userInfoExtra ? userInfoExtra.nameOfOrganization : "vip"}</p>
+                                                          </div>
+                                                      </div>
+                                                  </>}
 
-                            <hr/>
-                            <div className="row">
-                            <div className="col-sm-3">
-                                <p className="mb-0">Phone</p>
-                            </div>
-                            <div className="col-sm-9">
-                                <p className="text-muted mb-0">{ userInfoExtra?userInfoExtra.contactNo:"00000000"}</p>
-                            </div>
-                            </div>
-                            <hr/>
-                
-                            <div className="row">
-                            <div className="col-sm-3">
-                                <p className="mb-0">Address</p>
-                            </div>
-                            <div className="col-sm-9">
-                                <p className="text-muted mb-0">{userInfoExtra?userInfoExtra.address :"dubai road cross street"}</p>
-                            </div>
-                            </div>
-                           
-                            </>  : null
-                         
-                        }
+
+                                          <hr />
+                                          <div className="row">
+                                              <div className="col-sm-3">
+                                                  <p className="mb-0">Phone</p>
+                                              </div>
+                                              <div className="col-sm-9">
+                                                  <p className="text-muted mb-0">{userInfoExtra ? userInfoExtra.contactNo : "00000000"}</p>
+                                              </div>
+                                          </div>
+                                          <hr />
+
+                                          <div className="row">
+                                              <div className="col-sm-3">
+                                                  <p className="mb-0">Address</p>
+                                              </div>
+                                              <div className="col-sm-9">
+                                                  <p className="text-muted mb-0">{userInfoExtra ? userInfoExtra.address : "dubai road cross street"}</p>
+                                              </div>
+                                          </div>
+
+                                      </> : null
+
+                              }
 
                         </div>
                         </div>
