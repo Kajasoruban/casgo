@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import Job from "../models/jobModel.js";
 import jobRec from "../models/jobRecruitModel.js";
+import jobSeek from "../models/jobSeekerModel.js";
 
 //for posting jobs
 
@@ -180,8 +181,59 @@ const delJob= asyncHandler(async(req,res)=>{
 
 
 
+const jobApply = async (req, res) => {
+    // const {
+    //     jobGiverId,
+    //     title,
+    //     nameOfOrganization,
+    //     jobDescription,
+    //     requirements,
+    //     salary,
+    //     address,
+    //     ageLimit,
+    //     closingTime,
+    //     noOfWorkers
+
+    // } = req.body;
+
+         const arr =["65cb01322bc58d2c37113662", "65cbab86e380f301024f6cc3"];
+         console.log({arr});
+    try {
+        const currentUser = await jobSeek.find({_id:arr}).select("userId age gender address contactNo image")
+        // if (!currentUser) {
+
+        //     res.status(400).json({ message: "you must be loged in" });
+        // } else {
+        //     const addJobHistory = {
+        //         title,
+        //         nameOfOrganization,
+        //         jobDescription,
+        //         requirements,
+        //         salary,
+        //         address,
+        //         ageLimit,
+        //         closingTime,
+        //         noOfWorkers,
+        //         jobGiverId,
+        //         jobSeekerId: req.user.jobSeekerId
+        //     }
+        //     currentUser.jobsHistory.push(addJobHistory);
+        //     await currentUser.save();
+        // }
+
+        res.status(200).json({
+            success: true,
+            currentUser
+        })
+
+
+    } catch (error) {
+        res.status(404).json({ message: error });
+    }
+}
 
 
 
 
-export{postJob,getJobById,updatejob,delJob,showJobs}
+
+export{postJob,getJobById,updatejob,delJob,showJobs,jobApply}

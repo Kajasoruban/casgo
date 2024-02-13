@@ -1,9 +1,9 @@
 import express from "express";
 const router =express.Router();
 import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,allUsers } from "../controlers/userControler.js";
-import{ postJob,getJobById,updatejob,delJob, showJobs,} from "../controlers/jobControllers.js"
+import{ postJob,getJobById,updatejob,delJob, showJobs,jobApply} from "../controlers/jobControllers.js"
 import{jobRecCreate,getJobRecProfile,updateJobRecProfile,
-        jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile} from "../controlers/jobAccountController.js";
+        jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile,createUserJobsHistory} from "../controlers/jobAccountController.js";
 
 import { protect,isAdmin } from "../middleware/authMiddleware.js";
 
@@ -28,6 +28,7 @@ router.put("/updateJobRecruit",protect,updateJobRecProfile);
 router.post("/jobSeeker",protect,jobSeekerCreate);              //done
 router.get("/getJobSeeker",protect,getJobSeekerProfile);        //done
 router.put("/updateJobSeeker",protect,updateJobSeekerProfile);
+router.post('/jobhistory', protect, createUserJobsHistory);
 
 //for job manage
 router.post("/jobPost",protect,postJob);
@@ -35,7 +36,7 @@ router.get("/getJob/:id",protect,getJobById);
 router.put("/updateJob",protect,updatejob);
 router.delete("/deleteJob",protect,delJob);
 router.get('/jobs/show', showJobs);              //done
-
+router.get('/jobs/jobapply', jobApply);  
 
 
 

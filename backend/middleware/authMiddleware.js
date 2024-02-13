@@ -19,10 +19,11 @@ const protect =asyncHandler(async(req,res,next)=>{
                 if(jobgiver){
                    
                     req.user.jobGiverId=jobgiver._id;
-
+                   
                 }else if(jobseeker){
                     
                     req.user.jobSeekerId=jobseeker._id
+                    
 
                 }
                    

@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import '../Assets/css/JobGiverRegister.css';
 import LoadingBox from '../components/LoadingBox';
+import moment from 'moment';
 
 
 
@@ -25,7 +26,7 @@ function JobsById() {
     <>
     <Navbar/>
 
-    <div className='display-2 text-center my-5'>Jobs Details</div>
+    <div className='display-2 text-center mt-5'>Jobs Details</div>
     
 
 
@@ -38,15 +39,15 @@ function JobsById() {
                     
                     <div className="col-xl-7 col-lg-8">
                         
-                        <div className="single-job-items mb-50">
-                            <div className="job-items">
-                                <div className="company-img company-img-details">
+                        <div className="">
+                            <div className="row">
+                                <div className="col-6">
                                     <a href="#"><img src={jobDetail&&jobDetail.jobGiverId.image.url} width="300px" height="200px"alt=""/></a>
                                 </div>
-                                <div className="job-tittle">
-                                    <a href="#">
+                                <div className="col-6">
+                                    <span className='lead'>
                                         <h4>{jobDetail&&jobDetail.title}</h4>
-                                    </a>
+                                    </span>
                                     <ul>
                                         <li>Creative Agency</li>
                                         <li><i className="fas fa-map-marker-alt"></i>{jobDetail&&jobDetail.address}</li>
@@ -83,16 +84,17 @@ function JobsById() {
                            <div className="small-section-tittle">
                                <h4>Job Overview</h4>
                            </div>
-                          <ul>
-                              <li>Posted date : <span>12 Aug 2019</span></li>
+                          <ul> 
+                              <li>Posted date : <span>{jobDetail&&moment(jobDetail.createdAt).format('YYYY-MM-DD')}</span></li>
                               <li>Location : <span> {jobDetail&&jobDetail.address}</span></li>
                               <li>Vacancy : <span> {jobDetail&&jobDetail.noOfWorkers}</span></li>
-                              <li>Salary :  <span> {jobDetail&&jobDetail.salary}</span></li>
+                              <li>Salary :  <span> Rs.{jobDetail&&jobDetail.salary}</span></li>
                               <li>Application date : <span> {jobDetail&&jobDetail.closingTime}</span></li>
                           </ul>
                          <div className="apply-btn2">
-                            <a href="#" className="btn">Apply Now</a>
+                            <a href="#" className="btn btn-warning">Apply Now</a>
                          </div>
+                         <br/>
                        </div>
                         <div className="post-details4  mb-50">
                            
@@ -100,7 +102,7 @@ function JobsById() {
                                <h4>Company Information</h4>
                            </div>
                               {/* <span>casgo</span> */}
-                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                              {/* <p></p> */}
                             <ul>
                                 <li>Name: <span> {jobDetail&&jobDetail.nameOfOrganization} </span></li>
                                 {/* <li>Web : <span> colorlib.com</span></li>

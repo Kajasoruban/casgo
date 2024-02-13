@@ -63,7 +63,7 @@ function Navbar() {
                   </Link>
 
                   { 
-                  !userInfo ? null : userInfo.role==='admin' ? <Link className="nav-link mx-5" to="/dashboard">Dashboard</Link>:null
+                  !userInfo ? null : userInfo.role==='admin' ? <Link className="nav-link mx-5" to="/admin/dashboard">Dashboard</Link>:null
                   }
                   
                   

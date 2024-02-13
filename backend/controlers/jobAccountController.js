@@ -3,6 +3,7 @@ import jobRec from "../models/jobRecruitModel.js";
 import jobSeek from "../models/jobSeekerModel.js";
 
 import cloudinary from "../utils/cloudinary.js";
+import User from "../models/userModel.js";
 
 
 // for job recruit
@@ -154,5 +155,63 @@ const updateJobSeekerProfile=asyncHandler(async(req,res)=>{
     }
 });
 
+
+const createUserJobsHistory = async (req, res) => {
+    const {
+        jobGiverId,
+        title,
+        nameOfOrganization,
+        jobDescription,
+        requirements,
+        salary,
+        address,
+        ageLimit,
+        closingTime,
+        noOfWorkers
+
+    } = req.body;
+
+
+    try {
+        const currentUser = await jobSeek.findOne({ _id: req.user.jobSeekerId });
+        if (!currentUser) {
+
+            res.status(400).json({ message: "you must be loged in" });
+        } else {
+            const addJobHistory = {
+                title,
+                nameOfOrganization,
+                jobDescription,
+                requirements,
+                salary,
+                address,
+                ageLimit,
+                closingTime,
+                noOfWorkers,
+                jobGiverId,
+                jobSeekerId: req.user.jobSeekerId
+            }
+            currentUser.jobsHistory.push(addJobHistory);
+            await currentUser.save();
+        }
+
+        res.status(200).json({
+            success: true,
+            currentUser
+        })
+
+
+    } catch (error) {
+        res.status(404).json({ message: error });
+    }
+}
+
+
+
+
+
+
+
 export{jobRecCreate,getJobRecProfile,updateJobRecProfile,
-    jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile}
+    jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile,
+    createUserJobsHistory}

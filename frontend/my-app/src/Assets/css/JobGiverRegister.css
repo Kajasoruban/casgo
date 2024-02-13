@@ -152,23 +152,6 @@
     margin-bottom: 5px;
 }
 
-/* Apply Button */
-.apply-btn2 {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.apply-btn2 .btn {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.apply-btn2 .btn:hover {
-    background-color: #45a049;
-}
 
 /* Company Information */
 .post-details4 span {

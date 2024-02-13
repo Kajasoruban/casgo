@@ -1,6 +1,40 @@
 import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema;
 
+
+
+// const jobApplicantsSchema = new mongoose.Schema({
+//     jobSeekerId: {
+//         type: ObjectId,
+//         ref: "jobSeeker",
+//         required: true
+//     },
+//     name:{
+//         type: String,
+//         required:true
+//     },
+//     age:{
+//         type: String,
+//         required:true
+//     },
+//     gender:{
+//         type: String,
+//         required:true
+//     },
+//     address:{
+//         type: String,
+//         required:true
+//     },
+//     contactNo:{
+//         type:String,
+//         require:true
+//     }, 
+//     image:{
+//         public_id:{type:String},
+//         url:{type:String}
+//     },
+// }, { timestamps: true })
+
 const jobSchema =mongoose.Schema({
     userId: {
         type: ObjectId,
@@ -50,7 +84,8 @@ const jobSchema =mongoose.Schema({
     nameOfOrganization:{
         type: String,  
         required:true
-    }
+    },
+   
     
 },{
     timestamps:true
