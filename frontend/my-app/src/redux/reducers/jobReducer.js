@@ -71,9 +71,13 @@ export const jobDetailsReducer =(state={job:{}},action) => {
             }
 
         case JOB_DETAILS_FAIL:
+            return {
+                loading: false,
+                error: action.payload  
+            }
 
         case JOB_DETAILS_RESET:
-            
+            return {}
     
         default:
             return state;

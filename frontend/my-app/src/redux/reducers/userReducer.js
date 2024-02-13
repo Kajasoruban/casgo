@@ -1,5 +1,11 @@
-import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_RESET, USER_LOGOUT_SUCCESS, USER_PROFILE_FAIL, USER_PROFILE_REQUEST, USER_PROFILE_RESET, USER_PROFILE_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_RESET, USER_SIGNIN_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_RESET, USER_SIGNUP_SUCCESS, jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_RESET, jobGiverAction_SUCCESS, jobSeekerAction_FAIL, jobSeekerAction_REQUEST, jobSeekerAction_RESET, jobSeekerAction_SUCCESS } from "../constants/userConstant"
-
+import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_RESET, USER_LOGOUT_SUCCESS, 
+    USER_PROFILE_FAIL, USER_PROFILE_REQUEST, USER_PROFILE_RESET, USER_PROFILE_SUCCESS,
+     USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_RESET, USER_SIGNIN_SUCCESS, 
+     USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_RESET, USER_SIGNUP_SUCCESS, 
+     jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_RESET, jobGiverAction_SUCCESS,
+      jobSeekerAction_FAIL, jobSeekerAction_REQUEST, jobSeekerAction_RESET, jobSeekerAction_SUCCESS ,
+      ALL_USER_LOAD_REQUEST,ALL_USER_LOAD_SUCCESS,ALL_USER_LOAD_FAIL,ALL_USER_LOAD_RESET
+    } from "../constants/userConstant"
 
 
 
@@ -130,4 +136,24 @@ export const jobSeekerReducerSignUp = (state = {}, action) => {
         default:
             return state;
     }
+}
+
+//all users reducer
+export const allUserReducer = (state = { users: [] }, action) => {
+    switch (action.type) {
+        case ALL_USER_LOAD_REQUEST:
+            return { loading: true, users: [] }
+        case ALL_USER_LOAD_SUCCESS:
+            return {
+                loading: false,
+                users: action.payload.users,
+            }
+        case ALL_USER_LOAD_FAIL:
+            return { loading: false, users: [], error: action.payload }
+        case ALL_USER_LOAD_RESET:
+            return {}
+        default:
+            return state;
+    }
+
 }

@@ -1,6 +1,6 @@
 import express from "express";
 const router =express.Router();
-import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile } from "../controlers/userControler.js";
+import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,allUsers } from "../controlers/userControler.js";
 import{ postJob,getJobById,updatejob,delJob, showJobs,} from "../controlers/jobControllers.js"
 import{jobRecCreate,getJobRecProfile,updateJobRecProfile,
         jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile} from "../controlers/jobAccountController.js";
@@ -16,6 +16,7 @@ router.post("/auth",authUser);                    //done
 router.post("/logout",logoutUser);                //done
 router.get("/profile",protect,getUserProfile);    //done
 router.put("/profile",protect,updateUserProfile); 
+router.get('/allusers', protect, allUsers);
 
 //for job recruit
 router.post("/jobRecruit",protect,jobRecCreate);             //done
@@ -36,13 +37,7 @@ router.delete("/deleteJob",protect,delJob);
 router.get('/jobs/show', showJobs);              //done
 
 
-//job type routes
 
-
-// router.post('/type/create', protect, createJobType);
-// router.get('/type/jobs', allJobsType);
-// router.put('/type/update/:type_id', protect, updateJobType);
-// router.delete('/type/delete/:type_id', protect, deleteJobType);
 
 
 export default router;

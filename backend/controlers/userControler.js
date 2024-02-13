@@ -126,11 +126,39 @@ const updateUserProfile= asyncHandler(async(req,res)=>{
 });
 
 
+const allUsers = async (req, res) => {
+    //enable pagination
+    const pageSize = 10;
+    const page = Number(req.query.pageNumber) || 1;
+    const count = await User.find({}).estimatedDocumentCount();
+
+    try {
+        const users = await User.find().sort({ createdAt: -1 }).select('-password')
+            .skip(pageSize * (page - 1))
+            .limit(pageSize)
+
+        res.status(200).json({
+            success: true,
+            users,
+            page,
+            pages: Math.ceil(count / pageSize),
+            count
+
+        })
+      
+    } catch (error) {
+        res.status(400).json({
+            success:false,
+            message:error
+
+        })
+    }
+}
 
 
 
 
 
 export{
-    authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,
+    authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,allUsers
 };

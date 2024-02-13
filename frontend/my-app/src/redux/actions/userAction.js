@@ -1,8 +1,14 @@
 import axios from 'axios';
 import { toast } from "react-toastify";
-import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, USER_PROFILE_FAIL, USER_PROFILE_REQUEST, USER_PROFILE_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS, jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_SUCCESS, jobSeekerAction_FAIL, jobSeekerAction_REQUEST, jobSeekerAction_SUCCESS } from '../constants/userConstant';
+import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, USER_PROFILE_FAIL,
+     USER_PROFILE_REQUEST, USER_PROFILE_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, 
+     USER_SIGNIN_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS, 
+     jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_SUCCESS, jobSeekerAction_FAIL, 
+     jobSeekerAction_REQUEST, jobSeekerAction_SUCCESS,
+     ALL_USER_LOAD_REQUEST, ALL_USER_LOAD_SUCCESS, ALL_USER_LOAD_FAIL 
+    } from '../constants/userConstant';
 
-
+    
 // user sign in action
 export const userSignInAction = (user) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST });
@@ -128,5 +134,23 @@ export const jobSeekerSignUpAction = (user) => async (dispatch) => {
             payload: error.response.data.message
         });
         toast.error(error.response.data.message);
+    }
+}
+
+//all user action
+export const allUserAction = () => async (dispatch) => {
+    dispatch({ type: ALL_USER_LOAD_REQUEST });
+    try {
+        const { data } = await axios.get("/api/users/allusers");
+        dispatch({
+            type: ALL_USER_LOAD_SUCCESS,
+            payload: data
+        });
+
+    } catch (error) {
+        dispatch({
+            type: ALL_USER_LOAD_FAIL,
+            payload: error.response.data.error
+        });
     }
 }
