@@ -39,7 +39,7 @@
     .search-result-item .image-link {
         display: inline-block;
         margin: -20px 0 -20px -20px;
-        /* float: left; */
+        float: left;
         width: 200px
     }
 }
@@ -87,4 +87,107 @@
     .search-result-item-heading {
         margin: 0
     }
+}
+
+
+/* Job Post Container */
+.job-post-company {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+/* Job Title */
+.job-tittle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.job-tittle h4 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.job-tittle ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.job-tittle ul li {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Job Description */
+.post-details1 p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Required Knowledge, Skills, and Abilities */
+.post-details2 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-details2 ul li {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Job Overview */
+.post-details3 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-details3 ul li {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Apply Button */
+.apply-btn2 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.apply-btn2 .btn {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.apply-btn2 .btn:hover {
+    background-color: #45a049;
+}
+
+/* Company Information */
+.post-details4 span {
+    font-weight: bold;
+}
+
+.post-details4 p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.post-details4 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-details4 ul li {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
 }

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Sidebar, Menu, MenuItem, menuClasses, useProSidebar } from 'react-pro-sidebar';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import HomeIcon from '@mui/icons-material/Home';
 import { Box, useTheme } from '@mui/material';
 import WorkIcon from '@mui/icons-material/Work';
 import CategoryIcon from '@mui/icons-material/Category';
@@ -20,12 +21,12 @@ const SideBar = () => {
     const { userInfo } = useSelector(state => state.signIn);
     const { palette } = useTheme();
     const { collapsed } = useProSidebar();
+    const {userInfoExtra} =useSelector(state => state.userProfile);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        dispatch(userProfileAction());
-    }, []);
+   
 
     //log out 
     const logOut = () => {
@@ -46,9 +47,9 @@ const SideBar = () => {
 
                             {
                                 collapsed ?
-                                    <Avatar alt="logo dashboard" src={""} /> :
+                                    <Avatar alt="logo dashboard" src={ !userInfoExtra ?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU":!userInfoExtra.message  ? userInfoExtra.image.url  :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU"} /> :
                                     <Box sx={{ display: "flex", justifyContent: "center" }}>
-                                        <img style={{ width: "100px", heigth: "100px", textAlign: "center", transition: "all ease-out .5s" }} src={""} alt="logo dashboard" />
+                                        <img style={{ width: "150px", heigth: "150px", textAlign: "center", transition: "all ease-out .5s", borderRadius:"50%" }} src={ !userInfoExtra ?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU":!userInfoExtra.message  ? userInfoExtra.image.url  :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU"} alt="logo dashboard" />
                                     </Box>
                             }
 
@@ -64,7 +65,7 @@ const SideBar = () => {
                                         color: "#2b580c",
                                     },
                                     [`&.${menuClasses.disabled}`]: {
-                                        color: "green",
+                                        color: "#2b580c",
                                     },
                                     '&:hover': {
                                         backgroundColor: " rgba(240, 192, 1, 0.5)",
@@ -83,16 +84,19 @@ const SideBar = () => {
                         >
                             {
                                 userInfo && userInfo.role === "admin" ?
-                                    <>
+                                    <>  <MenuItem component={<Link to="/profile" />} icon={<Person3Icon />}> Personal Info </MenuItem>
                                         <MenuItem component={<Link to="/admin/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
                                         <MenuItem component={<Link to="/admin/users" />} icon={<GroupAddIcon />}> Users </MenuItem>
                                         <MenuItem component={<Link to="/admin/jobs" />} icon={<WorkIcon />}> Jobs </MenuItem>
                                         <MenuItem component={<Link to="/admin/category" />} icon={<CategoryIcon />}> Category </MenuItem>
+                                        <MenuItem component={<Link to="/" />} icon={<HomeIcon />}> Back to Home </MenuItem>
                                     </> :
                                     <>
+                                        <MenuItem component={<Link to="/profile" />} icon={<Person3Icon />}> Personal Info </MenuItem>
                                         <MenuItem component={<Link to="/user/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
                                         <MenuItem component={<Link to="/user/jobs" />} icon={<WorkHistoryIcon />}> Applied Jobs </MenuItem>
-                                        <MenuItem component={<Link to="/profile" />} icon={<Person3Icon />}> Personal Info </MenuItem>
+                                        <MenuItem component={<Link to="/" />} icon={<HomeIcon />}> Back to Home </MenuItem>
+                                        
                                     </>
                             }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Card({ jobTitle, description, closingTime, address,salary, id ,img}) {
   return (
@@ -27,7 +28,7 @@ function Card({ jobTitle, description, closingTime, address,salary, id ,img}) {
                     </div>
                     <div className="col-sm-3 text-align-center">
                         <p className="value3 mt-sm">Rs.{salary}</p>
-                        <p className="fs-mini text-muted">PER</p><a className="btn btn-primary btn-warning btn-sm" href="/jobApply">Learn More</a>
+                        <p className="fs-mini text-muted">PER</p><Link className="btn btn-primary btn-warning btn-sm" to={`/jobs/${id}`}>Learn More</Link>
                     </div>
                 </div>
             </div>

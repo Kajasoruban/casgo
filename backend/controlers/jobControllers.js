@@ -55,9 +55,23 @@ const postJob= asyncHandler(async(req,res)=>{
 });
 
 
-const getJob= asyncHandler(async(req,res)=>{
-    const job =await Job.find().populate("userId","name").populate("jobGiverId","nameOfOrganization address contactNo image")
-    res.status(200).json(job);
+const getJobById= asyncHandler(async(req,res)=>{
+
+    try {
+        const job = await Job.findById(req.params.id).populate("userId","name").populate("jobGiverId","nameOfOrganization address contactNo image")
+        res.status(200).json({
+            success: true,
+            job
+        })
+    } catch (error) {
+        res.status(400).json({
+            success:false,
+            message:error
+
+        })
+    }
+
+    
 });
 
 
@@ -170,4 +184,4 @@ const delJob= asyncHandler(async(req,res)=>{
 
 
 
-export{postJob,getJob,updatejob,delJob,showJobs}
+export{postJob,getJobById,updatejob,delJob,showJobs}

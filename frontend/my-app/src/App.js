@@ -19,6 +19,7 @@ import UserRoute from './components/UserRoutes';
 import SideBar from '../src/pages/global/SideBar'
 import AdminDashBoard from './pages/admin/AdminDashBoard';
 import Layout from './pages/global/Layout';
+import JobsById from './pages/JobsById';
 
 
 const AdminDashboardHOC = Layout(AdminDashBoard);
@@ -38,12 +39,13 @@ function App() {
     <Route path="/" element={<Home/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/register" element={<Register/>}/>
-    <Route path="/profile" element={<UserRoute><Profile/></UserRoute>}/>
+    <Route path="/profile" element={<UserRoute><UserDashboardHOC/></UserRoute>}/>
     <Route path="/jobgiver" element={<JobGiver/>}/>
     <Route path="/jobseeker" element={<JobSeeker/>}/>
     <Route path="/jobPost" element={<JobPost/>}/>
     <Route path="/dashboard" element={<AdminDashboardHOC/>}/>
     <Route path="/jobs" element={<UserRoute><Jobs/></UserRoute>}/>
+    <Route path='/jobs/:id' element={<JobsById />} />
     <Route path="*" element={<NotFound/>}/>
 
     </Routes>
