@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import '../Assets/css/JobGiverRegister.css';
 import LoadingBox from '../components/LoadingBox';
 import moment from 'moment';
+import { appliedJobsAction } from '../redux/actions/userAction';
 
 
 
@@ -15,6 +16,12 @@ function JobsById() {
 
     const dispatch =useDispatch();
     const {jobDetail,loading}=useSelector(state =>state.jobDetails)
+
+
+    const applyJob =()=>{
+        
+        jobDetail&& dispatch(appliedJobsAction(jobDetail));
+    }
    
     
     const {id}=useParams()
@@ -92,7 +99,7 @@ function JobsById() {
                               <li>Application date : <span> {jobDetail&&jobDetail.closingTime}</span></li>
                           </ul>
                          <div className="apply-btn2">
-                            <a href="#" className="btn btn-warning">Apply Now</a>
+                            <button onClick={applyJob} className="btn btn-warning">Apply Now</button>
                          </div>
                          <br/>
                        </div>

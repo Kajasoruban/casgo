@@ -88,7 +88,7 @@ const SideBar = () => {
                                         <MenuItem component={<Link to="/admin/alljobs" />} icon={<WorkIcon />}> Jobs </MenuItem>
                                         {/* <MenuItem component={<Link to="/admin/category" />} icon={<CategoryIcon />}> Category </MenuItem> */}
                                         <MenuItem component={<Link to="/" />} icon={<HomeIcon />}> Back to Home </MenuItem>
-                                    </> :userInfo && userInfo.role === "jobRecruit"?
+                                    </> :userInfoExtra && userInfoExtra.role === "jobRecruit"?
                                     <>
                                         <MenuItem component={<Link to="/profile" />} icon={<Person3Icon />}> Personal Info </MenuItem>
                                         <MenuItem component={<Link to="/user/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
@@ -99,7 +99,7 @@ const SideBar = () => {
                                     <>
                                     <MenuItem component={<Link to="/profile" />} icon={<Person3Icon />}> Personal Info </MenuItem>
                                     <MenuItem component={<Link to="/user/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
-                                    <MenuItem component={<Link to="/user/jobs" />} icon={<WorkHistoryIcon />}> Applied Jobs </MenuItem>
+                                    <MenuItem component={<Link to="/jobseeker/appliedjobs" />} icon={<WorkHistoryIcon />}> Applied Jobs </MenuItem>
                                     <MenuItem component={<Link to="/" />} icon={<HomeIcon />}> Back to Home </MenuItem>
                                     
                                 </>

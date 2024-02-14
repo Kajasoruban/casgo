@@ -28,7 +28,7 @@ router.put("/updateJobRecruit",protect,updateJobRecProfile);
 router.post("/jobSeeker",protect,jobSeekerCreate);              //done
 router.get("/getJobSeeker",protect,getJobSeekerProfile);        //done
 router.put("/updateJobSeeker",protect,updateJobSeekerProfile);
-router.post('/jobhistory', protect, createUserJobsHistory);
+router.post('/jobhistory', protect, createUserJobsHistory);    //done
 
 //for job manage
 router.post("/jobPost",protect,postJob);

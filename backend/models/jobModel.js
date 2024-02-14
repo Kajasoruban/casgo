@@ -85,7 +85,7 @@ const jobSchema =mongoose.Schema({
         type: String,  
         required:true
     },
-   
+   applicants:Array
     
 },{
     timestamps:true

@@ -4,7 +4,7 @@ import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_RESET, USER_LOGOUT_S
      USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_RESET, USER_SIGNUP_SUCCESS, 
      jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_RESET, jobGiverAction_SUCCESS,
       jobSeekerAction_FAIL, jobSeekerAction_REQUEST, jobSeekerAction_RESET, jobSeekerAction_SUCCESS ,
-      ALL_USER_LOAD_REQUEST,ALL_USER_LOAD_SUCCESS,ALL_USER_LOAD_FAIL,ALL_USER_LOAD_RESET
+      ALL_USER_LOAD_REQUEST,ALL_USER_LOAD_SUCCESS,ALL_USER_LOAD_FAIL,ALL_USER_LOAD_RESET, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, APPLIED_JOBS_RESET
     } from "../constants/userConstant"
 
 
@@ -151,6 +151,27 @@ export const allUserReducer = (state = { users: [] }, action) => {
         case ALL_USER_LOAD_FAIL:
             return { loading: false, users: [], error: action.payload }
         case ALL_USER_LOAD_RESET:
+            return {}
+        default:
+            return state;
+    }
+
+}
+
+
+//applied jobs for job seeker
+export const appliedJobsReducer = (state = {}, action) => {
+    switch (action.type) {
+        case APPLIED_JOBS_REQUEST:
+            return { loading: true, users: [] }
+        case APPLIED_JOBS_SUCCESS:
+            return {
+                loading: false,
+                job: action.payload,
+            }
+        case APPLIED_JOBS_FAIL:
+            return { loading: false, users: [], error: action.payload }
+        case APPLIED_JOBS_RESET:
             return {}
         default:
             return state;

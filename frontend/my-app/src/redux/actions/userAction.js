@@ -5,7 +5,7 @@ import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, USER_PROFIL
      USER_SIGNIN_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS, 
      jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_SUCCESS, jobSeekerAction_FAIL, 
      jobSeekerAction_REQUEST, jobSeekerAction_SUCCESS,
-     ALL_USER_LOAD_REQUEST, ALL_USER_LOAD_SUCCESS, ALL_USER_LOAD_FAIL 
+     ALL_USER_LOAD_REQUEST, ALL_USER_LOAD_SUCCESS, ALL_USER_LOAD_FAIL, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL 
     } from '../constants/userConstant';
 
     
@@ -154,3 +154,25 @@ export const allUserAction = () => async (dispatch) => {
         });
     }
 }
+
+//applied jobs for job seeker
+export const appliedJobsAction = (job) => async(dispatch) =>{
+    dispatch({type:APPLIED_JOBS_REQUEST});
+    try {
+        const {data}=await axios.post("/api/users/jobhistory",job)
+        dispatch({
+            type:APPLIED_JOBS_SUCCESS,
+            payload: data
+        });
+        toast.success("Applied Successfully!");
+    } catch (error) {
+        dispatch({
+            type: APPLIED_JOBS_FAIL,
+            payload: error.response.data.error
+        });
+        toast.error(error.response.data.message);
+    }
+}
+
+
+

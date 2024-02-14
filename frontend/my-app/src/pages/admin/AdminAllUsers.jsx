@@ -34,7 +34,7 @@ function AdminAllUsers() {
     data = (users !== undefined && users.length > 0) ? users : []
 
 
-    console.log(users);  
+    
 
     const deleteUserById = (e, id) => {
       console.log(id);

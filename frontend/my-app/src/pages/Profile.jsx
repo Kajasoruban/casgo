@@ -13,7 +13,7 @@ function Profile() {
      
     // console.log(userInfoExtra);
     
-    console.log(userInfoExtra.message)
+    
      
 //    useEffect(() => {
 //     dispatch(userProfileAction());

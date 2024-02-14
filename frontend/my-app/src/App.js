@@ -22,12 +22,15 @@ import AdminAllUsers from './pages/admin/AdminAllUsers';
 import Layout from './pages/global/Layout';
 import JobsById from './pages/JobsById';
 import AdminAllJobs from './pages/admin/AdminAllJobs';
+import AppliedJobs from './pages/JobSeeker/AppliedJobs';
 
 
 const AdminDashboardHOC = Layout(AdminDashBoard);
 const UserDashboardHOC = Layout(Profile);
 const AdminAllUsersHOC = Layout(AdminAllUsers);
 const AdminAllJobsHOC = Layout(AdminAllJobs);
+const AppliedJobsHOC = Layout(AppliedJobs)
+
 
 function App() {
   return (
@@ -46,6 +49,7 @@ function App() {
     <Route path="/profile" element={<UserRoute><UserDashboardHOC/></UserRoute>}/>
     <Route path="/jobgiver" element={<JobGiver/>}/>
     <Route path="/jobseeker" element={<JobSeeker/>}/>
+    <Route path="/jobseeker/appliedjobs" element={<AppliedJobsHOC/>}/>
     <Route path="/jobPost" element={<JobPost/>}/>
     <Route path="/admin/dashboard" element={<AdminDashboardHOC/>}/>
     <Route path="/admin/allusers" element={<UserRoute><AdminAllUsersHOC/></UserRoute>}/>

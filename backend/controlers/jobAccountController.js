@@ -4,6 +4,7 @@ import jobSeek from "../models/jobSeekerModel.js";
 
 import cloudinary from "../utils/cloudinary.js";
 import User from "../models/userModel.js";
+import Job from "../models/jobModel.js";
 
 
 // for job recruit
@@ -173,6 +174,26 @@ const createUserJobsHistory = async (req, res) => {
 
 
     try {
+
+        
+
+
+        const seekId=req.user.jobSeekerId;
+       const applicant =await jobSeek.findById(seekId).select("userId age gender address contactNo image").populate("userId","name email")
+       if(applicant){
+            const{_id}=req.body;
+            const job =await Job.findById({_id})
+            if(job){
+                job.applicants.push(applicant)
+                await job.save();
+                // console.log(job.applicants);
+        }
+        
+       }
+      
+
+
+
         const currentUser = await jobSeek.findOne({ _id: req.user.jobSeekerId });
         if (!currentUser) {
 

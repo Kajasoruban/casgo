@@ -20,7 +20,7 @@ function AdminAllJobs() {
     data = (jobs !== undefined && jobs.length > 0) ? jobs : []
     
 
-     console.log(jobs);
+     
     const columns= [
         { field: '_id', headerName: 'ID', width: 200 },
         {
