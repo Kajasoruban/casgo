@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
@@ -13,7 +13,7 @@ import { appliedJobsAction } from '../redux/actions/userAction';
 
 
 function JobsById() {
-
+    const [applyDisable,setApplyDisable]=useState(false);
     const dispatch =useDispatch();
     const {jobDetail,loading}=useSelector(state =>state.jobDetails)
 
@@ -21,6 +21,7 @@ function JobsById() {
     const applyJob =()=>{
         
         jobDetail&& dispatch(appliedJobsAction(jobDetail));
+        setApplyDisable(true);
     }
    
     
@@ -99,7 +100,7 @@ function JobsById() {
                               <li>Application date : <span> {jobDetail&&jobDetail.closingTime}</span></li>
                           </ul>
                          <div className="apply-btn2">
-                            <button onClick={applyJob} className="btn btn-warning">Apply Now</button>
+                            <button onClick={applyJob} className="btn btn-warning" disabled={applyDisable}>Apply Now</button>
                          </div>
                          <br/>
                        </div>

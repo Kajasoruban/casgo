@@ -1,4 +1,4 @@
-import { JOB_DETAILS_FAIL, JOB_DETAILS_REQUEST, JOB_DETAILS_RESET, JOB_DETAILS_SUCCESS, JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_RESET, JOB_LOAD_SUCCESS, JOB_REGISTER_FAIL, JOB_REGISTER_REQUEST, JOB_REGISTER_RESET, JOB_REGISTER_SUCCESS } from "../constants/jobConstant"
+import { JOB_DETAILS_FAIL, JOB_DETAILS_REQUEST, JOB_DETAILS_RESET, JOB_DETAILS_SUCCESS, JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_RESET, JOB_LOAD_SUCCESS, JOB_POSTED_FAIL, JOB_POSTED_REQUEST, JOB_POSTED_RESET, JOB_POSTED_SUCCESS, JOB_REGISTER_FAIL, JOB_REGISTER_REQUEST, JOB_REGISTER_RESET, JOB_REGISTER_SUCCESS } from "../constants/jobConstant"
 
 
 
@@ -77,6 +77,34 @@ export const jobDetailsReducer =(state={job:{}},action) => {
             }
 
         case JOB_DETAILS_RESET:
+            return {}
+    
+        default:
+            return state;
+    }
+}
+
+
+export const jobPostedReducer =(state={jobs:{}},action) => {
+    switch (action.type) {
+        case JOB_POSTED_REQUEST:
+            return {
+                loading:true
+            }
+        case JOB_POSTED_SUCCESS:
+           
+            return{
+                loading:false,
+                jobs:action.payload.jobs
+            }
+
+        case JOB_POSTED_FAIL:
+            return {
+                loading: false,
+                error: action.payload  
+            }
+
+        case JOB_POSTED_RESET:
             return {}
     
         default:

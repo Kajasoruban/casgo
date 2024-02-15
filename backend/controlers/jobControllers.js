@@ -181,59 +181,23 @@ const delJob= asyncHandler(async(req,res)=>{
 
 
 
-const jobApply = async (req, res) => {
-    // const {
-    //     jobGiverId,
-    //     title,
-    //     nameOfOrganization,
-    //     jobDescription,
-    //     requirements,
-    //     salary,
-    //     address,
-    //     ageLimit,
-    //     closingTime,
-    //     noOfWorkers
-
-    // } = req.body;
-
-         const arr =["65cb01322bc58d2c37113662", "65cbab86e380f301024f6cc3"];
-         console.log({arr});
-    try {
-        const currentUser = await jobSeek.find({_id:arr}).select("userId age gender address contactNo image")
-        // if (!currentUser) {
-
-        //     res.status(400).json({ message: "you must be loged in" });
-        // } else {
-        //     const addJobHistory = {
-        //         title,
-        //         nameOfOrganization,
-        //         jobDescription,
-        //         requirements,
-        //         salary,
-        //         address,
-        //         ageLimit,
-        //         closingTime,
-        //         noOfWorkers,
-        //         jobGiverId,
-        //         jobSeekerId: req.user.jobSeekerId
-        //     }
-        //     currentUser.jobsHistory.push(addJobHistory);
-        //     await currentUser.save();
-        // }
-
-        res.status(200).json({
-            success: true,
-            currentUser
+const jobByJobGiverId = async (req, res) => {
+  
+  try {
+    const jobs =await Job.find({jobGiverId:req.user.jobGiverId}).populate({ path: 'applicants',populate: {path: 'userId', model: 'users',select:'name email'} }).populate("userId","name").populate("jobGiverId","contactNo image")
+    if(jobs){
+        res.status(201).json({
+            success:true,
+            jobs
         })
-
-
-    } catch (error) {
-        res.status(404).json({ message: error });
     }
+  } catch (error) {
+    res.status(404).json({message:error.message})
+    
+  }
+
 }
 
 
 
-
-
-export{postJob,getJobById,updatejob,delJob,showJobs,jobApply}
+export{postJob,getJobById,updatejob,delJob,showJobs,jobByJobGiverId}

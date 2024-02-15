@@ -184,6 +184,10 @@ const createUserJobsHistory = async (req, res) => {
             const{_id}=req.body;
             const job =await Job.findById({_id})
             if(job){
+                // const alreadyApplied =await job.find()
+                // if(alreadyApplied){
+                //    console.log();
+                // }
                 job.applicants.push(applicant)
                 await job.save();
                 // console.log(job.applicants);

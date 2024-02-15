@@ -74,7 +74,7 @@ const getUserProfile= asyncHandler(async(req,res)=>{
     if(profile){
     
         const jobgiver=await jobRec.findOne({userId:use_Id});
-        const jobseeker=await jobSeek.findOne({userId:use_Id});
+        const jobseeker=await jobSeek.findOne({userId:use_Id})
 
         // console.log(jobgiver);
         // console.log(jobseeker);

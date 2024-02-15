@@ -1,5 +1,5 @@
 import axios from "axios";
-import { JOB_DETAILS_FAIL, JOB_DETAILS_REQUEST, JOB_DETAILS_SUCCESS, JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_SUCCESS, JOB_REGISTER_FAIL, JOB_REGISTER_REQUEST, JOB_REGISTER_SUCCESS } from "../constants/jobConstant";
+import { JOB_DETAILS_FAIL, JOB_DETAILS_REQUEST, JOB_DETAILS_SUCCESS, JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_SUCCESS, JOB_POSTED_FAIL, JOB_POSTED_REQUEST, JOB_POSTED_SUCCESS, JOB_REGISTER_FAIL, JOB_REGISTER_REQUEST, JOB_REGISTER_SUCCESS } from "../constants/jobConstant";
 import { toast } from "react-toastify";
 
 
@@ -56,6 +56,28 @@ export const jobDetailsAction =(id) => async (dispatch)=>{
     } catch (error) {
         dispatch({
             type:JOB_DETAILS_FAIL,
+            payload:error.response.data.message
+        })
+        
+    }
+
+}
+
+//jobposted with applicants
+export const jobPostedAction =() => async (dispatch)=>{
+    dispatch({type:JOB_POSTED_REQUEST});
+
+    try {
+        const {data}=await axios.get(`/api/users/jobs/jobposted`);
+        
+        dispatch({
+            type:JOB_POSTED_SUCCESS,
+            payload:data
+        })
+        
+    } catch (error) {
+        dispatch({
+            type:JOB_POSTED_FAIL,
             payload:error.response.data.message
         })
         

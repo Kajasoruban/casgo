@@ -24,14 +24,7 @@ function Profile() {
 
     
 
-    const logOutUser = () => {
-        dispatch(userLogoutAction());
-        
-       
-            
-        
-        window.location.reload(true);
-    }
+    
 
 
 
