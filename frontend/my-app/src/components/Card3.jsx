@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Card2({ jobTitle, description, closingTime, address,salary, id ,img}) {
+function Card3({ jobTitle, description, closingTime, address,salary, id ,img,status,organization}) {
   return (
     <>
     {/* <div className='col-4'>
@@ -19,16 +19,19 @@ function Card2({ jobTitle, description, closingTime, address,salary, id ,img}) {
         <section className="search-result-item">
             <a className="image-link" href="#"><img className="image" src={img}/>
             </a>
+           
             <div className="search-result-item-body">
                 <div className="row">
                     <div className="col-sm-9">
+                    
                         <h4 className="search-result-item-heading">{jobTitle}</h4>
                         <p className="info">{address}</p>
                         <p className="description">{description}</p>
                     </div>
                     <div className="col-sm-3 text-align-center">
+                        <p>company:{organization}</p>
                         <p className="value3 mt-sm">Rs.{salary}</p>
-                        <p className="fs-mini text-muted">PER</p><Link className="btn btn-primary btn-warning btn-sm" to={`/jobgiver/jobPosted/${id}/applicants`}>Show Applications</Link>
+                        <p className="fs-mini text-muted">Closing:{closingTime}</p><Link className="btn btn-primary btn-warning btn-sm" to={`/status`}>{status}</Link>
                     </div>
                 </div>
             </div>
@@ -37,4 +40,4 @@ function Card2({ jobTitle, description, closingTime, address,salary, id ,img}) {
   )
 }
 
-export default Card2
+export default Card3

@@ -158,73 +158,58 @@ const updateJobSeekerProfile=asyncHandler(async(req,res)=>{
 
 
 const createUserJobsHistory = async (req, res) => {
-    const {
-        jobGiverId,
-        title,
-        nameOfOrganization,
-        jobDescription,
-        requirements,
-        salary,
-        address,
-        ageLimit,
-        closingTime,
-        noOfWorkers
-
-    } = req.body;
-
+    const { jobGiverId } = req.body;
+    
 
     try {
-
-        
-
-
-        const seekId=req.user.jobSeekerId;
-       const applicant =await jobSeek.findById(seekId).select("userId age gender address contactNo image").populate("userId","name email")
-       if(applicant){
-            const{_id}=req.body;
-            const job =await Job.findById({_id})
-            if(job){
+        let applied =false;
+        const seekId = req.user.jobSeekerId;
+        const applicant = await jobSeek.findById(seekId).select("userId age gender address contactNo image").populate("userId", "name email")
+        if (applicant) {
+            const { _id } = req.body;
+            const job = await Job.findById({ _id })
+            if (job) {
                 // const alreadyApplied =await job.find()
                 // if(alreadyApplied){
                 //    console.log();
                 // }
+                // console.log(applicant);
                 job.applicants.push(applicant)
-                await job.save();
+                const jobApplied=await job.save();
+                if(jobApplied){
+                    console.log(jobApplied);
+                    applied=true;
+                }
+                
                 // console.log(job.applicants);
+            }
+
         }
-        
-       }
-      
 
+        if (applied) {
 
+            //  console.log(applied);
+            const currentUser = await jobSeek.findOne({ _id: req.user.jobSeekerId });
+            if (!currentUser) {
 
-        const currentUser = await jobSeek.findOne({ _id: req.user.jobSeekerId });
-        if (!currentUser) {
+                res.status(400).json({ message: "you must be loged in" });
+            }
 
-            res.status(400).json({ message: "you must be loged in" });
-        } else {
             const addJobHistory = {
-                title,
-                nameOfOrganization,
-                jobDescription,
-                requirements,
-                salary,
-                address,
-                ageLimit,
-                closingTime,
-                noOfWorkers,
-                jobGiverId,
+                jobId: req.body._id,
+                jobGiverId: jobGiverId,
                 jobSeekerId: req.user.jobSeekerId
             }
+            // console.log(addJobHistory);
             currentUser.jobsHistory.push(addJobHistory);
             await currentUser.save();
+
+
+            res.status(200).json({
+                success: true,
+                currentUser
+            })
         }
-
-        res.status(200).json({
-            success: true,
-            currentUser
-        })
-
 
     } catch (error) {
         res.status(404).json({ message: error });
@@ -232,11 +217,28 @@ const createUserJobsHistory = async (req, res) => {
 }
 
 
-
+const jobHistoryById = async (req,res)=>{
+    
+    try {
+        const jobHistory = await jobSeek.findById(req.user.jobSeekerId).populate({ path: 'jobsHistory',populate:[ {path: 'jobId', model: 'job',select:' -applicants '}, {path: 'jobGiverId', model: 'jobRecruit',select:'contactNo image'}] })
+        if(jobHistory){
+            res.status(200).json({
+                success: true,
+                jobHistory
+            })
+        }else{
+            res.status(404).json({message:"Job history Not found"});
+        }
+        
+    } catch (error) {
+        res.status(500).json({message:error.message});
+    }
+    
+}
 
 
 
 
 export{jobRecCreate,getJobRecProfile,updateJobRecProfile,
     jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile,
-    createUserJobsHistory}
+    createUserJobsHistory,jobHistoryById};

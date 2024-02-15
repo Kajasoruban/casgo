@@ -5,7 +5,7 @@ import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, USER_PROFIL
      USER_SIGNIN_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS, 
      jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_SUCCESS, jobSeekerAction_FAIL, 
      jobSeekerAction_REQUEST, jobSeekerAction_SUCCESS,
-     ALL_USER_LOAD_REQUEST, ALL_USER_LOAD_SUCCESS, ALL_USER_LOAD_FAIL, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL 
+     ALL_USER_LOAD_REQUEST, ALL_USER_LOAD_SUCCESS, ALL_USER_LOAD_FAIL, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, jobHistory_Action_REQUEST, jobHistory_Action_SUCCESS, jobHistory_Action_FAIL 
     } from '../constants/userConstant';
 
     
@@ -159,7 +159,7 @@ export const allUserAction = () => async (dispatch) => {
 export const appliedJobsAction = (job) => async(dispatch) =>{
     dispatch({type:APPLIED_JOBS_REQUEST});
     try {
-        const {data}=await axios.post("/api/users/jobhistory",job)
+        const {data}=await axios.post("/api/users/jobapply",job)
         dispatch({
             type:APPLIED_JOBS_SUCCESS,
             payload: data
@@ -174,5 +174,25 @@ export const appliedJobsAction = (job) => async(dispatch) =>{
     }
 }
 
+
+//for jobseeker's job history
+export const jobsHistoryAction = () => async(dispatch) =>{
+    dispatch({type:jobHistory_Action_REQUEST
+    });
+    try {
+        const {data}=await axios.get("/api/users/jobhistory");
+        dispatch({
+            type:jobHistory_Action_SUCCESS,
+            payload: data
+        });
+        
+    } catch (error) {
+        dispatch({
+            type: jobHistory_Action_FAIL,
+            payload: error.response.data.error
+        });
+       
+    }
+}
 
 

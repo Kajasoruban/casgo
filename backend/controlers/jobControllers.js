@@ -59,7 +59,7 @@ const postJob= asyncHandler(async(req,res)=>{
 const getJobById= asyncHandler(async(req,res)=>{
 
     try {
-        const job = await Job.findById(req.params.id).populate("userId","name").populate("jobGiverId","nameOfOrganization address contactNo image")
+        const job = await Job.findById(req.params.id).populate("userId","name").populate("jobGiverId","nameOfOrganization address contactNo image").populate({path:"applicants",populate:{path:"userId",model:"users",select:"name email"}})
         res.status(200).json({
             success: true,
             job

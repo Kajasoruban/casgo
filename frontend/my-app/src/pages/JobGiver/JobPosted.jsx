@@ -15,7 +15,7 @@ function JobPosted() {
     let { jobs,  loading } = useSelector(state => state.jobPosted);
     
     jobs = (jobs !== undefined && jobs.length > 0) ? jobs : []
-    console.log(jobs);
+    // console.log(jobs);
 
   return (
     <>

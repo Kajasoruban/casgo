@@ -24,6 +24,7 @@ import JobsById from './pages/JobsById';
 import AdminAllJobs from './pages/admin/AdminAllJobs';
 import AppliedJobs from './pages/JobSeeker/AppliedJobs';
 import JobPosted from './pages/JobGiver/JobPosted';
+import Applicants from './pages/JobGiver/Applicants';
 
 
 const AdminDashboardHOC = Layout(AdminDashBoard);
@@ -32,6 +33,7 @@ const AdminAllUsersHOC = Layout(AdminAllUsers);
 const AdminAllJobsHOC = Layout(AdminAllJobs);
 const AppliedJobsHOC = Layout(AppliedJobs);
 const JobPostedHOC= Layout(JobPosted);
+const ApplicantsHOC=Layout(Applicants);
 
 function App() {
   return (
@@ -49,7 +51,8 @@ function App() {
     <Route path="/register" element={<Register/>}/>
     <Route path="/profile" element={<UserRoute><UserDashboardHOC/></UserRoute>}/>
     <Route path="/jobgiver" element={<JobGiver/>}/>
-    <Route path="/jobgiver/jobPosted" element={<JobPostedHOC/>}/>
+    <Route path="/jobgiver/jobPosted" element={<UserRoute><JobPostedHOC/></UserRoute>}/>
+    <Route path="/jobgiver/jobPosted/:id/applicants" element={<UserRoute><ApplicantsHOC/></UserRoute>}/>
     <Route path="/jobseeker" element={<JobSeeker/>}/>
     <Route path="/jobseeker/appliedjobs" element={<AppliedJobsHOC/>}/>
     <Route path="/jobPost" element={<JobPost/>}/>

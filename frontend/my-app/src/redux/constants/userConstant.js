@@ -46,3 +46,9 @@ export const APPLIED_JOBS_REQUEST = "APPLIED_JOBS_REQUEST";
 export const APPLIED_JOBS_SUCCESS = "APPLIED_JOBS_SUCCESS";
 export const APPLIED_JOBS_FAIL = "APPLIED_JOBS_FAIL";
 export const APPLIED_JOBS_RESET = "APPLIED_JOBS_RESET";
+
+
+export const jobHistory_Action_REQUEST = "jobHistory_Action_REQUEST";
+export const jobHistory_Action_SUCCESS = "jobHistory_Action_SUCCESS";
+export const jobHistory_Action_FAIL = "jobHistory_Action_FAIL";
+export const jobHistory_Action_RESET = "jobHistory_Action_RESET";
