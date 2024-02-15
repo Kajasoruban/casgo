@@ -82,7 +82,7 @@ const columns= [
       renderCell: (values) => (
           <Box sx={{ display: "flex", justifyContent: "space-between", width: "170px" }}>
               <Button variant="contained"><Link style={{ color: "white", textDecoration: "none" }} to={`/admin/edit/user/${values.row._id}`}>Edit</Link></ Button>
-              < Button onClick={(e) => deleteUserById(e, values.row._id)} variant="contained" color="error">Delete</ Button>
+              < Button onClick={(e) => deleteUserById(e, values.row._id)} variant="contained" color="error">suspend</ Button>
           </Box>
       )
     }

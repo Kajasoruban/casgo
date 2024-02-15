@@ -57,7 +57,7 @@ function JobsById() {
                                         <h4>{jobDetail&&jobDetail.title}</h4>
                                     </span>
                                     <ul>
-                                        <li>Creative Agency</li>
+                                       
                                         <li><i className="fas fa-map-marker-alt"></i>{jobDetail&&jobDetail.address}</li>
                                         <li>Rs.{jobDetail&&jobDetail.salary}</li>
                                     </ul>

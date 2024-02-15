@@ -16,7 +16,7 @@ router.post("/auth",authUser);                    //done
 router.post("/logout",logoutUser);                //done
 router.get("/profile",protect,getUserProfile);    //done
 router.put("/profile",protect,updateUserProfile); 
-router.get('/allusers', protect, allUsers);
+router.get('/allusers', protect,isAdmin,allUsers);
 
 //for job recruit
 router.post("/jobRecruit",protect,jobRecCreate);             //done
@@ -35,7 +35,7 @@ router.post("/jobPost",protect,postJob);
 router.get("/getJob/:id",protect,getJobById);  //done
 router.put("/updateJob",protect,updatejob);
 router.delete("/deleteJob",protect,delJob);
-router.get('/jobs/show', showJobs);              //done
+router.get('/jobs/show',protect,isAdmin,showJobs);              //done
 router.get('/jobs/jobposted',protect, jobByJobGiverId);  
 
 
