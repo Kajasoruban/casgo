@@ -33,7 +33,7 @@ function Applicants() {
               </div>
             </div>
           ) : applicants && applicants.length === 0 ? (
-            <p className="lead">No applicants applied right now</p>
+            <p className="lead m-5 p-5 text-center">No applicants applied right now</p>
           ) : (
             <>
               <div className="row container mx-auto my-5">

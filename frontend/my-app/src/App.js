@@ -54,9 +54,9 @@ function App() {
     <Route path="/jobgiver/jobPosted" element={<UserRoute><JobPostedHOC/></UserRoute>}/>
     <Route path="/jobgiver/jobPosted/:id/applicants" element={<UserRoute><ApplicantsHOC/></UserRoute>}/>
     <Route path="/jobseeker" element={<JobSeeker/>}/>
-    <Route path="/jobseeker/appliedjobs" element={<AppliedJobsHOC/>}/>
+    <Route path="/jobseeker/appliedjobs" element={<UserRoute><AppliedJobsHOC/></UserRoute>}/>
     <Route path="/jobPost" element={<JobPost/>}/>
-    <Route path="/admin/dashboard" element={<AdminDashboardHOC/>}/>
+    <Route path="/admin/dashboard" element={<UserRoute><AdminDashboardHOC/></UserRoute>}/>
     <Route path="/admin/allusers" element={<UserRoute><AdminAllUsersHOC/></UserRoute>}/>
     <Route path="/admin/alljobs" element={<UserRoute><AdminAllJobsHOC/></UserRoute>}/>
     <Route path="/jobs" element={<UserRoute><Jobs/></UserRoute>}/>

@@ -115,12 +115,12 @@ const showJobs = async (req, res) => {
     const pageSize = 6;
     const page = Number(req.query.pageNumber) || 1;
     //const count = await Job.find({}).estimatedDocumentCount();  jobType: categ, .populate('jobType', 'jobTypeName')
-    const count = await Job.find({ ...keyword, address: setUniqueLocation }).countDocuments();
+    const count = await Job.find({ ...keyword, address: setUniqueLocation ,active:true}).countDocuments();
     
 
     try {
         
-        const jobs = await Job.find({ ...keyword, address: addressFilter }).sort({ createdAt: -1 }).populate("userId","name").populate("jobGiverId","contactNo image").skip(pageSize * (page - 1)).limit(pageSize)
+        const jobs = await Job.find({ ...keyword, address: addressFilter,active:true }).sort({ createdAt: -1 }).populate("userId","name").populate("jobGiverId","contactNo image").skip(pageSize * (page - 1)).limit(pageSize)
         res.status(200).json({
             success: true,
             jobs,
@@ -184,7 +184,7 @@ const delJob= asyncHandler(async(req,res)=>{
 const jobByJobGiverId = async (req, res) => {
   
   try {
-    const jobs =await Job.find({jobGiverId:req.user.jobGiverId}).populate({ path: 'applicants',populate: {path: 'userId', model: 'users',select:'name email'} }).populate("userId","name").populate("jobGiverId","contactNo image")
+    const jobs =await Job.find({jobGiverId:req.user.jobGiverId}).sort({ createdAt: -1 }).populate({ path: 'applicants',populate: {path: 'userId', model: 'users',select:'name email'} }).populate("userId","name").populate("jobGiverId","contactNo image")
     if(jobs){
         res.status(201).json({
             success:true,
@@ -198,6 +198,26 @@ const jobByJobGiverId = async (req, res) => {
 
 }
 
+const disableJobyById= async(req,res)=>{
+    try {
+        const active=!req.body.active;
+       
+        const job=await Job.findById(req.body.id);
+        if(job){
+            job.active= active;
+            
+            const updatedJob= await job.save();
+
+            res.status(200).json({success:true,message:"job updated"});
+        }else{
+            res.status(404).json({success:false,message:"job update failed"});
+        }
+        
+    } catch (error) {
+        res.status(500).json({success:false,message:error.message});
+    }
+}
 
 
-export{postJob,getJobById,updatejob,delJob,showJobs,jobByJobGiverId}
+
+export{postJob,getJobById,updatejob,delJob,showJobs,jobByJobGiverId,disableJobyById}

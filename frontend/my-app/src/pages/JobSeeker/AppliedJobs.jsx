@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { jobsHistoryAction } from '../../redux/actions/userAction';
 import Card3 from '../../components/Card3';
+import '../../Assets/css/JobGiverRegister.css';
+
 
 function AppliedJobs() {
  
@@ -32,7 +34,7 @@ function AppliedJobs() {
               </div>
             </div>
           ) : jobHistory && jobHistory.length === 0 ? (
-            <p className="lead">Apply for a job right now</p>
+            <p className="lead m-5 p-5 text-center">Apply for a job right now</p>
           ) : (
             <>
               <div className="row container mx-auto my-5">

@@ -88,7 +88,7 @@ function AdminAllJobs() {
     <>
     <div>AdminAllJobs</div>
 
-    <Box sx={{ height: 500, width: '100%' }}>
+    <Box sx={{ height: 550, width: '100%' }}>
       <DataGrid
        getRowId={(row) => row._id}
         rows={data}
@@ -96,11 +96,11 @@ function AdminAllJobs() {
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: 10,
             },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[10]}
         checkboxSelection
         disableRowSelectionOnClick
       />

@@ -177,7 +177,7 @@ const createUserJobsHistory = async (req, res) => {
                 job.applicants.push(applicant)
                 const jobApplied=await job.save();
                 if(jobApplied){
-                    console.log(jobApplied);
+                    // console.log(jobApplied);
                     applied=true;
                 }
                 

@@ -1,21 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { jobPostedAction } from '../../redux/actions/jobAction';
 import Card2 from '../../components/Card2';
 
 function JobPosted() {
 
-
+    // const [disable,setDisable]=useState(true)
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(jobPostedAction())
+        // console.log(disable);
     }, []);
 
     let { jobs,  loading } = useSelector(state => state.jobPosted);
     
     jobs = (jobs !== undefined && jobs.length > 0) ? jobs : []
     // console.log(jobs);
+
+    
 
   return (
     <>
@@ -28,7 +31,7 @@ function JobPosted() {
               </div>
             </div>
           ) : jobs && jobs.length === 0 ? (
-            <p className="lead">No jobs available right now</p>
+            <p className="lead m-5 p-5 text-center">No jobs available right now</p>
           ) : (
             <>
               <div className="row container mx-auto my-5">
@@ -47,6 +50,8 @@ function JobPosted() {
                       closingTime={job.closingTime}
                       salary={job.salary}
                       address={job.address}
+                      active={job.active}
+                      
                     />
                   ))}
               </div>

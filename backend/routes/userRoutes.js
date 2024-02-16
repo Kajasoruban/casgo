@@ -1,7 +1,7 @@
 import express from "express";
 const router =express.Router();
 import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,allUsers } from "../controlers/userControler.js";
-import{ postJob,getJobById,updatejob,delJob, showJobs,jobByJobGiverId} from "../controlers/jobControllers.js"
+import{ postJob,getJobById,updatejob,delJob, showJobs,jobByJobGiverId,disableJobyById} from "../controlers/jobControllers.js";
 import{jobRecCreate,getJobRecProfile,updateJobRecProfile,
         jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile,createUserJobsHistory,jobHistoryById} from "../controlers/jobAccountController.js";
 
@@ -37,7 +37,8 @@ router.get("/getJob/:id",protect,getJobById);  //done
 router.put("/updateJob",protect,updatejob);
 router.delete("/deleteJob",protect,delJob);
 router.get('/jobs/show',protect,showJobs);              //done
-router.get('/jobs/jobposted',protect, jobByJobGiverId);  
+router.get('/jobs/jobposted',protect, jobByJobGiverId); 
+router.put('/jobs/jobstatus',protect, disableJobyById);  //done
 
 
 
