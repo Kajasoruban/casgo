@@ -174,6 +174,12 @@ const createUserJobsHistory = async (req, res) => {
                 //    console.log();
                 // }
                 // console.log(applicant);
+                
+                job.applicants.map((job)=>{
+                   if(job._id.equals(seekId)){
+                     throw Error("already applied")
+                   }
+                })
                 job.applicants.push(applicant)
                 const jobApplied=await job.save();
                 if(jobApplied){
@@ -192,7 +198,7 @@ const createUserJobsHistory = async (req, res) => {
             const currentUser = await jobSeek.findOne({ _id: req.user.jobSeekerId });
             if (!currentUser) {
 
-                res.status(400).json({ message: "you must be loged in" });
+                return res.status(400).json({ message: "you must be loged in" });
             }
 
             const addJobHistory = {

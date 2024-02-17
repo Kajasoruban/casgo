@@ -45,12 +45,13 @@ body {
 /* for carousel start*/
 
 .text-stroke-p{
-    -webkit-text-stroke: 1px #ffc107;
+    -webkit-text-stroke: 2px #ffc107;
+    
     color: #2b580c;
 }
 
 .text-stroke-s{
-    -webkit-text-stroke: 2px #2b580c;
+    -webkit-text-stroke: 3px #2b580c;
     color: #ffc107;
 }
 
@@ -62,15 +63,15 @@ body {
 }
 
 .c-item {
-    height: 560px;
-    width: 100vw;
+    height: 570px;
+    width: 100%;
   }
   
 .c-img {
 height: 100%;
-width: 90%;
+width: 80%;
 margin: 0 auto;
-/* filter: brightness(0.9); */
+filter: brightness(0.5);
 }
 
 /* for carousel end*/

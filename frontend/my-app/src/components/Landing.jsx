@@ -34,7 +34,7 @@ function Landing(){
           <div className="carousel-inner">
             <div className="carousel-item active c-item ">
               <img
-                src="https://img.freepik.com/free-vector/man-search-hiring-job-online-from-laptop_1150-52728.jpg?w=1060&t=st=1707554661~exp=1707555261~hmac=6b1d011ae351ecdf7195323f33ecbb359e662c8e491b81336f5bfebfed059c4a"
+                src="https://img.freepik.com/free-vector/job-vacancy-isometric-background-with-applicants-employers-looking-into-resume-sheet-vector-illustration_1284-81716.jpg?w=826&t=st=1708105997~exp=1708106597~hmac=db54ff6997a9b2356219431791aa168bd81d7c3d149dc372a1cbcf145282fc71"
                 className="d-block  c-img"
                 alt="Slide 1"
               />
@@ -138,7 +138,7 @@ function Landing(){
                       Create Account
                     </div>
                     <p>
-                      It's very easy to open an account and start your journey.
+                      It's very easy to create your basic account
                     </p>
                   </div>
                 </div>
@@ -180,6 +180,77 @@ function Landing(){
           </div>
         </section>
         {/* how it work section end */}
+
+
+        <div class="container">
+          <h1 className="display-3 text-center my-5">Contact Me</h1>
+
+    <div class="row">
+
+      <div class="col-lg-8 col-lg-offset-2 mx-auto my-5">
+
+        
+        <form id="contact-form" method="post" action="" role="form">
+
+        <div class="messages"></div>
+
+        <div class="controls">
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="form_name">Firstname *</label>
+                <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required."/>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="form_lastname">Lastname *</label>
+                <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required."/>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="form_email">Email *</label>
+                <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required."/>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="form_phone">Phone</label>
+                <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="Please enter your phone"/>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="form_message">Message *</label>
+                <textarea id="form_message" name="message" class="form-control" placeholder="Message for me *" rows="4" required data-error="Please,leave us a message."></textarea>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <input type="submit" class="btn btn-success btn-send" value="Send message"/>
+            </div>
+          </div>
+         
+        </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+  <hr/>
 
        
       </>
