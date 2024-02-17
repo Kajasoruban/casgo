@@ -18,7 +18,12 @@ function Navbar() {
 
  
 
-  const {userInfoExtra} =useSelector(state => state.userProfile);
+  let {userInfoExtra} =useSelector(state => state.userProfile);
+
+
+  let role= userInfoExtra?userInfoExtra.role:"" ;
+
+ console.log(role);
 
    useEffect(() => {
     if(userInfo){
@@ -72,9 +77,11 @@ function Navbar() {
                 
                 
               </ul>
-              <Link className=" jobpost btn " to="/jobPost">
+              {role==="jobRecruit"?
+                 <Link className=" jobpost btn " to="/jobPost">
                     Post Job
                   </Link>
+                  :null}
 
               {  !userInfo ? 
 

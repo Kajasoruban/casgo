@@ -59,8 +59,8 @@ function App() {
     <Route path="/admin/dashboard" element={<UserRoute><AdminDashboardHOC/></UserRoute>}/>
     <Route path="/admin/allusers" element={<UserRoute><AdminAllUsersHOC/></UserRoute>}/>
     <Route path="/admin/alljobs" element={<UserRoute><AdminAllJobsHOC/></UserRoute>}/>
-    <Route path="/jobs" element={<Jobs/>}/>
-    <Route path='/jobs/:id' element={<UserRoute><JobsById /></UserRoute>} />
+    <Route path="/jobs" element={<UserRoute><Jobs/></UserRoute>}/>
+    <Route path='/jobs/:id' element={<JobsById />} />
     <Route path="*" element={<NotFound/>}/>
 
     </Routes>
