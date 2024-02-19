@@ -38,7 +38,7 @@ function Navbar() {
     return (
         
      <>
-        <nav className="navbar navbar-expand-md bg-body-tertiary nvco fixed-top">
+        <nav className="navbar navbar-expand-md  nvco fixed-top">
           <div className="container">
 
             <Link className="" to="/">

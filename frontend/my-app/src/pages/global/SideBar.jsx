@@ -38,7 +38,7 @@ const SideBar = () => {
 
     return (
         <>
-            <Sidebar backgroundColor="#ded8c5" style={{ borderRightStyle: "none" }}>
+            <Sidebar backgroundColor="#F5F0DE" style={{ borderRightStyle: "none" }}>
                 <Box sx={{ display: "flex", justifyContent: "space-between", flexDirection: "column", height: "100%" }}>
                     <Box>
                         <Box sx={{ pt: 3, pb: 5, display: "flex", justifyContent: "center" }}>

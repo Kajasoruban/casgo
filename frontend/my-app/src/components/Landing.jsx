@@ -31,14 +31,14 @@ function Landing(){
             ></button>
           </div>
 
-          <div className="carousel-inner">
+          <div className="carousel-inner  container mt-5 border-black">
             <div className="carousel-item active c-item ">
-              <img
+              {/* <img
                 src="https://img.freepik.com/free-vector/job-vacancy-isometric-background-with-applicants-employers-looking-into-resume-sheet-vector-illustration_1284-81716.jpg?w=826&t=st=1708105997~exp=1708106597~hmac=db54ff6997a9b2356219431791aa168bd81d7c3d149dc372a1cbcf145282fc71"
                 className="d-block  c-img"
                 alt="Slide 1"
-              />
-              <div className="carousel-caption top-0 mt-4">
+              /> */}
+              {/* <div className="carousel-caption top-0 mt-4">
                 <p className="mt-5 fs-2 text-uppercase text-stroke-p fw-bolder">
                   Are you looking htmlFor a part time job in your weekends?
                 </p>
@@ -50,17 +50,47 @@ function Landing(){
                     Go
                   </button>
                 </Link>
+              </div> */}
+              <div className="row  ">
+
+              <div className=" top-0 mt-4  col-6  text-center">
+                <p className=" text-stroke-p display-3 fw-bolder ">
+                  Do Extra <br/>Earn Extra
+                </p>
+                <br/>
+                <h3 className=" text-stroke-s text-left">
+                Are you looking for a part <br/>time job in your weekends?
+                </h3>
+                <Link to="/jobseeker">
+                  <button className="btn btn-warning px-4 py-2 fs-5 mt-3 go-btn fw-bold">
+                    GO
+                  </button>
+                </Link>
+              </div>
+
+
+
+              <div className="col-6 ">
+                <img
+                src="https://img.freepik.com/free-photo/job-hiring-vacancy-team-interview-career-recruiting_53876-121268.jpg?w=740&t=st=1708248703~exp=1708249303~hmac=936dcce7f26b9d7ada83c5accd46400a2d3037cf0a4e7445a5a83cf07b17ba64"
+                className="d-block  c-img"
+                alt="Slide 1"
+              />
+              </div>
+              
+              
+              
               </div>
             </div>
-            <div className="carousel-item c-item">
-              <img
+            <div className="carousel-item c-item" >
+              {/* <img
                 src="https://img.freepik.com/free-vector/choice-worker-concept_23-2148626348.jpg?w=740&t=st=1707557698~exp=1707558298~hmac=074ee08cc7570ec2b74959132c7f884a5c31173e51dd1849bf793e43c5b82f43"
                 className="d-block  c-img"
                 alt="Slide 2"
               />
               <div className="carousel-caption top-0 mt-4">
                 <p className="text-uppercase fs-2 mt-5 text-stroke-p fw-bolder">
-                  Are you looking htmlFor part time workers on your busy days?
+                  Are you looking for part time workers on your busy days?
                 </p>
                 <p className="display-1 fw-bolder text-capitalize text-stroke-s">
                   Your are at the right place
@@ -71,7 +101,44 @@ function Landing(){
                     Go
                   </button>
                 </Link>
-              </div>
+              </div> */}
+
+
+            <div className="row  ">
+
+
+            <div className="col-6 ">
+              <img
+              src="https://res.cloudinary.com/dbczgzhd3/image/upload/v1708269425/m42rzpmywgz4spx0fjrx.jpg"
+              className="d-block  c-img"
+              alt="Slide 1"
+            />
+            </div>
+
+            <div className=" top-0 mt-4  col-6  text-center">
+              <p className=" text-stroke-p display-3 fw-bolder ">
+               Take a Break
+              </p>
+              <br/>
+              <h3 className=" text-stroke-s text-left mt-3">
+              Are you looking for part time workers <br/> on your busy days?
+              </h3>
+              <Link to="/jobseeker">
+                <button className="btn btn-warning px-4 py-2 fs-5 mt-4 go-btn fw-bold">
+                  GO
+                </button>
+              </Link>
+            </div>
+
+
+
+            
+
+
+
+            </div>
+
+
             </div>
           </div>
           <button
@@ -115,7 +182,7 @@ function Landing(){
 
         {/* how it work section start */}
         <section className="how-it-works position-relative pt-130 xl-pt-110 my-5">
-          <div className="container">
+          <div className="container-fluid">
           <hr/>
            <br/><br/>
             <div className=" text-center mb-45 lg-mb-20">
@@ -124,7 +191,7 @@ function Landing(){
              
             </div> <br/><br/>
 
-            <div className="border border-success rounded-1 mb-5">
+            <div className="rounded-1 mb-5">
               <div className="row justify-content-center">
                 <div className="col-lg-4 col-md-6">
                   <div
@@ -232,7 +299,7 @@ function Landing(){
             <div className="col-md-12">
               <div className="form-group">
                 <label htmlFor="form_message">Message *</label>
-                <textarea id="form_message" name="message" className="form-control" placeholder="Message htmlFor me *" rows="4" required data-error="Please,leave us a message."></textarea>
+                <textarea id="form_message" name="message" className="form-control" placeholder="Message.. *" rows="4" required data-error="Please,leave us a message."></textarea>
                 <div className="help-block with-errors"></div>
               </div>
             </div>

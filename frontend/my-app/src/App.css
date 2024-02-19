@@ -1,23 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
 
+:root {
+    --primary: #ffc107;
+    --secondary: #005249;
+  }
+
 
 body {
   font-family: "Poppins", sans-serif !important;
-  
+  background-color: #ffffff!important;
 }
 
 
 /* for navbar section start*/
 
 .nvco{
-    background-color: #ffffff!important;
-    filter: brightness(0.9);
-    color: #ffc107!important;
+    background: #F5F0DE;
+    
+    color: var(--primary)!important;
 }
 .nvco a{
     font-size: 1.2rem;
-    color: #2b580c ;
+    color: var(--secondary) ;
     font-weight: bolder;
 }
 .logo{
@@ -34,8 +39,8 @@ body {
     height: 15vh;
 }
 .jobpost{
-    color: #ffc107 !important;
-    background-color: #2b580c !important;
+    color: var(--primary) !important;
+    background-color: var(--secondary) !important;
 }
 
 /* for navbar section end*/
@@ -44,34 +49,44 @@ body {
 
 /* for carousel start*/
 
+
+
 .text-stroke-p{
-    -webkit-text-stroke: 2px #ffc107;
+    -webkit-text-stroke: 0.5px var(--primary);
     
-    color: #2b580c;
+    color: var(--secondary);
+    line-height: -1rem;
+    letter-spacing: 0.3rem;
 }
 
 .text-stroke-s{
-    -webkit-text-stroke: 3px #2b580c;
-    color: #ffc107;
+    /* -webkit-text-stroke: 1px var(--primary); */
+    color: var(--secondary);
 }
 
-/* #2b580c
+/* var(--secondary)
 #ffc107 */
 
 .go-btn{
-    border: #2b580c 1px solid !important;
+    border: var(--secondary) 1px solid !important;
+    color: var(--secondary);
 }
 
 .c-item {
-    height: 700px;
-    width: 100%;
+    height: 500px;
+    
+    background: #F5F0DE;
+    
+    border-radius: 1rem;
+   
   }
   
 .c-img {
-height: 100%;
-width: 80%;
-margin: 0 auto;
-filter: brightness(0.5);
+height: 480px;
+width: 90%;
+margin: 0.5rem auto;
+border-radius: 1rem;
+/* filter: brightness(0.5); */
 }
 
 /* for carousel end*/
