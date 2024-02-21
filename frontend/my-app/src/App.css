@@ -4,6 +4,7 @@
 :root {
     --primary: #ffc107;
     --secondary: #005249;
+    --bg:#005249;
   }
 
 
@@ -14,9 +15,14 @@ body {
 
 
 /* for navbar section start*/
-
+.innernav{
+    background-color: #f1eaca !important;
+    border-radius: 30%;
+    height: 12vh;
+    /* width: 90vw !important; */
+}
 .nvco{
-    background: #F5F0DE;
+    background: var(--bg);
     
     color: var(--primary)!important;
 }
@@ -37,10 +43,11 @@ body {
 .navbott{
     width: 100vw;
     height: 15vh;
+    background: var(--bg);
 }
 .jobpost{
-    color: var(--primary) !important;
-    background-color: var(--secondary) !important;
+    color: var(--secondary) !important;
+    background-color: var(--primary) !important;
 }
 
 /* for navbar section end*/
@@ -52,39 +59,41 @@ body {
 
 
 .text-stroke-p{
-    -webkit-text-stroke: 0.5px var(--primary);
+    -webkit-text-stroke: 0.5px var(--secondary);
     
-    color: var(--secondary);
+    color: var(--primary);
     line-height: -1rem;
     letter-spacing: 0.3rem;
 }
 
 .text-stroke-s{
     /* -webkit-text-stroke: 1px var(--primary); */
-    color: var(--secondary);
+    color:#ffffff;
 }
 
-/* var(--secondary)
+/* var(--primary)
 #ffc107 */
 
 .go-btn{
     border: var(--secondary) 1px solid !important;
     color: var(--secondary);
 }
-
+.carouselbg{
+    background: var(--bg);
+}
 .c-item {
-    height: 500px;
+    height: 600px;
     
-    background: #F5F0DE;
+    background: var(--bg);
     
     border-radius: 1rem;
    
   }
   
 .c-img {
-height: 480px;
+height: 550px;
 width: 90%;
-margin: 0.5rem auto;
+margin: 1rem auto;
 border-radius: 1rem;
 /* filter: brightness(0.5); */
 }

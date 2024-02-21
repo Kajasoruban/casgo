@@ -23,7 +23,7 @@ function Navbar() {
 
   let role= userInfoExtra?userInfoExtra.role:"" ;
 
- console.log(role);
+ 
 
    useEffect(() => {
     if(userInfo){
@@ -39,7 +39,7 @@ function Navbar() {
         
      <>
         <nav className="navbar navbar-expand-md  nvco fixed-top">
-          <div className="container">
+          <div className="container-fluid innernav">
 
             <Link className="" to="/">
               <img src={require("../Assets/img/casgoLogo.png")} className="logo" alt="casgo"/>
@@ -97,8 +97,8 @@ function Navbar() {
                   </div>
                         :
                     <>
-                <img src={ !userInfoExtra ?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU":!userInfoExtra.message  ? userInfoExtra.image.url  :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU" } alt="profile pic" style={{ width:"4rem", height:"4rem", borderRadius:"50%",border:"1px solid black"}} />
-                <p className="text-center small">{userInfo?userInfo.name:"user"}</p> 
+                <img src={ !userInfoExtra ?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU":!userInfoExtra.message  ? userInfoExtra.image.url  :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU" } alt="profile pic" style={{ width:"4rem", height:"4rem", borderRadius:"50%",border:"1px solid black"}} className=""/>
+                {/* <p className="text-center small">{userInfo?userInfo.name:"user"}</p>  */}
                     </>   
                 }
 

@@ -31,7 +31,7 @@ function Landing(){
             ></button>
           </div>
 
-          <div className="carousel-inner  container mt-5 border-black">
+          <div className="carousel-inner carouselbg  container-fluid  ">
             <div className="carousel-item active c-item ">
               {/* <img
                 src="https://img.freepik.com/free-vector/job-vacancy-isometric-background-with-applicants-employers-looking-into-resume-sheet-vector-illustration_1284-81716.jpg?w=826&t=st=1708105997~exp=1708106597~hmac=db54ff6997a9b2356219431791aa168bd81d7c3d149dc372a1cbcf145282fc71"
@@ -54,7 +54,7 @@ function Landing(){
               <div className="row  ">
 
               <div className=" top-0 mt-4  col-6  text-center">
-                <p className=" text-stroke-p display-3 fw-bolder ">
+                <p className=" text-stroke-p display-3 mt-5 fw-bolder ">
                   Do Extra <br/>Earn Extra
                 </p>
                 <br/>
@@ -116,7 +116,7 @@ function Landing(){
             </div>
 
             <div className=" top-0 mt-4  col-6  text-center">
-              <p className=" text-stroke-p display-3 fw-bolder ">
+              <p className=" text-stroke-p display-3 mt-5 fw-bolder ">
                Take a Break
               </p>
               <br/>

@@ -40,7 +40,7 @@ function Jobs() {
           <h1 className='heading-1'>Jobs</h1>
 
 
-        <div className="main-search-input-wrap">
+        <div className="main-search-input-wrap my-5">
 
 
           <div className="main-search-input fl-wrap my-5">
@@ -57,9 +57,11 @@ function Jobs() {
         <br />
 
           {loading ? (
-            <div>
+            <div className="row container  my-5 ">
+              <div className='col'>
               <div className="spinner-border text-warning " role="status">
                 <span className="visually-hidden">Loading...</span>
+              </div>
               </div>
             </div>
           ) : jobs && jobs.length === 0 ? (

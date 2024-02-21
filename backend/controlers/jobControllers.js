@@ -21,11 +21,14 @@ const postJob= asyncHandler(async(req,res)=>{
 
            
            const userId=req.user._id;
-           const{jobGiverId}=req.user
+           const{jobGiverId}=req.user;
 
-           const gobGiver=await jobRec.find(jobGiverId);
-           const address = gobGiver[0].address;
-           const nameOfOrganization =  gobGiver[0].nameOfOrganization;
+           const jobGiver=await jobRec.find(jobGiverId);
+           if(!jobGiver){
+              throw Error("You're not authorised")
+           }
+           const address = jobGiver[0].address;
+           const nameOfOrganization =  jobGiver[0].nameOfOrganization;
            
     
     const job=await Job.create({
