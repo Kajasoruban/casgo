@@ -17,8 +17,9 @@ body {
 /* for navbar section start*/
 .innernav{
     background-color: #f1eaca !important;
-    border-radius: 30%;
-    height: 12vh;
+    /* border-radius: 1%; */
+    
+    height: 6vh;
     /* width: 90vw !important; */
 }
 .nvco{
@@ -89,6 +90,7 @@ body {
     border-radius: 1rem;
    
   }
+
   
 .c-img {
 height: 550px;

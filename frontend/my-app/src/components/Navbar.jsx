@@ -39,7 +39,7 @@ function Navbar() {
         
      <>
         <nav className="navbar navbar-expand-md  nvco fixed-top">
-          <div className="container-fluid innernav">
+          <div className="container rounded-5 mt-4 innernav">
 
             <Link className="" to="/">
               <img src={require("../Assets/img/casgoLogo.png")} className="logo" alt="casgo"/>

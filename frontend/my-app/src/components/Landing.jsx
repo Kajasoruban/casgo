@@ -183,7 +183,7 @@ function Landing(){
         {/* how it work section start */}
         <section className="how-it-works position-relative pt-130 xl-pt-110 my-5">
           <div className="container-fluid">
-          <hr/>
+         
            <br/><br/>
             <div className=" text-center mb-45 lg-mb-20">
               
