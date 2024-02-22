@@ -123,7 +123,7 @@ function Landing(){
               <h3 className=" text-stroke-s text-left mt-3">
               Are you looking for part time workers <br/> on your busy days?
               </h3>
-              <Link to="/jobseeker">
+              <Link to="/jobgiver">
                 <button className="btn btn-warning px-4 py-2 fs-5 mt-4 go-btn fw-bold">
                   GO
                 </button>

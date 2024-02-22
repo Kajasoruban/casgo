@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import * as yup from 'yup';
@@ -8,6 +8,8 @@ import '../Assets/css/JobGiverRegister.css';
 
 import { useNavigate } from 'react-router-dom';
 import { jobPostAction } from '../redux/actions/jobAction';
+import { giverProfileAction, userProfileAction } from '../redux/actions/userAction';
+import { Box, CircularProgress } from '@mui/material';
 
 const validationSchema = yup.object({
       title: yup
@@ -50,11 +52,19 @@ function JobPost() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
  
-  const { userInfo ,loading} = useSelector(state => state.signIn);
+  const { userInfo } = useSelector(state => state.signIn);
   const {userInfoExtra} =useSelector(state => state.userProfile);
+  const {giver,loading}=useSelector(state => state.giverProfile)
+  let approved=false;
+  if(giver){
+     approved=giver.approved;
+  }
+
+  useEffect(()=>{
+    dispatch(giverProfileAction());
+  },[])
+
   
-
-
 
   const formik = useFormik({
     initialValues: {
@@ -83,9 +93,24 @@ function JobPost() {
   return (
     <>
       <Navbar />
+      
+      {loading? 
+      <Box
+      sx={{
+          minHeight: '500px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+      }}>
+      <CircularProgress />
+     </Box>
+     :<>
+      
+    
+
 
       {
-        true ?
+        approved ?
 
           <>
             {true ?
@@ -348,6 +373,7 @@ function JobPost() {
 
 
       }
+      </>}
 
 
       <Footer />

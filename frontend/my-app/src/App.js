@@ -26,6 +26,7 @@ import AppliedJobs from './pages/JobSeeker/AppliedJobs';
 import JobPosted from './pages/JobGiver/JobPosted';
 import Applicants from './pages/JobGiver/Applicants';
 import JobGiverRoutes from './components/JobGiverRoutes';
+import AdminApproval from './pages/admin/AdminApproval';
 
 
 const AdminDashboardHOC = Layout(AdminDashBoard);
@@ -35,6 +36,7 @@ const AdminAllJobsHOC = Layout(AdminAllJobs);
 const AppliedJobsHOC = Layout(AppliedJobs);
 const JobPostedHOC= Layout(JobPosted);
 const ApplicantsHOC=Layout(Applicants);
+const AdminApprovalHOC=Layout(AdminApproval);
 
 function App() {
   return (
@@ -60,6 +62,7 @@ function App() {
     <Route path="/admin/dashboard" element={<UserRoute><AdminDashboardHOC/></UserRoute>}/>
     <Route path="/admin/allusers" element={<UserRoute><AdminAllUsersHOC/></UserRoute>}/>
     <Route path="/admin/alljobs" element={<UserRoute><AdminAllJobsHOC/></UserRoute>}/>
+    <Route path="/admin/approval" element={<UserRoute><AdminApprovalHOC/></UserRoute>}/>
     <Route path="/jobs" element={<UserRoute><Jobs/></UserRoute>}/>
     <Route path='/jobs/:id' element={<JobsById />} />
     <Route path="*" element={<NotFound/>}/>

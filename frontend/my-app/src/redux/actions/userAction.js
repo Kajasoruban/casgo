@@ -5,7 +5,7 @@ import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, USER_PROFIL
      USER_SIGNIN_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS, 
      jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_SUCCESS, jobSeekerAction_FAIL, 
      jobSeekerAction_REQUEST, jobSeekerAction_SUCCESS,
-     ALL_USER_LOAD_REQUEST, ALL_USER_LOAD_SUCCESS, ALL_USER_LOAD_FAIL, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, jobHistory_Action_REQUEST, jobHistory_Action_SUCCESS, jobHistory_Action_FAIL 
+     ALL_USER_LOAD_REQUEST, ALL_USER_LOAD_SUCCESS, ALL_USER_LOAD_FAIL, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, jobHistory_Action_REQUEST, jobHistory_Action_SUCCESS, jobHistory_Action_FAIL, Giver_PROFILE_REQUEST, Giver_PROFILE_SUCCESS, Giver_PROFILE_FAIL, NOT_APPROVED_REQUEST, NOT_APPROVED_SUCCESS, NOT_APPROVED_FAIL 
     } from '../constants/userConstant';
 
     
@@ -93,6 +93,26 @@ export const userProfileAction = () => async (dispatch) => {
     }
 }
 
+//giver profile action(approve status)
+export const giverProfileAction = () => async (dispatch) => {
+    dispatch({ type: Giver_PROFILE_REQUEST });
+    try {
+        const { data } = await axios.get("/api/users/getJobRecruit");
+      
+        // console.log(data);
+        dispatch({
+            type: Giver_PROFILE_SUCCESS,
+            payload: data
+        });
+
+    } catch (error) {
+        dispatch({
+            type: Giver_PROFILE_FAIL,
+            payload: error.response.data.error
+        });
+    }
+}
+
 // jobGiverSignUpAction action
 export const jobGiverSignUpAction = (user,image) => async (dispatch) => {
     dispatch({ type: jobGiverAction_REQUEST });
@@ -154,6 +174,27 @@ export const allUserAction = () => async (dispatch) => {
         });
     }
 }
+
+//not approved action
+export const NotApprovedAction = () => async (dispatch) => {
+    dispatch({ type: NOT_APPROVED_REQUEST });
+    try {
+        const { data } = await axios.get("/api/users/admin/jobgiverapproval");
+        console.log(data);
+        dispatch({
+            type: NOT_APPROVED_SUCCESS,
+            payload: data
+        });
+
+    } catch (error) {
+        dispatch({
+            type: NOT_APPROVED_FAIL,
+            payload: error.response.data.error
+        });
+    }
+}
+
+
 
 //applied jobs for job seeker
 export const appliedJobsAction = (job) => async(dispatch) =>{

@@ -4,7 +4,7 @@ import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_RESET, USER_LOGOUT_S
      USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_RESET, USER_SIGNUP_SUCCESS, 
      jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_RESET, jobGiverAction_SUCCESS,
       jobSeekerAction_FAIL, jobSeekerAction_REQUEST, jobSeekerAction_RESET, jobSeekerAction_SUCCESS ,
-      ALL_USER_LOAD_REQUEST,ALL_USER_LOAD_SUCCESS,ALL_USER_LOAD_FAIL,ALL_USER_LOAD_RESET, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, APPLIED_JOBS_RESET, jobHistory_Action_REQUEST, jobHistory_Action_SUCCESS, jobHistory_Action_FAIL, jobHistory_Action_RESET
+      ALL_USER_LOAD_REQUEST,ALL_USER_LOAD_SUCCESS,ALL_USER_LOAD_FAIL,ALL_USER_LOAD_RESET, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, APPLIED_JOBS_RESET, jobHistory_Action_REQUEST, jobHistory_Action_SUCCESS, jobHistory_Action_FAIL, jobHistory_Action_RESET, Giver_PROFILE_REQUEST, Giver_PROFILE_SUCCESS, Giver_PROFILE_FAIL, Giver_PROFILE_RESET, NOT_APPROVED_REQUEST, NOT_APPROVED_SUCCESS, NOT_APPROVED_FAIL, NOT_APPROVED_RESET
     } from "../constants/userConstant"
 
 
@@ -97,6 +97,30 @@ export const userReducerProfile = (state = {}, action) => {
 
 }
 
+
+//giver profile action(approve status)
+export const giverProfileReducer = (state = {}, action) => {
+    // console.log(action);
+    switch (action.type) {
+        case Giver_PROFILE_REQUEST:
+            return { loading: true, giver: null }
+        case Giver_PROFILE_SUCCESS:
+            // console.log( action.payload.jobgiver);
+            return {
+                loading: false,
+                giver: action.payload.jobgiver
+                
+            }
+        case Giver_PROFILE_FAIL:
+            return { loading: false, giver: null, error: action.payload }
+        case Giver_PROFILE_RESET:
+            return {}
+        default:
+            return state;
+    }
+
+}
+
 // jobGiverReducerSignUp
 export const jobGiverReducerSignUp = (state = {}, action) => {
     switch (action.type) {
@@ -109,7 +133,7 @@ export const jobGiverReducerSignUp = (state = {}, action) => {
                 
             }
         case jobGiverAction_FAIL:
-            return { loading: false, isAuthenticated: false, error: action.payload }
+            return { loading: false, error: action.payload }
         case jobGiverAction_RESET:
             return {}
         default:
@@ -130,7 +154,7 @@ export const jobSeekerReducerSignUp = (state = {}, action) => {
                 
             }
         case jobSeekerAction_FAIL:
-            return { loading: false,  isAuthenticated: false, error: action.payload }
+            return { loading: false,  error: action.payload }
         case jobSeekerAction_RESET:
             return {}
         default:
@@ -158,19 +182,39 @@ export const allUserReducer = (state = { users: [] }, action) => {
 
 }
 
+//not approved reducer
+export const NotApprovedReducer = (state = {}, action) => {
+    switch (action.type) {
+        case NOT_APPROVED_REQUEST:
+            return { loading: true, jobgivers: [] }
+        case NOT_APPROVED_SUCCESS:
+            return {
+                loading: false,
+                jobgivers: action.payload.jobgivers,
+            }
+        case NOT_APPROVED_FAIL:
+            return { loading: false, jobgivers: [], error: action.payload }
+        case NOT_APPROVED_RESET:
+            return {}
+        default:
+            return state;
+    }
+
+}
+
 
 //applied jobs for job seeker
 export const appliedJobsReducer = (state = {}, action) => {
     switch (action.type) {
         case APPLIED_JOBS_REQUEST:
-            return { loading: true, users: [] }
+            return { loading: true, job: [] }
         case APPLIED_JOBS_SUCCESS:
             return {
                 loading: false,
                 job: action.payload,
             }
         case APPLIED_JOBS_FAIL:
-            return { loading: false, users: [], error: action.payload }
+            return { loading: false, job: [], error: action.payload }
         case APPLIED_JOBS_RESET:
             return {}
         default:
@@ -186,14 +230,14 @@ export const appliedJobsReducer = (state = {}, action) => {
 export const jobsHistoryReducer = (state = {}, action) => {
     switch (action.type) {
         case jobHistory_Action_REQUEST:
-            return { loading: true, users: [] }
+            return { loading: true, history: [] }
         case jobHistory_Action_SUCCESS:
             return {
                 loading: false,
                 history: action.payload.jobHistory
             }
         case jobHistory_Action_FAIL:
-            return { loading: false, users: [], error: action.payload }
+            return { loading: false, history: [], error: action.payload }
         case jobHistory_Action_RESET:
             return {}
         default:

@@ -41,6 +41,11 @@ export const ALL_USER_LOAD_SUCCESS = "ALL_USER_LOAD_SUCCESS";
 export const ALL_USER_LOAD_FAIL = "ALL_USER_LOAD_FAIL";
 export const ALL_USER_LOAD_RESET = "ALL_USER_LOAD_RESET";
 
+export const NOT_APPROVED_REQUEST = "NOT_APPROVED_REQUEST";
+export const NOT_APPROVED_SUCCESS = "NOT_APPROVED_SUCCESS";
+export const NOT_APPROVED_FAIL = "NOT_APPROVED_FAIL";
+export const NOT_APPROVED_RESET = "ALL_USER_LOAD_RESET";
+
 
 export const APPLIED_JOBS_REQUEST = "APPLIED_JOBS_REQUEST";
 export const APPLIED_JOBS_SUCCESS = "APPLIED_JOBS_SUCCESS";
@@ -52,3 +57,9 @@ export const jobHistory_Action_REQUEST = "jobHistory_Action_REQUEST";
 export const jobHistory_Action_SUCCESS = "jobHistory_Action_SUCCESS";
 export const jobHistory_Action_FAIL = "jobHistory_Action_FAIL";
 export const jobHistory_Action_RESET = "jobHistory_Action_RESET";
+
+
+export const Giver_PROFILE_REQUEST = "Giver_PROFILE_REQUEST";
+export const Giver_PROFILE_SUCCESS = "Giver_PROFILE_SUCCESS";
+export const Giver_PROFILE_FAIL = "Giver_PROFILE_FAIL";
+export const Giver_PROFILE_RESET = "Giver_PROFILE_RESET";

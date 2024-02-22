@@ -26,7 +26,11 @@ const jobRecruitSchema =mongoose.Schema({
     role:{
         type:String,
         default:"jobRecruit"
-    }
+    },
+    approved:{
+        type:Boolean,
+        default:false
+    }    
 },{
     timestamps:true
 });

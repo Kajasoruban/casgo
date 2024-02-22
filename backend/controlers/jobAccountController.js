@@ -61,9 +61,17 @@ const jobRecCreate= asyncHandler(async(req,res)=>{
 
 
 const getJobRecProfile= asyncHandler(async(req,res)=>{
-    const jobrec =await jobRec.find().populate("userId","name")
-    res.status(200).json(jobrec);
+    const jobgiver =await jobRec.find(req.user.jobGiverId).populate("userId","name")
+    res.status(200).json({message:"success",jobgiver:jobgiver[0]});
 });
+
+
+const jobGiverApproval= asyncHandler(async(req,res)=>{
+    const jobgivers =await jobRec.find({approved:false}).populate("userId","name email")
+    res.status(200).json({message:"success",jobgivers:jobgivers});
+});
+
+
 
 const updateJobRecProfile= asyncHandler(async(req,res)=>{
     const user =await jobRec.findById(req.body._id);
@@ -251,4 +259,4 @@ const jobHistoryById = async (req,res)=>{
 
 export{jobRecCreate,getJobRecProfile,updateJobRecProfile,
     jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile,
-    createUserJobsHistory,jobHistoryById};
+    createUserJobsHistory,jobHistoryById,jobGiverApproval};

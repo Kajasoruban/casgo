@@ -9,6 +9,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import Person3Icon from '@mui/icons-material/Person3';
 import Avatar from '@mui/material/Avatar';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 // import logoDashboard from ''
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -85,8 +86,9 @@ const SideBar = () => {
                                     <>  <MenuItem component={<Link to="/profile" />} icon={<Person3Icon />}> Personal Info </MenuItem>
                                         <MenuItem component={<Link to="/admin/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
                                         <MenuItem component={<Link to="/admin/allusers" />} icon={<GroupAddIcon />}> Users </MenuItem>
+                                        <MenuItem component={<Link to="/admin/approval" />} icon={<HowToRegIcon />}> Verification </MenuItem>
                                         <MenuItem component={<Link to="/admin/alljobs" />} icon={<WorkIcon />}> Jobs </MenuItem>
-                                        {/* <MenuItem component={<Link to="/admin/category" />} icon={<CategoryIcon />}> Category </MenuItem> */}
+                                        
                                         <MenuItem component={<Link to="/" />} icon={<HomeIcon />}> Back to Home </MenuItem>
                                     </> :userInfoExtra && userInfoExtra.role === "jobRecruit"?
                                     <>
