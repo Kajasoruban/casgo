@@ -4,7 +4,7 @@ import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_RESET, USER_LOGOUT_S
      USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_RESET, USER_SIGNUP_SUCCESS, 
      jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_RESET, jobGiverAction_SUCCESS,
       jobSeekerAction_FAIL, jobSeekerAction_REQUEST, jobSeekerAction_RESET, jobSeekerAction_SUCCESS ,
-      ALL_USER_LOAD_REQUEST,ALL_USER_LOAD_SUCCESS,ALL_USER_LOAD_FAIL,ALL_USER_LOAD_RESET, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, APPLIED_JOBS_RESET, jobHistory_Action_REQUEST, jobHistory_Action_SUCCESS, jobHistory_Action_FAIL, jobHistory_Action_RESET, Giver_PROFILE_REQUEST, Giver_PROFILE_SUCCESS, Giver_PROFILE_FAIL, Giver_PROFILE_RESET, NOT_APPROVED_REQUEST, NOT_APPROVED_SUCCESS, NOT_APPROVED_FAIL, NOT_APPROVED_RESET
+      ALL_USER_LOAD_REQUEST,ALL_USER_LOAD_SUCCESS,ALL_USER_LOAD_FAIL,ALL_USER_LOAD_RESET, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, APPLIED_JOBS_RESET, jobHistory_Action_REQUEST, jobHistory_Action_SUCCESS, jobHistory_Action_FAIL, jobHistory_Action_RESET, Giver_PROFILE_REQUEST, Giver_PROFILE_SUCCESS, Giver_PROFILE_FAIL, Giver_PROFILE_RESET, NOT_APPROVED_REQUEST, NOT_APPROVED_SUCCESS, NOT_APPROVED_FAIL, NOT_APPROVED_RESET, APPROVED_BY_Id_REQUEST, APPROVED_BY_Id_SUCCESS, APPROVED_BY_Id_FAIL, APPROVED_BY_Id_RESET
     } from "../constants/userConstant"
 
 
@@ -202,6 +202,29 @@ export const NotApprovedReducer = (state = {}, action) => {
 
 }
 
+
+
+
+
+//approval reducer
+export const ApprovalReducer = (state = {}, action) => {
+    switch (action.type) {
+        case APPROVED_BY_Id_REQUEST:
+            return { loading: true, jobgivers: [] }
+        case APPROVED_BY_Id_SUCCESS:
+            return {
+                loading: false,
+                jobgivers: action.payload.jobgiver,
+            }
+        case APPROVED_BY_Id_FAIL:
+            return { loading: false, jobgivers: [], error: action.payload }
+        case APPROVED_BY_Id_RESET:
+            return {}
+        default:
+            return state;
+    }
+
+}
 
 //applied jobs for job seeker
 export const appliedJobsReducer = (state = {}, action) => {

@@ -76,10 +76,14 @@ const jobGiverApproval= asyncHandler(async(req,res)=>{
 });
 
 
-const getJobGiverById= asyncHandler(async(req,res)=>{
+const ApproveById= asyncHandler(async(req,res)=>{
     const {id}=req.params;
-    const jobgiver =await jobRec.find(id).populate("userId","name");
-    res.status(200).json({message:"success",jobgiver:jobgiver[0]});
+    const jobgiver =await jobRec.findById(id);
+    if(jobgiver){
+        jobgiver.approved=true;
+    }
+    const updatedUser = await jobgiver.save();
+    res.status(200).json({message:"success",jobgiver:updatedUser});
 });
 
 
@@ -270,4 +274,4 @@ const jobHistoryById = async (req,res)=>{
 
 export{jobRecCreate,getJobRecProfile,updateJobRecProfile,
     jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile,
-    createUserJobsHistory,jobHistoryById,jobGiverApproval};
+    createUserJobsHistory,jobHistoryById,jobGiverApproval,ApproveById};
