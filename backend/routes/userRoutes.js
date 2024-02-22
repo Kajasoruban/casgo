@@ -22,7 +22,7 @@ router.get('/allusers', protect,isAdmin,allUsers);
 router.post("/jobRecruit",protect,jobRecCreate);             //done
 router.get("/getJobRecruit",protect,getJobRecProfile);       //done
 router.put("/updateJobRecruit",protect,updateJobRecProfile);
-router.get("/admin/jobgiverapproval",protect,jobGiverApproval);
+router.get("/admin/jobgiverapproval",protect,jobGiverApproval); //done
 
 
 //for job seeker
