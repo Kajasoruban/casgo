@@ -32,17 +32,18 @@ export const userReducerSignIn = (state = {}, action) => {
 }
 
 // sign up reducer
-export const userReducerSignUp = (state = {}, action) => {
+export const userReducerSignUp = (state = {isAuthenticated: false}, action) => {
     switch (action.type) {
         case USER_SIGNUP_REQUEST:
-            return { loading: true }
+            return { loading: true ,isAuthenticated: false }
         case USER_SIGNUP_SUCCESS:
             return {
                 loading: false,
                 userSignUp: action.payload,
+                isAuthenticated: true
             }
         case USER_SIGNUP_FAIL:
-            return { loading: false, error: action.payload }
+            return { loading: false,isAuthenticated: false, error: action.payload }
         case USER_SIGNUP_RESET:
             return {}
         default:

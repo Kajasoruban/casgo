@@ -183,9 +183,9 @@ const updateJobSeekerProfile=asyncHandler(async(req,res)=>{
 const createUserJobsHistory = async (req, res) => {
     const { jobGiverId } = req.body;
       
-    if(req.body.jobGiverId){
-        return res.status(400).json({ message: "you are not a job seeker" });
-    }
+    // if(req.body.jobGiverId){
+    //     return res.status(400).json({ message: "you are not a job seeker" });
+    // }
     
 
     try {

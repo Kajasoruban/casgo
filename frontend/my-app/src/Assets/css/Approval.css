@@ -1,3 +1,24 @@
 td{
     padding: 10px;
 }
+
+.price{
+  height: 90vh;
+}
+.price .package{
+    height: 60%;
+    width: 60vw;
+    margin: 3rem auto;
+}
+
+.price .package > div{
+    background: radial-gradient(circle, rgba(174,218,238,1) 0%, rgba(12,147,255,1) 45%, rgba(71,142,203,1) 100%);
+    
+}
+
+.price .package > div button{
+   
+   background: #2fea00;
+   font-size: larger;
+    
+}

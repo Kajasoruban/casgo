@@ -59,7 +59,7 @@ function Jobs() {
           </div>
           <label htmlFor="location">Filter by location:</label>
           <input list="locations" name="address" onChange={(e)=>handleLocation(e)} id="location"/>
-          <button onClick={()=>{setAddress(filter)}}>Filter</button>
+          <button className='btn btn-primary' onClick={()=>{setAddress(filter)}}>Filter</button>
 
           <datalist id="locations">
           {setUniqueLocation&&setUniqueLocation.map((location,i)=>(

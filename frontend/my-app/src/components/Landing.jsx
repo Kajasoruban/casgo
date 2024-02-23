@@ -53,7 +53,9 @@ function Landing(){
               </div> */}
               <div className="row  ">
 
-              <div className=" top-0 mt-4  col-6  text-center">
+              <div className=" top-0 mt-4  col-6   text-center">
+
+                <div className=" ms-5">
                 <p className=" text-stroke-p display-3 mt-5 fw-bolder ">
                   Do Extra <br/>Earn Extra
                 </p>
@@ -66,11 +68,12 @@ function Landing(){
                     GO
                   </button>
                 </Link>
+                </div>
               </div>
 
 
 
-              <div className="col-6 ">
+              <div className="col-6">
                 <img
                 src="https://img.freepik.com/free-photo/job-hiring-vacancy-team-interview-career-recruiting_53876-121268.jpg?w=740&t=st=1708248703~exp=1708249303~hmac=936dcce7f26b9d7ada83c5accd46400a2d3037cf0a4e7445a5a83cf07b17ba64"
                 className="d-block  c-img"
@@ -116,6 +119,7 @@ function Landing(){
             </div>
 
             <div className=" top-0 mt-4  col-6  text-center">
+            <div className=" me-5">
               <p className=" text-stroke-p display-3 mt-5 fw-bolder ">
                Take a Break
               </p>
@@ -128,6 +132,7 @@ function Landing(){
                   GO
                 </button>
               </Link>
+              </div>
             </div>
 
 
@@ -187,7 +192,7 @@ function Landing(){
            <br/><br/>
             <div className=" text-center mb-45 lg-mb-20">
               
-              <h2 className="fw-bolder ps-3 pe-3">How it's Work?</h2>
+              <h1 className="fw-bolder  ps-3 pe-3">How it's Work?</h1>
              
             </div> <br/><br/>
 
@@ -199,12 +204,12 @@ function Landing(){
                    
                   >
                     <div className="numb fw-500 d-flex align-items-center justify-content-center m-auto">
-                      <span className='border border-2 bg-success rounded fs-4'>01</span>
+                      <span className='border border-2 bg-success rounded fs-3 fw-bold'>01</span>
                     </div>
-                    <div className=" fw-bold text-lg text-dark mt-25 mb-10">
+                    <div className=" fw-bold fs-3 text-lg text-dark mt-25 mb-10">
                       Create Account
                     </div>
-                    <p>
+                    <p className="fs-5">
                       It's very easy to create your basic account
                     </p>
                   </div>
@@ -215,12 +220,12 @@ function Landing(){
                   
                   >
                     <div className="numb fw-bold d-flex align-items-center justify-content-center m-auto">
-                      <span className='border border-2 bg-success rounded fs-4'>02</span>
+                      <span className='border border-2 bg-success rounded fs-3 fw-bold'>02</span>
                     </div>
-                    <div className=" fw-bold text-lg text-dark mt-25 mb-10">
+                    <div className="fs-3 fw-bold text-lg text-dark mt-25 mb-10">
                       Choose the account type
                     </div>
-                    <p>
+                    <p className="fs-5">
                       Select whether you want to become a job giver or job seeker and then complete your profile.
                     </p>
                   </div>
@@ -231,12 +236,12 @@ function Landing(){
                   
                   >
                     <div className="numb fw-bold d-flex align-items-center justify-content-center m-auto">
-                      <span className='border border-2 bg-success rounded fs-4'>03</span>
+                      <span className='border border-2 bg-success rounded fs-3 fw-bold'>03</span>
                     </div>
-                    <div className=" fw-bold text-lg text-dark mt-25 mb-10">
+                    <div className="fs-3 fw-bold text-lg text-dark mt-25 mb-10">
                       Apply job or Post job
                     </div>
-                    <p>
+                    <p className="fs-5">
                       Apply & get your preferable jobs or Post job and get workers in no time.
                     </p>
                   </div>

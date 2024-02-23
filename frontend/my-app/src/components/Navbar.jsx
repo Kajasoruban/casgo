@@ -67,11 +67,15 @@ function Navbar() {
                     Jobs
                   </Link>
 
-                  { 
+                  {/* { 
                   !userInfo ? null : userInfo.role==='admin' ? <Link className="nav-link mx-5" to="/admin/dashboard">Dashboard</Link>:null
-                  }
+                  } */}
                   
-                  
+                  {role==="jobRecruit"?
+                 <Link className="nav-link mx-5" to="/pricing">
+                    Pricing
+                  </Link>
+                  :null}
                  
 
                 

@@ -28,7 +28,7 @@ body {
     color: var(--primary)!important;
 }
 .nvco a{
-    font-size: 1.2rem;
+    font-size: 1.17rem;
     color: var(--secondary) ;
     font-weight: bolder;
 }
@@ -89,7 +89,7 @@ body {
     background: var(--bg);
 }
 .c-item {
-    height: 600px;
+    height: 650px;
     
     background: var(--bg);
     
@@ -100,8 +100,8 @@ body {
   
 .c-img {
 height: 550px;
-width: 90%;
-margin: 1rem auto;
+width: 80%;
+margin: 1rem 5rem;
 border-radius: 1rem;
 /* filter: brightness(0.5); */
 }
