@@ -110,7 +110,8 @@ const showJobs = async (req, res) => {
     });
     let setUniqueLocation = [...new Set(addresses)];
     let address = req.query.address;
-    let addressFilter = address !== undefined ? address : setUniqueLocation;
+    let addressFilter = address !== "" ? address : setUniqueLocation;
+    // console.log(address);
 
     
     // console.log({...keyword,location: locationFilter});
@@ -118,7 +119,7 @@ const showJobs = async (req, res) => {
     const pageSize = 6;
     const page = Number(req.query.pageNumber) || 1;
     //const count = await Job.find({}).estimatedDocumentCount();  jobType: categ, .populate('jobType', 'jobTypeName')
-    const count = await Job.find({ ...keyword, address: setUniqueLocation ,active:true}).countDocuments();
+    const count = await Job.find({ ...keyword, address: addressFilter ,active:true}).countDocuments();
     
 
     try {

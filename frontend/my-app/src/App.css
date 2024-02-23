@@ -19,12 +19,12 @@ body {
     background-color: #f1eaca !important;
     /* border-radius: 1%; */
     
-    height: 6vh;
+    height: 6.8vh;
     /* width: 90vw !important; */
 }
 .nvco{
     background: var(--bg);
-    
+    height: 15vh;
     color: var(--primary)!important;
 }
 .nvco a{
@@ -32,9 +32,15 @@ body {
     color: var(--secondary) ;
     font-weight: bolder;
 }
+.profilecover{
+    translate:1rem;
+    border: 5px solid #f1eaca;
+    border-radius: 50%;
+}
 .logo{
     width: 8rem;
     height: 6rem;  
+    translate:-1rem 0.1rem
 }
 
 /* .navlis2{

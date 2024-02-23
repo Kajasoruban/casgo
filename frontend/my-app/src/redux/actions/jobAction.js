@@ -5,10 +5,11 @@ import { toast } from "react-toastify";
 
 
 
-export const jobLoadAction = (pageNumber, keyword = '', cat = '', location = '') => async (dispatch) => {
+export const jobLoadAction = (pageNumber, keyword = '',address = '', cat = '') => async (dispatch) => {
     dispatch({ type: JOB_LOAD_REQUEST });
     try {
-        const { data } = await axios.get(`/api/users/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&location=${location}`)
+        console.log(address);
+        const { data } = await axios.get(`/api/users/jobs/show/?pageNumber=${pageNumber}&keyword=${keyword}&cat=${cat}&address=${address}`)
         dispatch({
             type: JOB_LOAD_SUCCESS,
             payload: data

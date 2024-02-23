@@ -17,7 +17,7 @@ function Jobs() {
     const [keyword,setKeyword] = useState("");
     const [address,setAddress] = useState("");
     const [querry,setQuerry] = useState("")
-
+    const[filter,setFilter] =useState("")
     const [page, setPage] = useState(1);
     // const [cat, setCat] = useState('');
 
@@ -27,8 +27,15 @@ function Jobs() {
 
     const handleSearch =(querry)=>{
       setQuerry(querry)
-      console.log(querry);
+      
     }
+
+    const handleLocation =(e)=>{
+      setFilter(e.target.value)
+      
+    }
+
+    
 
 
   return (
@@ -43,16 +50,30 @@ function Jobs() {
         <div className="main-search-input-wrap my-5">
 
 
-          <div className="main-search-input fl-wrap my-5">
+          <div className="main-search-input fl-wrap my-5 border border-1">
             <div className="main-search-input-item">
-              <input type="text" value={querry} onChange={(e)=>handleSearch(e.target.value)} placeholder="Type any key words..." />
+              <input type="text"  value={querry} onChange={(e)=>handleSearch(e.target.value)} placeholder="Type any key words..." />
             </div>
 
             <button className="main-search-button" onClick={()=>{setKeyword(querry)}}>Search</button>
           </div>
+          <label htmlFor="location">Filter by location:</label>
+          <input list="locations" name="address" onChange={(e)=>handleLocation(e)} id="location"/>
+          <button onClick={()=>{setAddress(filter)}}>Filter</button>
+
+          <datalist id="locations">
+          {setUniqueLocation&&setUniqueLocation.map((location,i)=>(
+                  <option key={i} value={location}/>
+            ))
+            
+          
+          }
+            
+          </datalist>
 
 
         </div>
+      
 
         <br />
 
