@@ -18,7 +18,7 @@ function Navbar() {
 
  
 
-  let {userInfoExtra} =useSelector(state => state.userProfile);//use selctor for redux
+  let {userInfoExtra} =useSelector(state => state.userProfile);
 
 
   let role= userInfoExtra?userInfoExtra.role:"" ;

@@ -254,7 +254,7 @@ function Landing(){
         {/* how it work section end */}
 
 
-        <div className="container">
+        <div className="container" id="contact">
           <h1 className="display-3 text-center my-5">Contact Me</h1>
 
     <div className="row">

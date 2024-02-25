@@ -31,7 +31,7 @@ function JobPosted() {
               </div>
             </div>
           ) : jobs && jobs.length === 0 ? (
-            <p className="lead m-5 p-5 text-center">No jobs available right now</p>
+            <p className="lead m-5 p-5 text-center">No jobs posted yet</p>
           ) : (
             <>
               <div className="row container mx-auto my-5">

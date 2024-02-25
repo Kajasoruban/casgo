@@ -9,9 +9,9 @@ import Card from "../components/Card";
 import { useParams } from 'react-router-dom';
 
 function Jobs() {
-
+ 
     const { jobs, setUniqueLocation, pages, loading } = useSelector(state => state.loadJobs);
-
+    
     const dispatch = useDispatch();
     // const { keyword, address } = useParams();
     const [keyword,setKeyword] = useState("");

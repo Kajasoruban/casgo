@@ -348,8 +348,8 @@ function JobPost() {
               :
               <>
                 <div className='container notauthorised'>
-                  <h1 className='display-3 text-center my-5'>
-                    Complete your payment to continue
+                  <h1 className='display-4 text-center my-5'>
+                    Purchase a plan to continue
                   </h1>
                   <div className='text-center'>
                   <Link to="/pricing"className='px-5 py-3 mt-5 btn btn-primary'>Go to pricing</Link>

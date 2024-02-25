@@ -30,7 +30,8 @@ const jobRecruitSchema =mongoose.Schema({
     approved:{
         type:Boolean,
         default:false
-    }    
+    },
+    paymentHistory:Array    
 },{
     timestamps:true
 });

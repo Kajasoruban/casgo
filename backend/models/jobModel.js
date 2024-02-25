@@ -90,6 +90,7 @@ const jobSchema =mongoose.Schema({
         default:true
     },
     applicants:Array
+   
     
 },{
     timestamps:true

@@ -28,6 +28,8 @@ import Applicants from './pages/JobGiver/Applicants';
 import JobGiverRoutes from './components/JobGiverRoutes';
 import AdminApproval from './pages/admin/AdminApproval';
 import Pricing from './pages/JobGiver/Pricing';
+import Success from './pages/Success';
+import Cancel from './pages/Cancel';
 
 
 const AdminDashboardHOC = Layout(AdminDashBoard);
@@ -66,6 +68,8 @@ function App() {
     <Route path="/admin/alljobs" element={<UserRoute><AdminAllJobsHOC/></UserRoute>}/>
     <Route path="/admin/approval" element={<UserRoute><AdminApprovalHOC/></UserRoute>}/>
     <Route path="/jobs" element={<UserRoute><Jobs/></UserRoute>}/>
+    <Route path="/success" element={<Success/>}/>
+    <Route path="/cancel" element={<Cancel/>}/>
     <Route path='/jobs/:id' element={<JobsById />} />
     <Route path="*" element={<NotFound/>}/>
 

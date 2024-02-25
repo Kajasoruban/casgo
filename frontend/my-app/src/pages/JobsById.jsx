@@ -13,10 +13,36 @@ import { appliedJobsAction } from '../redux/actions/userAction';
 
 
 function JobsById() {
+    let {userInfoExtra} =useSelector(state => state.userProfile);
+    let role= userInfoExtra?userInfoExtra.role:"" ;
     const [applyDisable,setApplyDisable]=useState(false);
+    
+    useEffect(()=>{
+
+        if(role==="jobRecruit"){
+            setApplyDisable(true)     
+        }
+
+    },[role])
+    
+
     const dispatch =useDispatch();
     const {jobDetail,loading}=useSelector(state =>state.jobDetails)
 
+    useEffect(()=>{
+    if(jobDetail){
+        if(role==="jobSeeker"){
+            jobDetail.applicants.length===0 && setApplyDisable(false);
+        
+        jobDetail.applicants.map((job)=>{
+            if(job._id==userInfoExtra._id){
+                setApplyDisable(true);
+                 
+            }
+         })
+        }
+       
+    }},[jobDetail])
 
     const applyJob =()=>{
         
