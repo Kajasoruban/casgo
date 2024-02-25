@@ -269,9 +269,24 @@ const jobHistoryById = async (req,res)=>{
     
 }
 
+const paymentHistory = async(req,res)=>{
+    try {
+        const paymentHistory = await jobRec.findById(req.user.jobGiverId).populate({ path: 'paymentHistory',populate:[ {path: 'paymentId', model: 'payment'}] })
+        if(paymentHistory){
+            res.status(200).json({
+                success: true,
+                paymentHistory:paymentHistory.paymentHistory
+            })
+        }
 
+        
+    } catch (error) {
+        res.status(500).json({message:error.message});
+    }
+
+}
 
 
 export{jobRecCreate,getJobRecProfile,updateJobRecProfile,
     jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile,
-    createUserJobsHistory,jobHistoryById,jobGiverApproval,ApproveById};
+    createUserJobsHistory,jobHistoryById,jobGiverApproval,ApproveById,paymentHistory};

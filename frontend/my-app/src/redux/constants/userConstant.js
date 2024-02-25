@@ -64,6 +64,11 @@ export const jobHistory_Action_FAIL = "jobHistory_Action_FAIL";
 export const jobHistory_Action_RESET = "jobHistory_Action_RESET";
 
 
+export const Payment_History_Action_REQUEST = "Payment_History_Action_REQUEST";
+export const Payment_History_Action_SUCCESS = "Payment_History_Action_SUCCESS";
+export const Payment_History_Action_FAIL = "Payment_History_Action_FAIL";
+export const Payment_History_Action_RESET = "Payment_History_Action_RESET";
+
 export const Giver_PROFILE_REQUEST = "Giver_PROFILE_REQUEST";
 export const Giver_PROFILE_SUCCESS = "Giver_PROFILE_SUCCESS";
 export const Giver_PROFILE_FAIL = "Giver_PROFILE_FAIL";

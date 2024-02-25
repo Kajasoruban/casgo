@@ -3,7 +3,8 @@ const router =express.Router();
 import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,allUsers } from "../controlers/userControler.js";
 import{ postJob,getJobById,updatejob,delJob, showJobs,jobByJobGiverId,disableJobyById} from "../controlers/jobControllers.js";
 import{jobRecCreate,getJobRecProfile,updateJobRecProfile,
-        jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile,createUserJobsHistory,jobHistoryById, jobGiverApproval, ApproveById} from "../controlers/jobAccountController.js";
+        jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile,createUserJobsHistory,jobHistoryById, jobGiverApproval, ApproveById,
+        paymentHistory} from "../controlers/jobAccountController.js";
 
 import { protect,isAdmin } from "../middleware/authMiddleware.js";
 
@@ -24,6 +25,7 @@ router.get("/getJobRecruit",protect,getJobRecProfile);       //done
 router.put("/updateJobRecruit",protect,updateJobRecProfile);
 router.get("/admin/jobgiverapproval",protect,jobGiverApproval); //done
 router.put("/admin/jobgiverapproval/:id",protect,ApproveById); //done
+router.get("/jobgiver/paymentHistory",protect,paymentHistory); 
 
 //for job seeker
 router.post("/jobSeeker",protect,jobSeekerCreate);              //done

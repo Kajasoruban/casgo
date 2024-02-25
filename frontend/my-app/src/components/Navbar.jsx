@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userProfileAction } from "../redux/actions/userAction";
+import { giverProfileAction, paymentHistoryAction, userProfileAction } from "../redux/actions/userAction";
 import { useEffect, useState } from "react";
 import LoginModel from "./LoginModel";
 
@@ -34,6 +34,17 @@ function Navbar() {
     
    
   },[userInfoExtra]);
+
+   useEffect(()=>{
+  
+    dispatch(paymentHistoryAction())
+
+   },[])
+
+   useEffect(()=>{
+    dispatch(giverProfileAction());
+  },[])
+
 
     return (
         

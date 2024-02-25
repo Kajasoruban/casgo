@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { jobGiverSignUpAction } from '../redux/actions/userAction';
 import '../Assets/css/JobGiverRegister.css';
 
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Box, CircularProgress } from '@mui/material';
 
 const validationSchema = yup.object({
   nameOfOrganization: yup
@@ -35,10 +36,16 @@ function JobGiver() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [imageValid,setImageValid]=useState(false);
-  const { userInfo ,loading} = useSelector(state => state.signIn);
+  const { userInfo } = useSelector(state => state.signIn);
   
+  const {giver,loading}=useSelector(state => state.giverProfile)
+  let approved=false;
+  if(giver){
+     approved=giver.approved;
+  }
+  let role= giver?giver.role:"" ;
 
-
+console.log(role);
 
   const formik = useFormik({
     initialValues: {
@@ -68,7 +75,28 @@ function JobGiver() {
   return (
     <>
     <Navbar/>
-    <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
+
+
+    {
+      loading?
+    
+      <Box
+      sx={{
+          minHeight: '500px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+      }}>
+      <CircularProgress />
+     </Box>
+
+     :
+     <>
+
+     {
+      role!=="jobRecruit"?
+     <>
+      <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
       
       <h1 className='display-6 text-center heading-1 fw-bold'>Job Giver Register</h1>
     <form className=''onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -202,10 +230,35 @@ function JobGiver() {
     </div>
     </form>
 
-   
+   {/* <GoogleMap/> */}
     </div>
 
-    {/* <GoogleMap/> */}
+     </> 
+     :
+     <>
+
+    {
+      approved?
+    <>
+   <Navigate to="/profile" />
+    </>
+    : 
+    
+    <>
+    
+    <div className='container notauthorised'>
+
+      <h1 className='display-1 text-center my-5'>Wait untill you get verified</h1>
+
+    </div>
+
+
+  </>
+    
+    }
+    </>}
+
+    </>}
     
     <Footer/>
   </>

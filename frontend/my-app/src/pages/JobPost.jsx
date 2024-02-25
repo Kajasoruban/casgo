@@ -60,6 +60,12 @@ function JobPost() {
      approved=giver.approved;
   }
 
+  const {paymentHistory} =useSelector(state => state.paymentHistory);
+  let data = [];
+    data = (paymentHistory !== undefined && paymentHistory.length > 0) ? paymentHistory : []
+
+  //  data.length!==0&&console.log(data[0].paymentId.expired===false);
+
   useEffect(()=>{
     dispatch(giverProfileAction());
   },[])
@@ -113,7 +119,7 @@ function JobPost() {
         approved ?
 
           <>
-            {true ?
+            {data.length!==0 && data[0].paymentId.expired===false ?
               <>
 
                 <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
