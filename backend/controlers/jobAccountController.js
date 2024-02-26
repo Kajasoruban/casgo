@@ -61,12 +61,14 @@ const jobRecCreate= asyncHandler(async(req,res)=>{
 
 
 const getJobRecProfile= asyncHandler(async(req,res)=>{
+    
     if(req.body._id){
-        const jobgiver =await jobRec.find(req.user.jobGiverId).populate("userId","name")
+        const jobgiver =await jobRec.findById(req.user.jobGiverId).populate("userId","name")
         res.status(200).json({message:"success",jobgiver:jobgiver[0]});
     }
-    const jobgiver =await jobRec.find(req.user.jobGiverId).populate("userId","name")
-    res.status(200).json({message:"success",jobgiver:jobgiver[0]});
+    const jobgiver =await jobRec.findById(req.user.jobGiverId).populate("userId","name")
+  
+    res.status(200).json({message:"success",jobgiver:jobgiver});
 });
 
 

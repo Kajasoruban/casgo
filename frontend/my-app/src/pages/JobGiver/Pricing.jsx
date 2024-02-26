@@ -6,6 +6,7 @@ import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import BalanceIcon from '@mui/icons-material/Balance';
 import axios from 'axios'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 const Pricing = () => {
   const[active,setActive]=useState(false)
   const[active2,setActive2]=useState(false)
@@ -98,7 +99,9 @@ const Pricing = () => {
 
               {/* <a href="auth-register-basic.html" className="btn btn-label-success d-grid w-100">Your Current Plan</a> */}
               
-              {active?<button className='btn btn-success d-grid w-100 buy'>Active</button>:<button className='btn btn-success d-grid w-100' onClick={()=>checkOut(1)} disabled={(active==active2)?false:true} >Buy</button>}
+              {active?<div className='d-flex w-100'><button className='btn btn-success w-40 buy'>Active</button>
+             <Link className="btn btn-success w-40 jobpost2" to="/jobPost">Post Job</Link></div>:
+             <button className='btn btn-success d-grid w-100' onClick={()=>checkOut(1)} disabled={(active==active2)?false:true} >Buy</button>}
 
             </div>
           </div>
@@ -134,7 +137,9 @@ const Pricing = () => {
                 <li className="mb-0"><span className="badge badge-center w-px-20 h-px-20 rounded-pill bg-label-primary me-2"><i className="bx bx-check bx-xs"></i></span> Integrations</li>
               </ul> */}
 
-             {active2?<button className='btn btn-success d-grid w-100 buy'>Active</button>:<button className='btn btn-success d-grid w-100' onClick={()=>checkOut(2)} disabled={(active==active2)?false:true} >Buy</button>}
+             {active2?<div className='d-grid w-100'><button className='btn btn-success w-40 buy'>Active</button>
+             <Link className="btn btn-success w-40 jobpost2 my-2" to="/jobPost">Post Job</Link></div>:
+             <button className='btn btn-success d-grid w-100' onClick={()=>checkOut(2)} disabled={(active==active2)?false:true} >Buy</button>}
 
             </div>
           </div>

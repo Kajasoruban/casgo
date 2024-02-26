@@ -37,6 +37,14 @@ function JobGiver() {
   const navigate = useNavigate();
   const [imageValid,setImageValid]=useState(false);
   const { userInfo } = useSelector(state => state.signIn);
+
+  const {userInfoExtra} =useSelector(state => state.userProfile);
+
+    if(userInfoExtra){
+       if(userInfoExtra.message){
+        
+       }
+    }
   
   const {giver,loading}=useSelector(state => state.giverProfile)
   let approved=false;
@@ -45,7 +53,11 @@ function JobGiver() {
   }
   let role= giver?giver.role:"" ;
 
-console.log(role);
+// console.log(role);
+
+// if(giver){
+//    console.log(giver);
+// }
 
   const formik = useFormik({
     initialValues: {

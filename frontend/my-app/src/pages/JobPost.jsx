@@ -57,9 +57,9 @@ function JobPost() {
   const {giver,loading}=useSelector(state => state.giverProfile)
   let approved=false;
   if(giver){
-     approved=giver.approved;
+     approved=giver.approved; 
   }
-
+  
   const {paymentHistory} =useSelector(state => state.paymentHistory);
   let data = [];
     data = (paymentHistory !== undefined && paymentHistory.length > 0) ? paymentHistory : []
