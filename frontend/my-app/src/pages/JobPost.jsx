@@ -66,9 +66,9 @@ function JobPost() {
 
   //  data.length!==0&&console.log(data[0].paymentId.expired===false);
 
-  useEffect(()=>{
-    dispatch(giverProfileAction());
-  },[])
+  // useEffect(()=>{
+  //   dispatch(giverProfileAction());
+  // },[])
 
   
 

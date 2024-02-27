@@ -6,19 +6,30 @@ import { useEffect, useState } from "react";
 import LoginModel from "./LoginModel";
 
 function Navbar() {
-
+   const [registered, setRegistered] = useState(false);
    const dispatch=useDispatch();
    const[no,setNo]=useState(0);
-  const { userInfo ,loading} = useSelector(state => state.signIn);
-
+  const { userInfo} = useSelector(state => state.signIn);
+  let {userInfoExtra,loading} =useSelector(state => state.userProfile);
 
   // const profile =()=>{
   //   dispatch(userProfileAction())
   // }
 
- 
+ useEffect(()=>{
+  
+  if (userInfoExtra) {
+    if (userInfoExtra.role && !loading) {
+      setRegistered(true)
+      
+    }
+  }
+  
+ },[userInfoExtra])
+  
 
-  let {userInfoExtra} =useSelector(state => state.userProfile);
+ 
+  
 
 
   let role= userInfoExtra?userInfoExtra.role:"" ;
@@ -36,14 +47,16 @@ function Navbar() {
   },[userInfoExtra]);
 
    useEffect(()=>{
-  
-    dispatch(paymentHistoryAction())
-
-   },[])
+    
+    registered && !loading && dispatch(paymentHistoryAction()) &&console.log("1");
+    
+   },[registered])
 
    useEffect(()=>{
-    dispatch(giverProfileAction());
-  },[])
+
+    registered && !loading && dispatch(giverProfileAction()) && console.log("2");
+    
+  },[registered])
 
 
     return (

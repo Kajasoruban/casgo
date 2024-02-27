@@ -98,8 +98,6 @@ export const giverProfileAction = () => async (dispatch) => {
     dispatch({ type: Giver_PROFILE_REQUEST });
     try {
         const { data } = await axios.get("/api/users/getJobRecruit");
-      
-        console.log(data);
         dispatch({
             type: Giver_PROFILE_SUCCESS,
             payload: data

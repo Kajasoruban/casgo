@@ -1,4 +1,3 @@
-
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import * as yup from 'yup';
@@ -13,267 +12,262 @@ import { Box, CircularProgress } from '@mui/material';
 
 const validationSchema = yup.object({
   nameOfOrganization: yup
-      .string('Enter your nameOfOrganization')
-      
-      .required('NameOfOrganization is required'),
-  
-      address: yup
-      .string('Enter your address')
-      .required('Address is required'),  
+    .string('Enter your nameOfOrganization')
+    .required('NameOfOrganization is required'),
 
-      contactNo: yup
-      .string('Enter your contactNo')
-      .min(10, 'Contact number should be of minimum 10 characters length')
-      .required('Contact number is required'),  
-      
-      image: yup.mixed().required("image required")
- 
+  address: yup
+    .string('Enter your address')
+    .required('Address is required'),
+
+  contactNo: yup
+    .string('Enter your contactNo')
+    .min(10, 'Contact number should be of minimum 10 characters length')
+    .required('Contact number is required'),
+
+  image: yup.mixed().required("image required")
+
 });
 
 function JobGiver() {
 
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [imageValid,setImageValid]=useState(false);
+  const [imageValid, setImageValid] = useState(false);
   const { userInfo } = useSelector(state => state.signIn);
 
-  const {userInfoExtra} =useSelector(state => state.userProfile);
+  const { userInfoExtra } = useSelector(state => state.userProfile);
 
-    if(userInfoExtra){
-       if(userInfoExtra.message){
-        
-       }
-    }
   
-  const {giver,loading}=useSelector(state => state.giverProfile)
-  let approved=false;
-  if(giver){
-     approved=giver.approved;
+  const { giver, loading } = useSelector(state => state.giverProfile)
+
+  let approved = false;
+  if (giver) {
+    approved = giver.approved;
   }
-  let role= giver?giver.role:"" ;
+  let role = giver ? giver.role : "";
 
-// console.log(role);
+  // console.log(role);
 
-// if(giver){
-//    console.log(giver);
-// }
+  // if(giver){
+  //    console.log(giver);
+  // }
 
   const formik = useFormik({
     initialValues: {
       nameOfOrganization: '',
       address: '',
       contactNo: '',
-      image:""
+      image: ""
     },
     validationSchema: validationSchema,
     onSubmit: (values, actions) => {
-        //  alert(JSON.stringify(values, null, 2));
-        // const data={...values,image:image}
-        
-        // console.log(values);
-        dispatch(jobGiverSignUpAction(values));
-        actions.resetForm();
-        navigate('/');
-       
-        
+      //  alert(JSON.stringify(values, null, 2));
+      // const data={...values,image:image}
+
+      // console.log(values);
+      dispatch(jobGiverSignUpAction(values));
+      actions.resetForm();
+      navigate('/');
+
+
     }
 
-})
-  
+  })
+
 
 
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
 
 
-    {
-      loading?
-    
-      <Box
-      sx={{
-          minHeight: '500px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
-      }}>
-      <CircularProgress />
-     </Box>
+      {
+        loading ?
 
-     :
-     <>
+          <Box
+            sx={{
+              minHeight: '500px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+            <CircularProgress />
+          </Box>
 
-     {
-      role!=="jobRecruit"?
-     <>
-      <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
-      
-      <h1 className='display-6 text-center heading-1 fw-bold'>Job Giver Register</h1>
-    <form className=''onSubmit={formik.handleSubmit} encType="multipart/form-data">
-    
-      <div className='row align-items-center'>
-        <div className='col-2'>
-      <img className="img-fluid" src={!formik.values.image?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU":formik.values.image} style={{width:'10rem',borderRadius:'50%'}} alt="" /> 
-      </div>
-    <div className="col-10">
-    
-        
+          :
+          <>
 
-        <input
-          type="file"
-          className={` ${formik.touched.image && formik.errors.image?'is-invalid':''}`} 
-          
-          id="image"
-          name='image'
-          onChange={(e)=>{
-           
-            // console.log(e.target.files[0]);
-            const reader = new FileReader();
-            {e.target.files[0]!==undefined ? !e.target.files[0].type.includes("image")&&setImageValid(true):setImageValid(false)}
-            (e.target.files[0]!==undefined && e.target.files[0].type.includes("image"))&&
-            reader.readAsDataURL(e.target.files[0]);
-            reader.onloadend = () =>{
-            //  console.log(reader.result);
-              formik.setFieldValue("image",reader.result);
-        
-          }
-          }}
-          // value={formik.values.image}
-          // onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          // error={formik.touched.image && Boolean(formik.errors.image)}
-          // helperText={formik.touched.image && formik.errors.image}
-        />{formik.touched.image && formik.errors.image ? (
-          <div id="org" className="form-text invalid-feedback">{formik.errors.image}</div>
-        ) : null}{imageValid&&<div id="org2" className="form-text invalid-feedback">It should be an image</div>}
- 
-    </div>
-    </div>
-    
-    <br/>
-    <div className="row">
-      <div className="form-group col-md-6">
-        <label htmlFor="inputEmail4">Email</label>
-        <input type="email" className="form-control" value={!userInfo?'':userInfo.email} readOnly id="inputEmail4" placeholder="Email"/>
-      </div>
-      <div className="form-group col-md-6">
-        <label htmlFor="inputPassword4">User Name</label>
-        <input type="text" className="form-control" id="inputPassword4" value={!userInfo?'':userInfo.name} readOnly placeholder="Password"/>
-      </div>
-    </div>
-     
-    <br/>
-    <div className="form-group">
-        <label htmlFor="nameOfOrganization">Name Of Organization:</label>
+            {
+              role !== "jobRecruit" ?
+                <>
+                  <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
 
-        <input
-          type="text"
-          className={`form-control ${formik.touched.nameOfOrganization && formik.errors.nameOfOrganization?'is-invalid':''}`} 
-          placeholder="Enter nameOfOrganization"
-          id="nameOfOrganization"
-          name='nameOfOrganization'
-          
-          value={formik.values.nameOfOrganization}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          // error={formik.touched.nameOfOrganization && Boolean(formik.errors.nameOfOrganization)}
-          // helperText={formik.touched.nameOfOrganization && formik.errors.nameOfOrganization}
-          aria-describedby="org"
-        />
-        {/* <div >{formik.touched.nameOfOrganization && formik.errors.nameOfOrganization}</div> */}
-        {formik.touched.nameOfOrganization && formik.errors.nameOfOrganization ? (
-             <div id="org" className="form-text invalid-feedback">{formik.errors.nameOfOrganization}</div>
-           ) : null}
- 
-    </div>
+                    <h1 className='display-6 text-center heading-1 fw-bold'>Job Giver Register</h1>
+                    <form className='' onSubmit={formik.handleSubmit} encType="multipart/form-data">
 
-    <br/>
+                      <div className='row align-items-center'>
+                        <div className='col-2'>
+                          <img className="img-fluid" src={!formik.values.image ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU" : formik.values.image} style={{ width: '10rem', borderRadius: '50%' }} alt="" />
+                        </div>
+                        <div className="col-10">
 
-    <div className="form-group">
-        <label htmlFor="address">Address:</label>
 
-        <input
-          type="text"
-          className={`form-control ${formik.touched.address && formik.errors.address?'is-invalid':''}`} 
-          placeholder="Enter address"
-          id="address"
-          name='address'
-          
-          value={formik.values.address}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          // error={formik.touched.address && Boolean(formik.errors.address)}
-          // helperText={formik.touched.address && formik.errors.address}
-        />{formik.touched.address && formik.errors.address ? (
-          <div id="org" className="form-text invalid-feedback">{formik.errors.address}</div>
-        ) : null}
- 
-    </div>
 
-    <br/>
+                          <input
+                            type="file"
+                            className={` ${formik.touched.image && formik.errors.image ? 'is-invalid' : ''}`}
 
-    <div className="form-group">
-        <label htmlFor="contactNo">Contact No:</label>
+                            id="image"
+                            name='image'
+                            onChange={(e) => {
 
-        <input
-          type="text"
-          className={`form-control ${formik.touched.contactNo && formik.errors.contactNo?'is-invalid':''}`} 
-          placeholder="Enter contactNo"
-          id="contactNo"
-          name='contactNo'
-          
-          value={formik.values.contactNo}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          // error={formik.touched.contactNo && Boolean(formik.errors.contactNo)}
-          // helperText={formik.touched.contactNo && formik.errors.contactNo}
-        />{formik.touched.contactNo && formik.errors.contactNo ? (
-          <div id="org" className="form-text invalid-feedback">{formik.errors.contactNo}</div>
-        ) : null}
-    
-    </div>
+                              // console.log(e.target.files[0]);
+                              const reader = new FileReader();
+                              { e.target.files[0] !== undefined ? !e.target.files[0].type.includes("image") && setImageValid(true) : setImageValid(false) }
+                              (e.target.files[0] !== undefined && e.target.files[0].type.includes("image")) &&
+                                reader.readAsDataURL(e.target.files[0]);
+                              reader.onloadend = () => {
+                                //  console.log(reader.result);
+                                formik.setFieldValue("image", reader.result);
 
-    <br/>
-   
-    <div className='go'>
-    <button type="submit" className="btn btn-warning py-2 px-5 fs-5 mx-5">Go</button>
-    </div>
-    </form>
+                              }
+                            }}
+                            // value={formik.values.image}
+                            // onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                          // error={formik.touched.image && Boolean(formik.errors.image)}
+                          // helperText={formik.touched.image && formik.errors.image}
+                          />{formik.touched.image && formik.errors.image ? (
+                            <div id="org" className="form-text invalid-feedback">{formik.errors.image}</div>
+                          ) : null}{imageValid && <div id="org2" className="form-text invalid-feedback">It should be an image</div>}
 
-   {/* <GoogleMap/> */}
-    </div>
+                        </div>
+                      </div>
 
-     </> 
-     :
-     <>
+                      <br />
+                      <div className="row">
+                        <div className="form-group col-md-6">
+                          <label htmlFor="inputEmail4">Email</label>
+                          <input type="email" className="form-control" value={!userInfo ? '' : userInfo.email} readOnly id="inputEmail4" placeholder="Email" />
+                        </div>
+                        <div className="form-group col-md-6">
+                          <label htmlFor="inputPassword4">User Name</label>
+                          <input type="text" className="form-control" id="inputPassword4" value={!userInfo ? '' : userInfo.name} readOnly placeholder="Password" />
+                        </div>
+                      </div>
 
-    {
-      approved?
-    <>
-   <Navigate to="/profile" />
+                      <br />
+                      <div className="form-group">
+                        <label htmlFor="nameOfOrganization">Name Of Organization:</label>
+
+                        <input
+                          type="text"
+                          className={`form-control ${formik.touched.nameOfOrganization && formik.errors.nameOfOrganization ? 'is-invalid' : ''}`}
+                          placeholder="Enter nameOfOrganization"
+                          id="nameOfOrganization"
+                          name='nameOfOrganization'
+
+                          value={formik.values.nameOfOrganization}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          // error={formik.touched.nameOfOrganization && Boolean(formik.errors.nameOfOrganization)}
+                          // helperText={formik.touched.nameOfOrganization && formik.errors.nameOfOrganization}
+                          aria-describedby="org"
+                        />
+                        {/* <div >{formik.touched.nameOfOrganization && formik.errors.nameOfOrganization}</div> */}
+                        {formik.touched.nameOfOrganization && formik.errors.nameOfOrganization ? (
+                          <div id="org" className="form-text invalid-feedback">{formik.errors.nameOfOrganization}</div>
+                        ) : null}
+
+                      </div>
+
+                      <br />
+
+                      <div className="form-group">
+                        <label htmlFor="address">Address:</label>
+
+                        <input
+                          type="text"
+                          className={`form-control ${formik.touched.address && formik.errors.address ? 'is-invalid' : ''}`}
+                          placeholder="Enter address"
+                          id="address"
+                          name='address'
+
+                          value={formik.values.address}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                        // error={formik.touched.address && Boolean(formik.errors.address)}
+                        // helperText={formik.touched.address && formik.errors.address}
+                        />{formik.touched.address && formik.errors.address ? (
+                          <div id="org" className="form-text invalid-feedback">{formik.errors.address}</div>
+                        ) : null}
+
+                      </div>
+
+                      <br />
+
+                      <div className="form-group">
+                        <label htmlFor="contactNo">Contact No:</label>
+
+                        <input
+                          type="text"
+                          className={`form-control ${formik.touched.contactNo && formik.errors.contactNo ? 'is-invalid' : ''}`}
+                          placeholder="Enter contactNo"
+                          id="contactNo"
+                          name='contactNo'
+
+                          value={formik.values.contactNo}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                        // error={formik.touched.contactNo && Boolean(formik.errors.contactNo)}
+                        // helperText={formik.touched.contactNo && formik.errors.contactNo}
+                        />{formik.touched.contactNo && formik.errors.contactNo ? (
+                          <div id="org" className="form-text invalid-feedback">{formik.errors.contactNo}</div>
+                        ) : null}
+
+                      </div>
+
+                      <br />
+
+                      <div className='go'>
+                        <button type="submit" className="btn btn-warning py-2 px-5 fs-5 mx-5">Go</button>
+                      </div>
+                    </form>
+
+                    {/* <GoogleMap/> */}
+                  </div>
+
+                </>
+                :
+                <>
+
+                  {
+                    approved ?
+                      <>
+                        <Navigate to="/profile" />
+                      </>
+                      :
+
+                      <>
+
+                        <div className='container notauthorised'>
+
+                          <h1 className='display-1 text-center my-5'>Wait untill you get verified</h1>
+
+                        </div>
+
+
+                      </>
+
+                  }
+                </>}
+
+          </>}
+
+      <Footer />
     </>
-    : 
-    
-    <>
-    
-    <div className='container notauthorised'>
-
-      <h1 className='display-1 text-center my-5'>Wait untill you get verified</h1>
-
-    </div>
-
-
-  </>
-    
-    }
-    </>}
-
-    </>}
-    
-    <Footer/>
-  </>
   );
 }
 

@@ -99,8 +99,8 @@ const Pricing = () => {
 
               {/* <a href="auth-register-basic.html" className="btn btn-label-success d-grid w-100">Your Current Plan</a> */}
               
-              {active?<div className='d-flex w-100'><button className='btn btn-success w-40 buy'>Active</button>
-             <Link className="btn btn-success w-40 jobpost2" to="/jobPost">Post Job</Link></div>:
+              {active?<div className='d-grid w-100'><button className='btn btn-success w-40 buy'>Active</button>
+             <Link className="btn btn-success w-40 jobpost2 my-2" to="/jobPost">Post Job</Link></div>:
              <button className='btn btn-success d-grid w-100' onClick={()=>checkOut(1)} disabled={(active==active2)?false:true} >Buy</button>}
 
             </div>

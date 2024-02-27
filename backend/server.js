@@ -15,7 +15,8 @@ const stripe=Stripe(process.env.STRIPE_KEY)
 
 const port =3200;
 
-
+//stripe listen --forward-to localhost:3200/api/stripe/webhook
+//stripe trigger payment_intent.succeeded
 
 const app=express();
 
