@@ -43,7 +43,7 @@ function AdminAllUsers() {
     
 
 const columns= [
-    { field: '_id', headerName: 'ID', width: 200 },
+    { field: '_id', headerName: 'ID', width: 220 },
     {
       field: 'name',
       headerName: 'User Name',
@@ -94,7 +94,7 @@ const columns= [
   return (
     <>
     <div>AllUsers</div>
-    <Box sx={{ height: 550, width: '100%' }}>
+    <Box sx={{ height: 650, width: '100%' }}>
     <Box sx={{ pb: 2, display: "flex", justifyContent: "right" }}>
     <Link to='/register'><Button variant='contained' color="success" startIcon={<AddIcon />}> Create user</Button></Link>
                 </Box>

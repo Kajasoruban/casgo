@@ -67,7 +67,7 @@ function AdminAllJobs() {
         {
             field: 'closingTime',
             headerName: 'Closing',
-            width: 60,
+            width: 100,
             editable: true,
            
           },
