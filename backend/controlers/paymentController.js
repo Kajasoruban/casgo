@@ -4,6 +4,7 @@ import  express from "express";
 import Stripe from "stripe";
 import moment from "moment"
 import { protect } from "../middleware/authMiddleware.js";
+import Payment from "../models/Payment.Model.js";
 const stripe=Stripe(process.env.STRIPE_KEY)
 const router = express.Router();
 
@@ -54,6 +55,31 @@ const session = await stripe.checkout.sessions.create({
 res.send({ url: session.url });
 
 });  
+
+
+router.put('/expired/:id',protect,async (req, res) => {
+        const {id}=req.params;
+        try {
+          const payment =await Payment.findById(id);
+          
+         if(payment){
+          
+          payment.expired=true;
+
+          let updated=await payment.save();
+          res.status(201).json(updated)
+         }
+
+          
+        } catch (error) {
+          res.status(404).json({message:error.message})
+        }
+
+
+});
+
+
+
 
 
 

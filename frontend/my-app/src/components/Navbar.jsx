@@ -4,36 +4,57 @@ import { useDispatch } from "react-redux";
 import { giverProfileAction, paymentHistoryAction, userProfileAction } from "../redux/actions/userAction";
 import { useEffect, useState } from "react";
 import LoginModel from "./LoginModel";
+import { expireAction } from "../redux/actions/jobAction";
 
 function Navbar() {
    const [registered, setRegistered] = useState(false);
+   const [pay,setPay]=useState(false);
    const dispatch=useDispatch();
-   const[no,setNo]=useState(0);
   const { userInfo} = useSelector(state => state.signIn);
   let {userInfoExtra,loading} =useSelector(state => state.userProfile);
-
-  // const profile =()=>{
-  //   dispatch(userProfileAction())
-  // }
-
- useEffect(()=>{
   
-  if (userInfoExtra) {
-    if (userInfoExtra.role && !loading) {
-      setRegistered(true)
+  const {paymentHistory} =useSelector(state => state.paymentHistory);
+  let data = [];
+    data = (paymentHistory !== undefined && paymentHistory.length > 0) ? paymentHistory : []
+
+  
+  
+
+  let role= userInfoExtra?userInfoExtra.role:"";
+  // let endDate="02/29/2024 21:55:20";
+  let endDate;
+  let currentDate=new Date();
+
+  useEffect(()=>{
       
-    }
-  }
-  
- },[userInfoExtra])
-  
+    if(data.length!==0){
 
- 
-  
+    data.map(p=>{
+      
+      if(p.paymentId.expired===false){
+        // console.log(p.paymentId.EndingTime);
+        //  endDate = new Date(endDate);
+         endDate = new Date(p.paymentId.EndingTime);
+
+        //  console.log("current",currentDate.getTime());
+        //  console.log("end",endDate.getTime());
+        //  console.log("status",currentDate.getTime()<endDate.getTime(),p.paymentId._id);
+        //  if(currentDate.getTime()<endDate.getTime()){
+        //   console.log("not expired");
+        //  }
+         if(!(currentDate.getTime()<endDate.getTime())){
+          console.log("expired");
+          dispatch(expireAction(p.paymentId._id));
+          
+         }
+      }
+      
+      // expireAction 
+      
+    })}
 
 
-  let role= userInfoExtra?userInfoExtra.role:"" ;
-
+  },[paymentHistory])
  
 
    useEffect(() => {
@@ -42,21 +63,30 @@ function Navbar() {
         dispatch(userProfileAction());
       }
     }
+    if (userInfoExtra) {
+      if (userInfoExtra.role && !loading) {
+        setRegistered(true)
+        
+      }
+    }
     
    
   },[userInfoExtra]);
 
-   useEffect(()=>{
-    
-    registered && !loading && dispatch(paymentHistoryAction()) &&console.log("1");
-    
-   },[registered])
+  
 
    useEffect(()=>{
-
-    registered && !loading && dispatch(giverProfileAction()) && console.log("2");
+  
+    registered && !loading && dispatch(giverProfileAction()) && dispatch(paymentHistoryAction())
     
   },[registered])
+
+
+
+  
+
+
+
 
 
     return (

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { JOB_DETAILS_FAIL, JOB_DETAILS_REQUEST, JOB_DETAILS_SUCCESS, JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_SUCCESS, JOB_POSTED_FAIL, JOB_POSTED_REQUEST, JOB_POSTED_SUCCESS, JOB_REGISTER_FAIL, JOB_REGISTER_REQUEST, JOB_REGISTER_SUCCESS, JOB_STATUS_FAIL, JOB_STATUS_REQUEST, JOB_STATUS_SUCCESS } from "../constants/jobConstant";
+import { EXPIRE_FAIL, EXPIRE_REQUEST, EXPIRE_SUCCESS, JOB_DETAILS_FAIL, JOB_DETAILS_REQUEST, JOB_DETAILS_SUCCESS, JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_SUCCESS, JOB_POSTED_FAIL, JOB_POSTED_REQUEST, JOB_POSTED_SUCCESS, JOB_REGISTER_FAIL, JOB_REGISTER_REQUEST, JOB_REGISTER_SUCCESS, JOB_STATUS_FAIL, JOB_STATUS_REQUEST, JOB_STATUS_SUCCESS } from "../constants/jobConstant";
 import { toast } from "react-toastify";
 
 
@@ -113,6 +113,27 @@ export const jobStatusAction =(id,active) => async (dispatch)=>{
         })
         toast.error(error.response.data.message)
         
+    }
+
+}
+
+//expiration handle
+export const expireAction =(id) => async (dispatch)=>{
+    dispatch({type:EXPIRE_REQUEST});
+    try {
+        const {data}=await axios.put(`/api/stripe/expired/${id}`);
+        dispatch({
+            type:EXPIRE_SUCCESS,
+            payload:data
+        })
+        // setTimeout(()=>{ window.location.reload(true)}, 500)
+        // toast.success(data.message) 
+    } catch (error) {
+        dispatch({
+            type:EXPIRE_FAIL,
+            payload:error.response.data.message
+        })
+        // toast.error(error.response.data.message)  
     }
 
 }

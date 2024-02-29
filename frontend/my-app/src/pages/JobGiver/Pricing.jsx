@@ -17,14 +17,21 @@ const Pricing = () => {
 
 
     useEffect(()=>{
+      
+      if(data.length!==0){
 
-      if(data.length!==0&&data[0].paymentId.duration==7){
-        setActive(true)
-       }
-  
-       if(data.length!==0&&data[0].paymentId.duration==30){
-        setActive2(true)
-       }
+      data.map(p=>{
+        
+        if(p.paymentId.duration==7 && p.paymentId.expired===false){
+          setActive(true)
+        }
+        if(p.paymentId.duration==30 && p.paymentId.expired===false){
+          setActive2(true)
+        }
+        
+        
+      })}
+
 
     },[paymentHistory])
      

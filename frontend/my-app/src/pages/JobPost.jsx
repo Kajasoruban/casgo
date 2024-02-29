@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import * as yup from 'yup';
@@ -51,7 +51,7 @@ function JobPost() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
- 
+  const [payed,setPayed]=useState(false);
   const { userInfo } = useSelector(state => state.signIn);
   const {userInfoExtra} =useSelector(state => state.userProfile);
   const {giver,loading}=useSelector(state => state.giverProfile)
@@ -64,11 +64,23 @@ function JobPost() {
   let data = [];
     data = (paymentHistory !== undefined && paymentHistory.length > 0) ? paymentHistory : []
 
-  //  data.length!==0&&console.log(data[0].paymentId.expired===false);
 
-  // useEffect(()=>{
-  //   dispatch(giverProfileAction());
-  // },[])
+  useEffect(()=>{
+      
+    if(data.length!==0){
+
+    data.map(p=>{
+      
+      if(p.paymentId.expired===false){
+        setPayed(true)
+      }
+      
+      
+      
+    })}
+
+
+  },[paymentHistory])
 
   
 
@@ -119,7 +131,7 @@ function JobPost() {
         approved ?
 
           <>
-            {data.length!==0 && data[0].paymentId.expired===false ?
+            {payed ?
               <>
 
                 <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
