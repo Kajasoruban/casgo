@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Sidebar, Menu, MenuItem, menuClasses, useProSidebar } from 'react-pro-sidebar';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
@@ -7,29 +7,94 @@ import { Box, useTheme } from '@mui/material';
 import WorkIcon from '@mui/icons-material/Work';
 import CategoryIcon from '@mui/icons-material/Category';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
+import ScheduleIcon from '@mui/icons-material/Schedule';
 import Person3Icon from '@mui/icons-material/Person3';
 import Avatar from '@mui/material/Avatar';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 // import logoDashboard from ''
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogoutAction, userProfileAction } from '../../redux/actions/userAction';
+import { giverProfileAction, paymentHistoryAction, userLogoutAction, userProfileAction } from '../../redux/actions/userAction';
 import { useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
+import { expireAction } from '../../redux/actions/jobAction';
 
 
 const SideBar = () => {
+    const [registered, setRegistered] = useState(false);
     const { userInfo } = useSelector(state => state.signIn);
     const { palette } = useTheme();
     const { collapsed } = useProSidebar();
-    const {userInfoExtra} =useSelector(state => state.userProfile);
+    let {userInfoExtra,loading} =useSelector(state => state.userProfile);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const {paymentHistory} =useSelector(state => state.paymentHistory);
+    let data = [];
+      data = (paymentHistory !== undefined && paymentHistory.length > 0) ? paymentHistory : []
+
+    useEffect(() => {
+        if(userInfo){
+          if(!userInfoExtra){
+            dispatch(userProfileAction());
+          }
+        }
+        if (userInfoExtra) {
+          if (userInfoExtra.role && !loading) {
+            setRegistered(true)
+            
+          }
+        }
+        
+       
+      },[userInfoExtra]);
+
+      let role= userInfoExtra?userInfoExtra.role:"";
+      // let endDate="02/29/2024 21:55:20";
+      let endDate;
+      let currentDate=new Date();
+    
+      useEffect(()=>{
+          
+        if(data.length!==0){
+    
+        data.map(p=>{
+          
+          if(p.paymentId.expired===false){
+            // console.log(p.paymentId.EndingTime);
+            //  endDate = new Date(endDate);
+             endDate = new Date(p.paymentId.EndingTime);
+    
+            //  console.log("current",currentDate.getTime());
+            //  console.log("end",endDate.getTime());
+            //  console.log("status",currentDate.getTime()<endDate.getTime(),p.paymentId._id);
+            //  if(currentDate.getTime()<endDate.getTime()){
+            //   console.log("not expired");
+            //  }
+             if(!(currentDate.getTime()<endDate.getTime())){
+              console.log("expired");
+              dispatch(expireAction(p.paymentId._id));
+              
+             }
+          }
+          
+          // expireAction 
+          
+        })}
+    
+    
+      },[paymentHistory])
+
    
 
-    //log out 
+    useEffect(()=>{
+  
+        registered && !loading && dispatch(giverProfileAction()) && dispatch(paymentHistoryAction())
+        
+      },[registered])
+
+       //log out 
     const logOut = () => {
         dispatch(userLogoutAction());
         window.location.reload(true);
@@ -95,6 +160,7 @@ const SideBar = () => {
                                         <MenuItem component={<Link to="/profile" />} icon={<Person3Icon />}> Personal Info </MenuItem>
                                         <MenuItem component={<Link to="/user/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
                                         <MenuItem component={<Link to="/jobgiver/jobPosted" />} icon={<WorkHistoryIcon />}> Jobs Posted</MenuItem>
+                                        <MenuItem component={<Link to="/jobgiver/paymentHistory" />} icon={<ScheduleIcon />}> Payment History</MenuItem>
                                         <MenuItem component={<Link to="/" />} icon={<HomeIcon />}> Back to Home </MenuItem>
                                         
                                     </>:

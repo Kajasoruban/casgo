@@ -30,6 +30,7 @@ import AdminApproval from './pages/admin/AdminApproval';
 import Pricing from './pages/JobGiver/Pricing';
 import Success from './pages/Success';
 import Cancel from './pages/Cancel';
+import PaymentHistory from './pages/JobGiver/PaymentHistory';
 
 
 const AdminDashboardHOC = Layout(AdminDashBoard);
@@ -40,6 +41,7 @@ const AppliedJobsHOC = Layout(AppliedJobs);
 const JobPostedHOC= Layout(JobPosted);
 const ApplicantsHOC=Layout(Applicants);
 const AdminApprovalHOC=Layout(AdminApproval);
+const PaymentHistoryHOC=Layout(PaymentHistory)
 
 function App() {
   return (
@@ -59,10 +61,12 @@ function App() {
     <Route path="/jobgiver" element={<JobGiver/>}/>
     <Route path="/jobgiver/jobPosted" element={<UserRoute><JobPostedHOC/></UserRoute>}/>
     <Route path="/jobgiver/jobPosted/:id/applicants" element={<UserRoute><ApplicantsHOC/></UserRoute>}/>
+    <Route path="/jobgiver/paymentHistory" element={<JobGiverRoutes><PaymentHistoryHOC/></JobGiverRoutes>}/>
     <Route path="/jobseeker" element={<JobSeeker/>}/>
     <Route path="/jobseeker/appliedjobs" element={<UserRoute><AppliedJobsHOC/></UserRoute>}/>
     <Route path="/jobPost" element={<JobGiverRoutes><JobPost/></JobGiverRoutes>}/>
     <Route path="/pricing" element={<JobGiverRoutes><Pricing/></JobGiverRoutes>}/>
+    
     <Route path="/admin/dashboard" element={<UserRoute><AdminDashboardHOC/></UserRoute>}/>
     <Route path="/admin/allusers" element={<UserRoute><AdminAllUsersHOC/></UserRoute>}/>
     <Route path="/admin/alljobs" element={<UserRoute><AdminAllJobsHOC/></UserRoute>}/>
