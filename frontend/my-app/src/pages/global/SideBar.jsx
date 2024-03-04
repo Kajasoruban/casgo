@@ -158,7 +158,7 @@ const SideBar = () => {
                                     </> :userInfoExtra && userInfoExtra.role === "jobRecruit"?
                                     <>
                                         <MenuItem component={<Link to="/profile" />} icon={<Person3Icon />}> Personal Info </MenuItem>
-                                        <MenuItem component={<Link to="/user/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
+                                        <MenuItem component={<Link to="/jobgiver/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
                                         <MenuItem component={<Link to="/jobgiver/jobPosted" />} icon={<WorkHistoryIcon />}> Jobs Posted</MenuItem>
                                         <MenuItem component={<Link to="/jobgiver/paymentHistory" />} icon={<ScheduleIcon />}> Payment History</MenuItem>
                                         <MenuItem component={<Link to="/" />} icon={<HomeIcon />}> Back to Home </MenuItem>

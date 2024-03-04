@@ -15,49 +15,58 @@ function PaymentHistory() {
     console.log(data);
 
     const columns= [
-        { field: '_id', headerName: 'ID', width: 220 },
         {
           field: 'paymentId',
-          headerName: 'User Name',
-          width: 150,
-          editable: false,
-        //   valueFormatter: ({ value }) => value.paymentId.customerId 
-        },
-        {
-          field: 'email',
-          headerName: 'Email',
+          headerName: 'CustomerId',
           width: 200,
           editable: false,
+          valueFormatter: ({ value }) => value.customerId 
         },
         {
-          field: 'updatedAt',
-          headerName: 'UpdatedAt',
-          type: 'number',
-          width: 150,
+          field: 'Package',
+          headerName: 'Package',
+          width: 100,
           editable: false,
           renderCell: (params) => (
-            moment(params.row.paymentId.EndingTime).format('YYYY-MM-DD HH:MM:SS')
+            params.row.paymentId.duration=="30"?"Premium":"Starter"
         )
         },
         {
-          field: 'createdAt',
-          headerName: 'CreatedAt',
-          type: 'number',
-          width: 150,
+          field: 'duration',
+          headerName: 'duration',
+          width: 100,
           editable: false,
           renderCell: (params) => (
-            moment(params.row.paymentId.startingTime).format('YYYY-MM-DD HH:MM:SS')
+            params.row.paymentId.duration
         )
         },
+        {
+          field: 'Started',
+          headerName: 'Started',
+          type: 'number',
+          width: 200,
+          editable: false,
+          renderCell: (params) => (
+            params.row.paymentId.startingTime
+        )
+        },
+        {
+          field: 'Expiry',
+          headerName: 'Expiry',
+          type: 'number',
+          width: 200,
+          editable: false,
+          renderCell: (params) => (
+            params.row.paymentId.EndingTime
+        )
+        },
+        
         {
           field: "Actions",
-          width: 200,
-        //   renderCell: (values) => (
-        //       <Box sx={{ display: "flex", justifyContent: "space-between", width: "170px" }}>
-        //           <Button variant="contained"><Link style={{ color: "white", textDecoration: "none" }} to={`/admin/edit/user/${values.row._id}`}>Edit</Link></ Button>
-        //           {/* < Button onClick={(e) => suspendUserById(e, values.row._id)} variant="contained" color="error">suspend</ Button> */}
-        //       </Box>
-        //   )
+          width: 100,
+          renderCell: (params) => (
+            params.row.paymentId.expired?<button className='btn btn-danger '>Expired</button>:<button className='btn btn-success'>Active</button>
+        )
         }
       ];
 
