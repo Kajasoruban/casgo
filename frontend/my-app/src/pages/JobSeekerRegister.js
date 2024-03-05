@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { jobSeekerSignUpAction } from '../redux/actions/userAction';
 import '../Assets/css/JobGiverRegister.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 const validationSchema = yup.object({
@@ -40,9 +40,10 @@ function JobSeeker() {
   const [imageValid,setImageValid]=useState(false);
   const navigate = useNavigate();
   const { userInfo ,loading} = useSelector(state => state.signIn);
+  const { userInfoExtra } = useSelector(state => state.userProfile);
   // const navigate = useNavigate();
 
-  
+  let role = userInfoExtra ? userInfoExtra.role : "";
 
 
 
@@ -72,7 +73,11 @@ function JobSeeker() {
 
   return (
             <>
+            
+            
             <Navbar/>
+            {role==""?
+            <>
             <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
             <form className='m-5'onSubmit={formik.handleSubmit} encType="multipart/form-data">
             
@@ -248,6 +253,10 @@ function JobSeeker() {
 
             
             </div>
+
+            </>:
+            <Navigate to="/profile" />
+            }
             
             <Footer/>
         </>

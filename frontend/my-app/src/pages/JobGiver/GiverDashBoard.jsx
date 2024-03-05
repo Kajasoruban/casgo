@@ -19,10 +19,13 @@ function GiverDashBoard() {
     let applicants= jobs.map((job)=>{
         count=count+job.applicants.length
     })
+    // console.log(money);
    useEffect(()=>{
+    setMoney(0)
     data.map((p)=>{
-        setMoney((money)=>money+p.paymentId.duration=="7" ? 300 : 1200)
-        console.log(p);
+        
+        setMoney((money)=>p.paymentId.duration=="7" ? money+300 :money+ 1200)
+        // console.log(p.paymentId.duration);
     })
    },[paymentHistory])
   

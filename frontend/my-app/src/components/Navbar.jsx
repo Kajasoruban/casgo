@@ -64,7 +64,7 @@ function Navbar() {
       }
     }
     if (userInfoExtra) {
-      if (userInfoExtra.role && !loading) {
+      if (userInfoExtra.role=="jobRecruit" && !loading) {
         setRegistered(true)
         
       }

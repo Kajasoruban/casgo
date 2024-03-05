@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { giverProfileAction, paymentHistoryAction, userLogoutAction, userProfileAction } from '../../redux/actions/userAction';
 import { useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
-import { expireAction } from '../../redux/actions/jobAction';
+import { expireAction, jobPostedAction } from '../../redux/actions/jobAction';
 
 
 const SideBar = () => {
@@ -49,6 +49,11 @@ const SideBar = () => {
         
        
       },[userInfoExtra]);
+
+      useEffect(() => {
+        dispatch(jobPostedAction())
+        // console.log(disable);
+    }, []);
 
       let role= userInfoExtra?userInfoExtra.role:"";
       // let endDate="02/29/2024 21:55:20";

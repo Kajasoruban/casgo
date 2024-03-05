@@ -8,10 +8,7 @@ function JobPosted() {
     // const [disable,setDisable]=useState(true)
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(jobPostedAction())
-        // console.log(disable);
-    }, []);
+    
 
     let { jobs,  loading } = useSelector(state => state.jobPosted);
     
