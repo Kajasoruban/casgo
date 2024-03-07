@@ -1,6 +1,7 @@
 import axios from "axios";
 import { EXPIRE_FAIL, EXPIRE_REQUEST, EXPIRE_SUCCESS, JOB_DETAILS_FAIL, JOB_DETAILS_REQUEST, JOB_DETAILS_SUCCESS, JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_SUCCESS, JOB_POSTED_FAIL, JOB_POSTED_REQUEST, JOB_POSTED_SUCCESS, JOB_REGISTER_FAIL, JOB_REGISTER_REQUEST, JOB_REGISTER_SUCCESS, JOB_STATUS_FAIL, JOB_STATUS_REQUEST, JOB_STATUS_SUCCESS } from "../constants/jobConstant";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -22,6 +23,7 @@ export const jobLoadAction = (pageNumber, keyword = '',address = '', cat = '') =
 }
 
 export const jobPostAction =(job) => async (dispatch) => {
+    
     dispatch({type:JOB_REGISTER_REQUEST});
     try {
         const {data}= await axios.post("/api/users/jobPost",job)
@@ -31,6 +33,7 @@ export const jobPostAction =(job) => async (dispatch) => {
             payload:data
         })
         toast.success("Job Posted Successfully")
+        
         
     } catch (error) {
         dispatch({

@@ -36,10 +36,10 @@ router.get('/jobhistory', protect, jobHistoryById);    //done
 
 //for job manage
 router.post("/jobPost",protect,postJob);
-router.get("/getJob/:id",protect,getJobById);  //done
+router.get("/getJob/:id",getJobById);  //done
 router.put("/updateJob",protect,updatejob);
 router.delete("/deleteJob",protect,delJob);
-router.get('/jobs/show',protect,showJobs);              //done
+router.get('/jobs/show',showJobs);              //done
 router.get('/jobs/jobposted',protect, jobByJobGiverId); 
 router.put('/jobs/jobstatus',protect, disableJobyById);  //done
 

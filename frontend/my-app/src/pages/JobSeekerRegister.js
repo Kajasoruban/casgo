@@ -43,7 +43,8 @@ function JobSeeker() {
   const { userInfoExtra } = useSelector(state => state.userProfile);
   // const navigate = useNavigate();
 
-  let role = userInfoExtra ? userInfoExtra.role : "";
+  let message = userInfoExtra ? (userInfoExtra.message && "basic"): "";
+  
 
 
 
@@ -76,7 +77,7 @@ function JobSeeker() {
             
             
             <Navbar/>
-            {role==""?
+            {message=="basic"?
             <>
             <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
             <form className='m-5'onSubmit={formik.handleSubmit} encType="multipart/form-data">

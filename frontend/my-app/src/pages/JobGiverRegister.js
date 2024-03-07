@@ -45,9 +45,9 @@ function JobGiver() {
   if (giver) {
     approved = giver.approved;
   }
-  let role = giver ? giver.role : "";
-
-  // console.log(role);
+  let message = userInfoExtra ? (userInfoExtra.message && "basic"): "";
+  let role = giver ? giver.role : "jobSeeker";
+  console.log(role);
 
   // if(giver){
   //    console.log(giver);
@@ -100,7 +100,7 @@ function JobGiver() {
           <>
 
             {
-              role !== "jobRecruit" ?
+             message=="basic" ?
                 <>
                   <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
 
@@ -244,7 +244,7 @@ function JobGiver() {
                 <>
 
                   {
-                    approved ?
+                    approved || role=="jobSeeker"?
                       <>
                         <Navigate to="/profile" />
                       </>

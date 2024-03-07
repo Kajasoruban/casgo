@@ -5,33 +5,32 @@ import jobSeek from "../models/jobSeekerModel.js";
 
 //for posting jobs
 
-const postJob= asyncHandler(async(req,res)=>{
-    
+const postJob = asyncHandler(async (req, res) => {
+
     const {
-            title,
-            jobDescription,
-            salary,
-            noOfWorkers,
-            ageLimit,
-            closingTime,
-            gender,
-            requirements
-           }=req.body;
-          
+        title,
+        jobDescription,
+        salary,
+        noOfWorkers,
+        ageLimit,
+        closingTime,
+        gender,
+        requirements
+    } = req.body;
 
-           
-           const userId=req.user._id;
-           const{jobGiverId}=req.user;
 
-           const jobGiver=await jobRec.find(jobGiverId);
-           if(!jobGiver){
-              throw Error("You're not authorised")
-           }
-           const address = jobGiver[0].address;
-           const nameOfOrganization =  jobGiver[0].nameOfOrganization;
-           
-    
-    const job=await Job.create({
+    const userId = req.user._id;
+    const { jobGiverId } = req.user;
+
+    const jobGiver = await jobRec.find(jobGiverId);
+    if (!jobGiver) {
+        throw Error("You're not authorised")
+    }
+    const address = jobGiver[0].address;
+    const nameOfOrganization = jobGiver[0].nameOfOrganization;
+
+
+    const job = await Job.create({
         userId,
         jobGiverId,
         title,
@@ -44,18 +43,17 @@ const postJob= asyncHandler(async(req,res)=>{
         requirements,
         nameOfOrganization,
         address
-        
-        
+
     });
 
-    if(job){
+    if (job) {
         res.status(201).json(job);
-        
-    }else{
+
+    } else {
         res.status(400);
         throw new Error("Invalid user data");
     }
-    
+
 });
 
 

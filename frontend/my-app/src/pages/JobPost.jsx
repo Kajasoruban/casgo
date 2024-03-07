@@ -101,6 +101,7 @@ function JobPost() {
     onSubmit: (values, actions) => {
       // console.log(values);
         dispatch(jobPostAction(values));
+        
         actions.resetForm();
         
        

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { jobDetailsAction } from '../redux/actions/jobAction';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -13,9 +13,12 @@ import { appliedJobsAction } from '../redux/actions/userAction';
 
 
 function JobsById() {
+    const navigate=useNavigate();
+    const { userInfo } = useSelector(state => state.signIn);
     let {userInfoExtra} =useSelector(state => state.userProfile);
     let role= userInfoExtra?userInfoExtra.role:"" ;
     const [applyDisable,setApplyDisable]=useState(false);
+    const [applied,setApplied]=useState(false);
     
     useEffect(()=>{
 
@@ -25,7 +28,7 @@ function JobsById() {
 
     },[role])
     
-
+console.log(userInfo===null);
     const dispatch =useDispatch();
     const {jobDetail,loading}=useSelector(state =>state.jobDetails)
 
@@ -36,8 +39,10 @@ function JobsById() {
         
         jobDetail.applicants.map((job)=>{
             if(job._id==userInfoExtra._id){
-                setApplyDisable(true);
+                setApplied(true);
                  
+            }else{
+                setApplied(false);
             }
          })
         }
@@ -45,9 +50,13 @@ function JobsById() {
     }},[jobDetail])
 
     const applyJob =()=>{
-        
-        jobDetail&& dispatch(appliedJobsAction(jobDetail));
-        setApplyDisable(true);
+        if(userInfo==null){
+            navigate("/login");
+        }else{
+            jobDetail&& dispatch(appliedJobsAction(jobDetail));
+            setApplied(true);
+        }
+         
     }
    
     
@@ -126,7 +135,8 @@ function JobsById() {
                               <li>Application date : <span> {jobDetail&&jobDetail.closingTime}</span></li>
                           </ul>
                          <div className="apply-btn2">
-                            <button onClick={applyJob} className="btn btn-warning" disabled={applyDisable}>Apply Now</button>
+                            {applied?<button className="btn btn-success" >Applied</button>:<button onClick={applyJob} className="btn btn-warning" disabled={applyDisable}>Apply Now</button>}
+                            
                          </div>
                          <br/>
                        </div>

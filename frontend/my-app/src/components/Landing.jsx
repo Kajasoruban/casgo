@@ -1,11 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginModel from "./LoginModel";
+import { useSelector } from "react-redux";
 
 
 
 
 function Landing(){
-    
+  const { userInfo } = useSelector(state => state.signIn);
+  const navigate=useNavigate();
+  
+  const loginCheck=(route)=>{
+    if(userInfo===null){
+      navigate("/login");
+    }else{
+      
+      navigate(route);
+    }
+  }
 
     return (
       <>
@@ -63,11 +74,11 @@ function Landing(){
                 <h3 className=" text-stroke-s text-left">
                 Are you looking for a part <br/>time job in your weekends?
                 </h3>
-                <Link to="/jobseeker">
-                  <button className="btn btn-warning px-4 py-2 fs-5 mt-3 go-btn fw-bold">
-                    GO
+               
+                  <button className="btn btn-warning px-4 py-2 fs-5 mt-3 go-btn fw-bold" onClick={()=>loginCheck("/jobseeker")}>
+                    Register as Job Seeker
                   </button>
-                </Link>
+              
                 </div>
               </div>
 
@@ -127,11 +138,11 @@ function Landing(){
               <h3 className=" text-stroke-s text-left mt-3">
               Are you looking for part time workers <br/> on your busy days?
               </h3>
-              <Link to="/jobgiver">
-                <button className="btn btn-warning px-4 py-2 fs-5 mt-4 go-btn fw-bold">
-                  GO
+             
+                <button className="btn btn-warning px-4 py-2 fs-5 mt-4 go-btn fw-bold" onClick={()=>loginCheck("/jobgiver")}>
+                  Register as Job Giver
                 </button>
-              </Link>
+             
               </div>
             </div>
 
@@ -173,6 +184,7 @@ function Landing(){
         </div>
 
         {/* about section start */}
+        
 
         {/* <div className="about-section my-5">
           <h1 className="my-5">About Us</h1>
