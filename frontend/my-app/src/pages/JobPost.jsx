@@ -366,7 +366,7 @@ function JobPost() {
               </>
               :
               <>
-                <div className='container notauthorised'>
+                <div className='container verify notauthorised'>
                   <h1 className='display-4 text-center my-5'>
                     Purchase a plan to continue
                   </h1>
@@ -385,11 +385,17 @@ function JobPost() {
 
           :
           <>
-            <div className='container notauthorised'>
+            {/* <div className='container notauthorised'>
 
               <h1 className='display-1 text-center my-5'>Wait untill you get verified</h1>
 
-            </div>
+            </div> */}
+             <div class="container verify">
+                  <h1>Verification Pending</h1>
+                  <p>Your application has been sent to the admin.</p>
+                  <p>You will be notified within 24 hours.</p>
+                  <div class="message">Please wait until you get verified.</div>
+              </div>
 
 
           </>

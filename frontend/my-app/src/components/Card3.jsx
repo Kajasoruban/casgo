@@ -31,7 +31,7 @@ function Card3({ jobTitle, description, closingTime, address,salary, id ,img,sta
                     <div className="col-sm-3 text-align-center">
                         <p>company:{organization}</p>
                         <p className="value3 mt-sm">Rs.{salary}</p>
-                        <p className="fs-mini text-muted">Closing:{closingTime}</p><Link className="btn btn-primary btn-warning btn-sm" to={`/status`}>{status}</Link>
+                        <p className="fs-mini text-muted">Closing:{closingTime}</p><button className={`btn ${status=="accepted"?"btn-success":status=="rejected"?"btn-danger":"btn-warning"}  btn-sm`}>{status}</button>
                     </div>
                 </div>
             </div>

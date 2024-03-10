@@ -47,7 +47,7 @@ function JobGiver() {
   }
   let message = userInfoExtra ? (userInfoExtra.message && "basic"): "";
   let role = giver ? giver.role : "jobSeeker";
-  console.log(role);
+
 
   // if(giver){
   //    console.log(giver);
@@ -104,7 +104,7 @@ function JobGiver() {
                 <>
                   <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
 
-                    <h1 className='display-6 text-center heading-1 fw-bold'>Job Giver Register</h1>
+                    <h3 className=' text-center heading-1 fw-bold my-4'>Register to become a job giver</h3>
                     <form className='' onSubmit={formik.handleSubmit} encType="multipart/form-data">
 
                       <div className='row align-items-center'>
@@ -232,7 +232,7 @@ function JobGiver() {
                       <br />
 
                       <div className='go'>
-                        <button type="submit" className="btn btn-warning py-2 px-5 fs-5 mx-5">Go</button>
+                        <button type="submit" className="btn btn-warning py-2 px-5 fs-5 my-2">GO</button>
                       </div>
                     </form>
 
@@ -252,10 +252,16 @@ function JobGiver() {
 
                       <>
 
-                        <div className='container notauthorised'>
+                        {/* <div className='container notauthorised'>
 
                           <h1 className='display-1 text-center my-5'>Wait untill you get verified</h1>
 
+                        </div> */}
+                        <div class="container verify">
+                            <h1>Verification Pending</h1>
+                            <p>Your application has been sent to the admin.</p>
+                            <p>You will be notified within 24 hours.</p>
+                            <div class="message">Please wait until you get verified.</div>
                         </div>
 
 

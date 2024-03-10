@@ -1,8 +1,8 @@
 import { legacy_createStore,combineReducers, applyMiddleware } from 'redux';
 import {thunk} from 'redux-thunk'
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { jobGiverReducerSignUp, jobSeekerReducerSignUp, userReducerLogout, userReducerProfile, userReducerSignIn, userReducerSignUp,allUserReducer, appliedJobsReducer, jobsHistoryReducer, giverProfileReducer, NotApprovedReducer, ApprovalReducer, paymentHistoryReducer } from './reducers/userReducer';
-import { expireReducer, jobDetailsReducer, jobPostReducer, jobPostedReducer, jobStatusReducer, loadJobReducer } from './reducers/jobReducer';
+import { jobGiverReducerSignUp, jobSeekerReducerSignUp, userReducerLogout, userReducerProfile, userReducerSignIn, userReducerSignUp,allUserReducer, appliedJobsReducer, jobsHistoryReducer, giverProfileReducer, NotApprovedReducer, ApprovalReducer, paymentHistoryReducer, notificationsReducer, markAsReadReducer } from './reducers/userReducer';
+import { expireReducer, hireReducer, jobDetailsReducer, jobPostReducer, jobPostedReducer, jobStatusReducer, loadJobReducer } from './reducers/jobReducer';
 
 
 
@@ -12,6 +12,8 @@ const reducer = combineReducers({
     signUp: userReducerSignUp,
     logOut: userReducerLogout,
     userProfile: userReducerProfile,
+    notifications:notificationsReducer,
+    markAsRead:markAsReadReducer,
     jobGiverSignUp:jobGiverReducerSignUp,
     jobSeekerSignUp:jobSeekerReducerSignUp,
     loadJobs: loadJobReducer,
@@ -19,6 +21,7 @@ const reducer = combineReducers({
     jobDetails:jobDetailsReducer,
     allUsers: allUserReducer,
     appliedJobs :appliedJobsReducer,
+    hire:hireReducer,
     jobPosted:jobPostedReducer,
     jobsHistory:jobsHistoryReducer,
     jobStatus:jobStatusReducer,

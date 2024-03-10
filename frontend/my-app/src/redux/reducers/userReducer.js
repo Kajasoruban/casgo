@@ -4,7 +4,7 @@ import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_RESET, USER_LOGOUT_S
      USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_RESET, USER_SIGNUP_SUCCESS, 
      jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_RESET, jobGiverAction_SUCCESS,
       jobSeekerAction_FAIL, jobSeekerAction_REQUEST, jobSeekerAction_RESET, jobSeekerAction_SUCCESS ,
-      ALL_USER_LOAD_REQUEST,ALL_USER_LOAD_SUCCESS,ALL_USER_LOAD_FAIL,ALL_USER_LOAD_RESET, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, APPLIED_JOBS_RESET, jobHistory_Action_REQUEST, jobHistory_Action_SUCCESS, jobHistory_Action_FAIL, jobHistory_Action_RESET, Giver_PROFILE_REQUEST, Giver_PROFILE_SUCCESS, Giver_PROFILE_FAIL, Giver_PROFILE_RESET, NOT_APPROVED_REQUEST, NOT_APPROVED_SUCCESS, NOT_APPROVED_FAIL, NOT_APPROVED_RESET, APPROVED_BY_Id_REQUEST, APPROVED_BY_Id_SUCCESS, APPROVED_BY_Id_FAIL, APPROVED_BY_Id_RESET, Payment_History_Action_REQUEST, Payment_History_Action_SUCCESS, Payment_History_Action_FAIL, Payment_History_Action_RESET
+      ALL_USER_LOAD_REQUEST,ALL_USER_LOAD_SUCCESS,ALL_USER_LOAD_FAIL,ALL_USER_LOAD_RESET, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, APPLIED_JOBS_RESET, jobHistory_Action_REQUEST, jobHistory_Action_SUCCESS, jobHistory_Action_FAIL, jobHistory_Action_RESET, Giver_PROFILE_REQUEST, Giver_PROFILE_SUCCESS, Giver_PROFILE_FAIL, Giver_PROFILE_RESET, NOT_APPROVED_REQUEST, NOT_APPROVED_SUCCESS, NOT_APPROVED_FAIL, NOT_APPROVED_RESET, APPROVED_BY_Id_REQUEST, APPROVED_BY_Id_SUCCESS, APPROVED_BY_Id_FAIL, APPROVED_BY_Id_RESET, Payment_History_Action_REQUEST, Payment_History_Action_SUCCESS, Payment_History_Action_FAIL, Payment_History_Action_RESET, NOTIFICATIONS_REQUEST, NOTIFICATIONS_SUCCESS, NOTIFICATIONS_FAIL, NOTIFICATIONS_RESET, MARK_AS_READ_REQUEST, MARK_AS_READ_SUCCESS, MARK_AS_READ_FAIL, MARK_AS_READ_RESET
     } from "../constants/userConstant"
 
 
@@ -176,6 +176,51 @@ export const allUserReducer = (state = { users: [] }, action) => {
         case ALL_USER_LOAD_FAIL:
             return { loading: false, users: [], error: action.payload }
         case ALL_USER_LOAD_RESET:
+            return {}
+        default:
+            return state;
+    }
+
+}
+
+
+
+//notifications
+export const notificationsReducer = (state = { notifications: [] }, action) => {
+    switch (action.type) {
+        case NOTIFICATIONS_REQUEST:
+            return { loading: true, notifications: [] }
+        case NOTIFICATIONS_SUCCESS:
+            return {
+                loading: false,
+                notifications: action.payload.user.notifications,
+            }
+        case NOTIFICATIONS_FAIL:
+            return { loading: false, notifications: [], error: action.payload }
+        case NOTIFICATIONS_RESET:
+            return {}
+        default:
+            return state;
+    }
+
+}
+
+
+
+
+//mark as read
+export const markAsReadReducer = (state = { notifications: [] }, action) => {
+    switch (action.type) {
+        case MARK_AS_READ_REQUEST:
+            return { loading: true, notifications: [] }
+        case MARK_AS_READ_SUCCESS:
+            return {
+                loading: false,
+                notifications: action.payload.notifications,
+            }
+        case MARK_AS_READ_FAIL:
+            return { loading: false, notifications: [], error: action.payload }
+        case MARK_AS_READ_RESET:
             return {}
         default:
             return state;

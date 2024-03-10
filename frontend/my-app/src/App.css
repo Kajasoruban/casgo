@@ -36,11 +36,36 @@ body {
     translate:1rem;
     border: 5px solid #f1eaca;
     border-radius: 50%;
+    position: relative;
 }
 .logo{
     width: 8rem;
     height: 6rem;  
     translate:-1rem 0.1rem
+}
+
+.notification{
+    background: rgb(102, 255, 0);
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border:1px solid black;
+   
+}
+
+.notification2{
+    background: rgb(102, 255, 0);
+    position: absolute;
+    top: 15px;
+    right: 4.6rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border:1px solid black;
+   
 }
 
 /* .navlis2{
@@ -287,3 +312,22 @@ body{
       color: #495057;
       font-weight: 500;
   }
+
+
+
+
+
+.dropdown-list-image {
+    position: relative;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+.dropdown-list-image img {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+.btn-light {
+    color: var(--secondary);
+    background-color: #e5f7f0;
+    border-color: #d8f7eb;
+}

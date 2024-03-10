@@ -52,7 +52,10 @@ console.log(userInfo===null);
     const applyJob =()=>{
         if(userInfo==null){
             navigate("/login");
-        }else{
+        }else if(role!=="jobSeeker"){
+            navigate("/jobseeker");
+        }
+        else{
             jobDetail&& dispatch(appliedJobsAction(jobDetail));
             setApplied(true);
         }

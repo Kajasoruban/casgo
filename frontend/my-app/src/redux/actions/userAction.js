@@ -5,7 +5,7 @@ import { USER_LOGOUT_FAIL, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS, USER_PROFIL
      USER_SIGNIN_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS, 
      jobGiverAction_FAIL, jobGiverAction_REQUEST, jobGiverAction_SUCCESS, jobSeekerAction_FAIL, 
      jobSeekerAction_REQUEST, jobSeekerAction_SUCCESS,
-     ALL_USER_LOAD_REQUEST, ALL_USER_LOAD_SUCCESS, ALL_USER_LOAD_FAIL, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, jobHistory_Action_REQUEST, jobHistory_Action_SUCCESS, jobHistory_Action_FAIL, Giver_PROFILE_REQUEST, Giver_PROFILE_SUCCESS, Giver_PROFILE_FAIL, NOT_APPROVED_REQUEST, NOT_APPROVED_SUCCESS, NOT_APPROVED_FAIL, APPROVED_BY_Id_REQUEST, APPROVED_BY_Id_SUCCESS, APPROVED_BY_Id_FAIL, Payment_History_Action_REQUEST, Payment_History_Action_SUCCESS, Payment_History_Action_FAIL 
+     ALL_USER_LOAD_REQUEST, ALL_USER_LOAD_SUCCESS, ALL_USER_LOAD_FAIL, APPLIED_JOBS_REQUEST, APPLIED_JOBS_SUCCESS, APPLIED_JOBS_FAIL, jobHistory_Action_REQUEST, jobHistory_Action_SUCCESS, jobHistory_Action_FAIL, Giver_PROFILE_REQUEST, Giver_PROFILE_SUCCESS, Giver_PROFILE_FAIL, NOT_APPROVED_REQUEST, NOT_APPROVED_SUCCESS, NOT_APPROVED_FAIL, APPROVED_BY_Id_REQUEST, APPROVED_BY_Id_SUCCESS, APPROVED_BY_Id_FAIL, Payment_History_Action_REQUEST, Payment_History_Action_SUCCESS, Payment_History_Action_FAIL, NOTIFICATIONS_REQUEST, NOTIFICATIONS_SUCCESS, NOTIFICATIONS_FAIL, MARK_AS_READ_REQUEST, MARK_AS_READ_SUCCESS, MARK_AS_READ_FAIL 
     } from '../constants/userConstant';
 
     
@@ -117,11 +117,11 @@ export const jobGiverSignUpAction = (user,image) => async (dispatch) => {
     try {
         const { data } = await axios.post("/api/users/jobRecruit", user);
         localStorage.removeItem('userInfoExtra');
-        setTimeout(window.location.reload(true), 6000)
         dispatch({
             type: jobGiverAction_SUCCESS,
             payload: data
         });
+        setTimeout(window.location.reload(true), 4000)
         toast.success("Register Successfully!");
     } catch (error) {
         console.log(error);
@@ -168,6 +168,48 @@ export const allUserAction = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ALL_USER_LOAD_FAIL,
+            payload: error.response.data.error
+        });
+    }
+}
+
+
+//notifications
+export const notificationsAction = () => async (dispatch) => {
+    dispatch({ type: NOTIFICATIONS_REQUEST });
+    try {
+        const { data } = await axios.get("/api/users/notifications");
+        dispatch({
+            type: NOTIFICATIONS_SUCCESS,
+            payload: data
+        });
+
+    } catch (error) {
+        dispatch({
+            type: NOTIFICATIONS_FAIL,
+            payload: error.response.data.error
+        });
+    }
+}
+
+
+
+
+//mark as read
+export const markAsReadAction = () => async (dispatch) => {
+    dispatch({ type: MARK_AS_READ_REQUEST });
+    try {
+        const { data } = await axios.put("/api/users/markasread");
+        dispatch({
+            type: MARK_AS_READ_SUCCESS,
+            payload: data
+        });
+        window.location.reload(true);
+        
+
+    } catch (error) {
+        dispatch({
+            type: MARK_AS_READ_FAIL,
             payload: error.response.data.error
         });
     }

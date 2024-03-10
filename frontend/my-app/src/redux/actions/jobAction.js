@@ -1,7 +1,6 @@
 import axios from "axios";
-import { EXPIRE_FAIL, EXPIRE_REQUEST, EXPIRE_SUCCESS, JOB_DETAILS_FAIL, JOB_DETAILS_REQUEST, JOB_DETAILS_SUCCESS, JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_SUCCESS, JOB_POSTED_FAIL, JOB_POSTED_REQUEST, JOB_POSTED_SUCCESS, JOB_REGISTER_FAIL, JOB_REGISTER_REQUEST, JOB_REGISTER_SUCCESS, JOB_STATUS_FAIL, JOB_STATUS_REQUEST, JOB_STATUS_SUCCESS } from "../constants/jobConstant";
+import { EXPIRE_FAIL, EXPIRE_REQUEST, EXPIRE_SUCCESS, HIRE_FAIL, HIRE_REQUEST, HIRE_SUCCESS, JOB_DETAILS_FAIL, JOB_DETAILS_REQUEST, JOB_DETAILS_SUCCESS, JOB_LOAD_FAIL, JOB_LOAD_REQUEST, JOB_LOAD_SUCCESS, JOB_POSTED_FAIL, JOB_POSTED_REQUEST, JOB_POSTED_SUCCESS, JOB_REGISTER_FAIL, JOB_REGISTER_REQUEST, JOB_REGISTER_SUCCESS, JOB_STATUS_FAIL, JOB_STATUS_REQUEST, JOB_STATUS_SUCCESS } from "../constants/jobConstant";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 
 
@@ -134,6 +133,29 @@ export const expireAction =(id) => async (dispatch)=>{
     } catch (error) {
         dispatch({
             type:EXPIRE_FAIL,
+            payload:error.response.data.message
+        })
+        // toast.error(error.response.data.message)  
+    }
+
+}
+
+
+
+//hire by email
+export const hireAction =(jobId,email,status) => async (dispatch)=>{
+    dispatch({type:HIRE_REQUEST});
+    try {
+        const {data}=await axios.put(`/api/users/jobs/hire/${jobId}/${email}/${status}`);
+        dispatch({
+            type:HIRE_SUCCESS,
+            payload:data
+        })
+        // setTimeout(()=>{ window.location.reload(true)}, 500)
+        toast.warning("You package is expired") 
+    } catch (error) {
+        dispatch({
+            type:HIRE_FAIL,
             payload:error.response.data.message
         })
         // toast.error(error.response.data.message)  

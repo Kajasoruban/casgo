@@ -22,7 +22,7 @@ function JobPosted() {
     <div>JobPosted</div>
 
     {loading ? (
-            <div>
+            <div className='text-center my-5'>
               <div className="spinner-border text-warning " role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>

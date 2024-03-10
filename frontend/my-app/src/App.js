@@ -32,6 +32,7 @@ import Success from './pages/Success';
 import Cancel from './pages/Cancel';
 import PaymentHistory from './pages/JobGiver/PaymentHistory';
 import GiverDashBoard from './pages/JobGiver/GiverDashBoard';
+import Notifications from './pages/Notifications';
 
 
 const AdminDashboardHOC = Layout(AdminDashBoard);
@@ -45,6 +46,8 @@ const AdminApprovalHOC=Layout(AdminApproval);
 
 const PaymentHistoryHOC=Layout(PaymentHistory);
 const GiverDashBoardHOC=Layout(GiverDashBoard);
+
+const NotificationsHOC=Layout(Notifications);
 
 function App() {
   return (
@@ -63,6 +66,7 @@ function App() {
     <Route path="/profile" element={<UserRoute><UserDashboardHOC/></UserRoute>}/>
     <Route path="/jobs" element={<Jobs/>}/>
     <Route path="/success" element={<Success/>}/>
+    <Route path="/notifications" element={<UserRoute><NotificationsHOC/></UserRoute>}/>
     <Route path="/cancel" element={<Cancel/>}/>
     <Route path='/jobs/:id' element={<JobsById />} />
     <Route path="*" element={<NotFound/>}/>

@@ -6,6 +6,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Box, useTheme } from '@mui/material';
 import WorkIcon from '@mui/icons-material/Work';
 import CategoryIcon from '@mui/icons-material/Category';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import Person3Icon from '@mui/icons-material/Person3';
@@ -14,10 +16,11 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 // import logoDashboard from ''
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { giverProfileAction, paymentHistoryAction, userLogoutAction, userProfileAction } from '../../redux/actions/userAction';
+import { giverProfileAction, notificationsAction, paymentHistoryAction, userLogoutAction, userProfileAction } from '../../redux/actions/userAction';
 import { useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
 import { expireAction, jobPostedAction } from '../../redux/actions/jobAction';
+import { toast } from 'react-toastify';
 
 
 const SideBar = () => {
@@ -26,13 +29,21 @@ const SideBar = () => {
     const { palette } = useTheme();
     const { collapsed } = useProSidebar();
     let {userInfoExtra,loading} =useSelector(state => state.userProfile);
-
+    let {notifications} =useSelector(state => state.notifications);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {paymentHistory} =useSelector(state => state.paymentHistory);
     let data = [];
       data = (paymentHistory !== undefined && paymentHistory.length > 0) ? paymentHistory : []
+
+      let read=true
+        notifications&&notifications.map((note)=>{
+            if(note.read==false){
+            // console.log("uread message found");
+            read=false
+            }
+        })
 
     useEffect(() => {
         if(userInfo){
@@ -52,44 +63,63 @@ const SideBar = () => {
 
       useEffect(() => {
         dispatch(jobPostedAction())
+        dispatch(notificationsAction())
         // console.log(disable);
     }, []);
+   
 
-      let role= userInfoExtra?userInfoExtra.role:"";
-      // let endDate="02/29/2024 21:55:20";
-      let endDate;
-      let currentDate=new Date();
-    
-      useEffect(()=>{
-          
-        if(data.length!==0){
-    
-        data.map(p=>{
-          
-          if(p.paymentId.expired===false){
+    //   let role= userInfoExtra?userInfoExtra.role:"";
+    // let endDate="03/07/2024 21:45:00";
+    let endDate;
+    let currentDate = new Date();
+
+    useEffect(() => {
+        let timer;
+        if (data.length !== 0) {
+
+        data.map(p => {
+
+            if (p.paymentId.expired === false) {
             // console.log(p.paymentId.EndingTime);
             //  endDate = new Date(endDate);
-             endDate = new Date(p.paymentId.EndingTime);
-    
-            //  console.log("current",currentDate.getTime());
-            //  console.log("end",endDate.getTime());
-            //  console.log("status",currentDate.getTime()<endDate.getTime(),p.paymentId._id);
-            //  if(currentDate.getTime()<endDate.getTime()){
-            //   console.log("not expired");
+            endDate = new Date(p.paymentId.EndingTime);
+
+            /* Browsers store the delay as a 32-bit signed integer internally. 
+            This causes an integer overflow when using delays larger than 2,147,483,647 ms (about 24.8 days),
+            resulting in the timeout being executed immediately. */
+
+            // so i put condition to start time out only if expiration time less than 24 hours.
+
+            if ((endDate.getTime() - currentDate.getTime()) < 86400000) {
+                // console.log("count down start");
+                timer = setTimeout(() => {
+
+                dispatch(expireAction(p.paymentId._id));
+                console.log("expired");
+                // console.log(endDate.getTime()-currentDate.getTime());
+
+                }, endDate.getTime() - currentDate.getTime())
+
+
+            }
+
+            //  if(!(currentDate.getTime()<endDate.getTime())){
+            //   console.log("expired");
+            //   dispatch(expireAction(p.paymentId._id));
             //  }
-             if(!(currentDate.getTime()<endDate.getTime())){
-              console.log("expired");
-              dispatch(expireAction(p.paymentId._id));
-              
-             }
-          }
-          
-          // expireAction 
-          
-        })}
-    
-    
-      },[paymentHistory])
+            }
+
+            // expireAction 
+
+        })
+        }
+
+        return () => {
+        clearInterval(timer);
+        };
+
+
+    }, [paymentHistory])
 
    
 
@@ -158,7 +188,7 @@ const SideBar = () => {
                                         <MenuItem component={<Link to="/admin/allusers" />} icon={<GroupAddIcon />}> Users </MenuItem>
                                         <MenuItem component={<Link to="/admin/approval" />} icon={<HowToRegIcon />}> Verification </MenuItem>
                                         <MenuItem component={<Link to="/admin/alljobs" />} icon={<WorkIcon />}> Jobs </MenuItem>
-                                        
+                                        <MenuItem component={<Link to="/notifications" />} icon={<NotificationsIcon />}sx={{position:"relative"}} > Notifications {!read&&<span className='notification2'></span>}</MenuItem>
                                         <MenuItem component={<Link to="/" />} icon={<HomeIcon />}> Back to Home </MenuItem>
                                     </> :userInfoExtra && userInfoExtra.role === "jobRecruit"?
                                     <>
@@ -166,6 +196,7 @@ const SideBar = () => {
                                         <MenuItem component={<Link to="/jobgiver/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
                                         <MenuItem component={<Link to="/jobgiver/jobPosted" />} icon={<WorkHistoryIcon />}> Jobs Posted</MenuItem>
                                         <MenuItem component={<Link to="/jobgiver/paymentHistory" />} icon={<ScheduleIcon />}> Payment History</MenuItem>
+                                        <MenuItem component={<Link to="/notifications" />} icon={<NotificationsIcon />} sx={{position:"relative"}} > Notifications {!read&&<span className='notification2'></span>}</MenuItem>
                                         <MenuItem component={<Link to="/" />} icon={<HomeIcon />}> Back to Home </MenuItem>
                                         
                                     </>:
@@ -173,6 +204,7 @@ const SideBar = () => {
                                     <MenuItem component={<Link to="/profile" />} icon={<Person3Icon />}> Personal Info </MenuItem>
                                     <MenuItem component={<Link to="/user/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
                                     <MenuItem component={<Link to="/jobseeker/appliedjobs" />} icon={<WorkHistoryIcon />}> Applied Jobs </MenuItem>
+                                    <MenuItem component={<Link to="/notifications" />} icon={<NotificationsIcon />} sx={{position:"relative"}} > Notifications {!read&&<span className='notification2'></span>}</MenuItem>
                                     <MenuItem component={<Link to="/" />} icon={<HomeIcon />}> Back to Home </MenuItem>
                                     
                                 </>

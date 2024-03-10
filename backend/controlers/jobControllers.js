@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler";
 import Job from "../models/jobModel.js";
 import jobRec from "../models/jobRecruitModel.js";
 import jobSeek from "../models/jobSeekerModel.js";
+import User from "../models/userModel.js";
 
 //for posting jobs
 
@@ -222,4 +223,45 @@ const disableJobyById= async(req,res)=>{
 
 
 
-export{postJob,getJobById,updatejob,delJob,showJobs,jobByJobGiverId,disableJobyById}
+const hireByEmail= async(req,res)=>{
+    try {
+        const {jobId,email,status}=req.params;
+        const user =await User.findOne({email})
+        const job=await Job.findById(jobId);
+        let notification;
+        if(user){
+
+            const applicant=await jobSeek.findOne({userId:user._id})
+            
+
+            if(applicant){
+                applicant.jobsHistory.map(async(job)=>{
+                    if(job.jobId==jobId){
+                        job.applicationStatus=status;
+                        let updated=await applicant.save();
+                        if(updated){
+                            if(status==='accepted'){
+                                notification={message:"Your Application has been accepted",description:'We will inform further details via mail. Best of luck👍',from:job.jobGiverId}
+                            }else if(status==='rejected'){
+                            notification={message:"Your Application has been rejected",description:'We have already selected enough applicants. Try next time👍',from:job.jobGiverId}
+                            }
+                            user.notifications.push(notification);
+                            await user.save()
+                        }
+                        res.status(200).json({success:true,message:updated});
+                    }
+                })
+            }
+           
+        }
+        
+        
+    } catch (error) {
+        res.status(500).json({success:false,message:error.message});
+    }
+}
+
+
+
+
+export{postJob,getJobById,updatejob,delJob,showJobs,jobByJobGiverId,disableJobyById,hireByEmail}

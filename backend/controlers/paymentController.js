@@ -18,6 +18,7 @@ const router = express.Router();
 // console.log(moment(startDate).format('MM/DD/YYYY HH:mm:ss'));
 // console.log(moment.unix(endDate).format('MM/DD/YYYY HH:mm:ss'));
 
+
 // 1 starter 2 premium
 const paymentPlans = new Map([
     [1,{plan:"price_1OneuDKyasLgsmcfusNCa42D",duration:7}],

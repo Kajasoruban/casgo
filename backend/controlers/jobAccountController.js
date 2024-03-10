@@ -5,6 +5,7 @@ import jobSeek from "../models/jobSeekerModel.js";
 import cloudinary from "../utils/cloudinary.js";
 import User from "../models/userModel.js";
 import Job from "../models/jobModel.js";
+import mongoose from "mongoose";
 
 
 // for job recruit
@@ -83,12 +84,17 @@ const ApproveById= asyncHandler(async(req,res)=>{
     const jobgiver =await jobRec.findById(id);
     if(jobgiver){
         jobgiver.approved=true;
+        
+        let user=await User.findById(jobgiver.userId)
+        if(user){
+            let notification={message:"Your account has been verified successfully",description:'purchase a package to post job',from:new mongoose.Types.ObjectId("65b5f83dd8821c9ee996b3b3")}
+            user.notifications.push(notification);
+            await user.save()
+        }
     }
     const updatedUser = await jobgiver.save();
     res.status(200).json({message:"success",jobgiver:updatedUser});
 });
-
-
 
 const updateJobRecProfile= asyncHandler(async(req,res)=>{
     const user =await jobRec.findById(req.body._id);

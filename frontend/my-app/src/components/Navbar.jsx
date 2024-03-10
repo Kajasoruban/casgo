@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { giverProfileAction, paymentHistoryAction, userProfileAction } from "../redux/actions/userAction";
+import { giverProfileAction, notificationsAction, paymentHistoryAction, userProfileAction } from "../redux/actions/userAction";
 import { useEffect, useState } from "react";
 import LoginModel from "./LoginModel";
 import { expireAction } from "../redux/actions/jobAction";
+import { toast } from "react-toastify";
 
 function Navbar() {
    const [registered, setRegistered] = useState(false);
@@ -12,49 +13,81 @@ function Navbar() {
    const dispatch=useDispatch();
   const { userInfo} = useSelector(state => state.signIn);
   let {userInfoExtra,loading} =useSelector(state => state.userProfile);
+  let {notifications} =useSelector(state => state.notifications);
+
+  let read=true
+  notifications&&notifications.map((note)=>{
+    if(note.read==false){
+    // console.log("uread message found");
+    read=false
+    }
+  })
   
   const {paymentHistory} =useSelector(state => state.paymentHistory);
   let data = [];
     data = (paymentHistory !== undefined && paymentHistory.length > 0) ? paymentHistory : []
 
+    useEffect(()=>{
+      if(userInfo!==null){
+        dispatch(notificationsAction())
+      }
+     
+    },[])
   
   
 
   let role= userInfoExtra?userInfoExtra.role:"";
-  // let endDate="02/29/2024 21:55:20";
+  // let endDate="03/07/2024 21:45:00";
   let endDate;
-  let currentDate=new Date();
+  let currentDate = new Date();
 
-  useEffect(()=>{
-      
-    if(data.length!==0){
+  useEffect(() => {
+    let timer;
+    if (data.length !== 0) {
 
-    data.map(p=>{
-      
-      if(p.paymentId.expired===false){
-        // console.log(p.paymentId.EndingTime);
-        //  endDate = new Date(endDate);
-         endDate = new Date(p.paymentId.EndingTime);
+      data.map(p => {
 
-        //  console.log("current",currentDate.getTime());
-        //  console.log("end",endDate.getTime());
-        //  console.log("status",currentDate.getTime()<endDate.getTime(),p.paymentId._id);
-        //  if(currentDate.getTime()<endDate.getTime()){
-        //   console.log("not expired");
-        //  }
-         if(!(currentDate.getTime()<endDate.getTime())){
-          console.log("expired");
-          dispatch(expireAction(p.paymentId._id));
-          
-         }
-      }
-      
-      // expireAction 
-      
-    })}
+        if (p.paymentId.expired === false) {
+          // console.log(p.paymentId.EndingTime);
+          //  endDate = new Date(endDate);
+          endDate = new Date(p.paymentId.EndingTime);
+
+          /* Browsers store the delay as a 32-bit signed integer internally. 
+          This causes an integer overflow when using delays larger than 2,147,483,647 ms (about 24.8 days),
+           resulting in the timeout being executed immediately. */
+
+          // so i put condition to start time out only if expiration time less than 24 hours.
+
+          if ((endDate.getTime() - currentDate.getTime()) < 86400000) {
+            // console.log("count down start");
+            timer = setTimeout(() => {
+
+              dispatch(expireAction(p.paymentId._id));
+              console.log("expired");
+              // console.log(endDate.getTime()-currentDate.getTime());
+
+            }, endDate.getTime() - currentDate.getTime())
 
 
-  },[paymentHistory])
+          }
+
+          //  if(!(currentDate.getTime()<endDate.getTime())){
+          //   console.log("expired");
+          //   dispatch(expireAction(p.paymentId._id));
+          //  }
+        }
+
+        // expireAction 
+
+      })
+    }
+
+    return () => {
+      clearInterval(timer);
+    };
+
+
+  }, [paymentHistory])
  
 
    useEffect(() => {
@@ -113,9 +146,9 @@ function Navbar() {
                     Home
                   </Link>
 
-                  <Link className="nav-link mx-5" to="/contact">
+                  {/* <Link className="nav-link mx-5" to="/contact">
                     Contact
-                  </Link>
+                  </Link> */}
 
                   <Link className="nav-link mx-5" to="/jobs">
                     Jobs
@@ -156,6 +189,7 @@ function Navbar() {
                         :
                     <>
                     <div className="profilecover">
+                      {!read&&<span className="notification"></span>}
                 <img src={ !userInfoExtra ?"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU":!userInfoExtra.message  ? userInfoExtra.image.url  :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU" } alt="profile pic" style={{ width:"4.5rem", height:"4.5rem", borderRadius:"50%",border:"1px solid black"}} className=""/>
                 {/* <p className="text-center small">{userInfo?userInfo.name:"user"}</p>  */}
                    </div>

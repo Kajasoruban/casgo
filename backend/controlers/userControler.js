@@ -12,6 +12,10 @@ const authUser= asyncHandler(async(req,res)=>{
     
     const {email,password}=req.body;
     const user=await User.findOne({email});
+
+    // const query = await User.updateMany({}, { $set : {'notifications':[]}})
+    // I used above code for adding new filed to all documents in users collection
+   
     if(user && (await user.matchPassword(password))){
         
        
@@ -140,8 +144,6 @@ const allUsers = async (req, res) => {
             success: true,
             users,
       
-        
-
         })
       
     } catch (error) {
@@ -153,10 +155,56 @@ const allUsers = async (req, res) => {
     }
 }
 
+const notifications =async(req,res)=>{
+    try {
+        const user=await User.findById(req.user._id).populate({ path: 'notifications',populate:[ {path: 'from', model: 'jobRecruit',select:''},] })//{path: 'from', model: 'jobSeeker',select:''}
+        if(user){
+         
+            res.status(200).json({
+                success: true,
+                user,
+            })
+        }
+        
+    } catch (error) {
+        res.status(400).json({
+            success:false,
+            message:error.message
+        }) 
+    }
+}
 
+const markAsRead =async(req,res)=>{
+    try {
+        const user=await User.findById(req.user._id)
+        if(user){
+           user.notifications=user.notifications.map((note)=>{
+            return(
+                {...note,
+                read:(note.read==false?note.read=true:note.read=true)
+                }
+                   
+                
+            )
+             
+           })
+           let updated=await user.save();
+            res.status(200).json({
+                success: true,
+                notifications:user.notifications
+            })
+        }
+        
+    } catch (error) {
+        res.status(400).json({
+            success:false,
+            message:error.message
+        }) 
+    }
+}
 
 
 
 export{
-    authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,allUsers
+    authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,allUsers,notifications,markAsRead
 };

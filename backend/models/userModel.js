@@ -1,6 +1,18 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+const { ObjectId } = mongoose.Schema;
 
+const notificationSchema = new mongoose.Schema({
+
+    message:String,
+    description:String,
+    from:ObjectId,
+    read:{
+        type:Boolean,
+        default:false
+    }
+    
+}, { timestamps: true })
 
 const userSchema =mongoose.Schema({
     name:{
@@ -17,7 +29,8 @@ const userSchema =mongoose.Schema({
     },
     role:{
         type:String
-    }
+    },
+    notifications:[notificationSchema]
 },{
     timestamps:true
 });

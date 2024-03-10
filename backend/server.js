@@ -21,7 +21,9 @@ const port =3200;
 const app=express();
 
 
+
 const endpointSecret = process.env.END_POINT_SECRET;
+
 
 app.post('/api/stripe/webhook', express.raw({type: 'application/json'}), (request, response) => {
   const sig = request.headers['stripe-signature'];
@@ -30,7 +32,9 @@ app.post('/api/stripe/webhook', express.raw({type: 'application/json'}), (reques
   let data;
   let eventType;
   try {
+   
     event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+   
     
   } catch (err) {
     response.status(400).send(`Webhook Error: ${err.message}`);
@@ -40,6 +44,8 @@ app.post('/api/stripe/webhook', express.raw({type: 'application/json'}), (reques
   
       data = event.data.object;
       eventType = event.type;
+
+      
       
     //   console.log(eventType);
     //   console.log(data);
@@ -54,13 +60,14 @@ app.post('/api/stripe/webhook', express.raw({type: 'application/json'}), (reques
   //   default:
   //     console.log(`Unhandled event type ${event.type}`);
   // }
-
+ 
   if (eventType === "checkout.session.completed") {
+    
     stripe.customers
       .retrieve(data.customer)
       .then(async (customer) => {
         try {
-
+          
            
             const user=await User.findOne({email:customer.metadata.email})
             
@@ -94,7 +101,7 @@ app.post('/api/stripe/webhook', express.raw({type: 'application/json'}), (reques
                 let paymentId={paymentId:result._id}
                 
                 const giver=await jobRec.findOne({userId:user._id})
-                console.log(giver);
+                // console.log(giver);
                 giver.paymentHistory.push(paymentId)
                 await giver.save();
             }

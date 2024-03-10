@@ -51,6 +51,7 @@ function Applicants() {
                                 Address: {applicant.address}<br/>
                                 ContactNo: {applicant.contactNo}<br/>
                                 
+                                
                             </p>
                             <button className="btn btn-warning ">Hire</button>
                         </div>

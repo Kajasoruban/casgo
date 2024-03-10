@@ -80,9 +80,9 @@ function JobSeeker() {
             {message=="basic"?
             <>
             <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
-            <form className='m-5'onSubmit={formik.handleSubmit} encType="multipart/form-data">
+            <form className=''onSubmit={formik.handleSubmit} encType="multipart/form-data">
             
-            <h1 className='display-6 text-center heading-1 fw-bold'>Job Seeker Register</h1>
+            <h3 className=' text-center heading-1 fw-bold my-4'>Register to become a job seeker</h3>
             
             <div className='row align-items-center'>
                 <div className='col-2'>
@@ -247,7 +247,7 @@ function JobSeeker() {
         
             
             <div className='go'>
-            <button type="submit" className="btn btn-warning py-2 px-5 fs-5 mx-5">Go</button>
+            <button type="submit" className="btn btn-warning py-2 px-5 fs-5 my-2">GO</button>
             </div>
             
             </form>

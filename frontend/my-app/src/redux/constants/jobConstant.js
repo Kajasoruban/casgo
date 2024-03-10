@@ -27,3 +27,8 @@ export const EXPIRE_REQUEST = "EXPIRE_REQUEST"
 export const EXPIRE_SUCCESS = "EXPIRE_SUCCESS"
 export const EXPIRE_FAIL = "EXPIRE_FAIL"
 export const EXPIRE_RESET = "EXPIRE_RESET"
+
+export const HIRE_REQUEST = "HIRE_REQUEST"
+export const HIRE_SUCCESS = "HIRE_SUCCESS"
+export const HIRE_FAIL = "HIRE_FAIL"
+export const HIRE_RESET = "HIRE_RESET"
