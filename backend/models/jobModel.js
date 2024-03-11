@@ -3,37 +3,24 @@ const { ObjectId } = mongoose.Schema;
 
 
 
-// const jobApplicantsSchema = new mongoose.Schema({
-//     jobSeekerId: {
-//         type: ObjectId,
-//         ref: "jobSeeker",
-//         required: true
-//     },
-//     name:{
-//         type: String,
-//         required:true
-//     },
-//     age:{
-//         type: String,
-//         required:true
-//     },
-//     gender:{
-//         type: String,
-//         required:true
-//     },
-//     address:{
-//         type: String,
-//         required:true
-//     },
-//     contactNo:{
-//         type:String,
-//         require:true
-//     }, 
-//     image:{
-//         public_id:{type:String},
-//         url:{type:String}
-//     },
-// }, { timestamps: true })
+const jobApplicantsSchema = new mongoose.Schema({
+    jobSeekerId: {
+        type: ObjectId,
+        ref: "jobSeeker",
+        required: true
+    },
+    userId: {
+        type: ObjectId,
+        ref: "users",
+        required: true
+    },
+    applicationStatus: {
+        type: String,
+        enum: ['pending', 'accepted', 'rejected'],
+        default: 'pending'
+    }
+  
+}, { timestamps: true })
 
 const jobSchema =mongoose.Schema({
     userId: {
@@ -58,6 +45,11 @@ const jobSchema =mongoose.Schema({
         type: String,
         required:true
     },
+    salaryPeriod:{
+        type: String,
+        required:true
+    }
+    ,
     noOfWorkers:{
         type: Number,
         required:true
@@ -89,7 +81,8 @@ const jobSchema =mongoose.Schema({
         type:Boolean,
         default:true
     },
-    applicants:Array
+    applicants:[jobApplicantsSchema]
+    
    
     
 },{

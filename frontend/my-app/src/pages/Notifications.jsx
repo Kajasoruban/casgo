@@ -28,9 +28,9 @@ function Notifications() {
             return Math.floor(dif/(1000))+'seconds ago'
         }else if(dif<=59*60*1000){
             return Math.floor(dif/(60*1000))+'minutes ago'
-        }else if(dif<=23*60*60*1000){
+        }else if(dif<=24*60*60*1000){
             return Math.floor(dif/(60*60*1000))+'hours ago'
-        }else if(dif<=29*23*60*60*1000){
+        }else if(dif<=29*24*60*60*1000){
             return Math.floor(dif/(24*60*60*1000))+'days ago'
         }else{
             return dif;
@@ -45,7 +45,7 @@ function Notifications() {
   return (
     <>
     
-    <div>Notifications</div>
+    <h4>Notifications!</h4>
     
         {loading?
 
@@ -78,7 +78,7 @@ function Notifications() {
                                   <h6 className="m-0 d-inline">New</h6><button className='ms-5 btn border'onClick={handleMarkAsRead}>Mark as read <DoneAllIcon/></button>
                               </div>
                               <div className="box-body p-0">
-                              {notifications.map((note,i)=>{
+                              {notifications.toReversed().map((note,i)=>{
                                 if(note.read===false){
                                
                                  return(
@@ -116,7 +116,7 @@ function Notifications() {
                                 <h6 className="m-0">Old</h6>
                             </div>
                             <div className="box-body p-0">
-                            {notifications.map((note,i)=>{
+                            {notifications.toReversed().map((note,i)=>{
                                 if(note.read===true){
                                
                                  return(
@@ -154,7 +154,7 @@ function Notifications() {
      </div>
      </>
       :
-      <div>No notifications</div>
+      <div className='mt-5 text-center'>You don't have any notifications</div>
         }
 
    

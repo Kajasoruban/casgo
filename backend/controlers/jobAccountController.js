@@ -191,27 +191,19 @@ const updateJobSeekerProfile=asyncHandler(async(req,res)=>{
 const createUserJobsHistory = async (req, res) => {
     const { jobGiverId } = req.body;
       
-    // if(req.body.jobGiverId){
-    //     return res.status(400).json({ message: "you are not a job seeker" });
-    // }
-    
 
     try {
         let applied =false;
         const seekId = req.user.jobSeekerId;
-        const applicant = await jobSeek.findById(seekId).select("userId age gender address contactNo image").populate("userId", "name email")
+        let applicant = await jobSeek.findById(seekId)
         if (applicant) {
             const { _id } = req.body;
             const job = await Job.findById({ _id })
             if (job) {
-                // const alreadyApplied =await job.find()
-                // if(alreadyApplied){
-                //    console.log();
-                // }
-                // console.log(applicant);
+                applicant={jobSeekerId:seekId,userId:applicant.userId}
                 
                 job.applicants.map((job)=>{
-                   if(job._id.equals(seekId)){
+                   if(job.jobSeekerId.equals(seekId)){
                      throw Error("already applied")
                    }
                 })
@@ -283,7 +275,7 @@ const paymentHistory = async(req,res)=>{
         if(paymentHistory){
             res.status(200).json({
                 success: true,
-                paymentHistory:paymentHistory.paymentHistory
+                paymentHistory:paymentHistory.paymentHistory.reverse()
             })
         }
 

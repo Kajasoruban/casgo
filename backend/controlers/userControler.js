@@ -6,6 +6,7 @@ import jobSeek from "../models/jobSeekerModel.js";
 import generateToken from "../utils/generateToken.js";
 
 import cloudinary from "../utils/cloudinary.js";
+import Job from "../models/jobModel.js";
 
 
 const authUser= asyncHandler(async(req,res)=>{
@@ -15,6 +16,8 @@ const authUser= asyncHandler(async(req,res)=>{
 
     // const query = await User.updateMany({}, { $set : {'notifications':[]}})
     // I used above code for adding new filed to all documents in users collection
+
+    // const jobs=await jobSeek.updateMany({}, { $set: { jobsHistory: [] } });
    
     if(user && (await user.matchPassword(password))){
         

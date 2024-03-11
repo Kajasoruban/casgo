@@ -11,7 +11,7 @@ function PaymentHistory() {
     const {paymentHistory} =useSelector(state => state.paymentHistory);
     let data = [];
     data = (paymentHistory !== undefined && paymentHistory.length > 0) ? paymentHistory : []
-
+    
     console.log(data);
 
     const columns= [
@@ -32,9 +32,9 @@ function PaymentHistory() {
         )
         },
         {
-          field: 'duration',
-          headerName: 'duration',
-          width: 100,
+          field: 'Duration',
+          headerName: 'Duration',
+          width: 80,
           editable: false,
           renderCell: (params) => (
             params.row.paymentId.duration
@@ -65,7 +65,7 @@ function PaymentHistory() {
           field: "Actions",
           width: 100,
           renderCell: (params) => (
-            params.row.paymentId.expired?<button className='btn btn-danger '>Expired</button>:<button className='btn btn-success'>Active</button>
+            params.row.paymentId.expired?<button className='btn text-danger '>Expired</button>:<button className='btn text-success'>Active</button>
         )
         }
       ];
@@ -73,12 +73,10 @@ function PaymentHistory() {
 
   return (
     <>
-    <div>PaymentHistory</div>
-
-    <Box sx={{ height: 650, width: '100%' }}>
-    <Box sx={{ pb: 2, display: "flex", justifyContent: "right" }}>
-
-                </Box>
+    <h4>Payment History</h4>
+    <div className='mx-5'>
+    <Box sx={{ height: 550, width: '90%',textAlign:"center" }}>
+    
       <DataGrid
        getRowId={(row) => row.paymentId._id}
         rows={data}
@@ -95,8 +93,8 @@ function PaymentHistory() {
         disableRowSelectionOnClick
       />
     </Box>
-
-    </>
+    </div>
+    </> 
   )
 }
 

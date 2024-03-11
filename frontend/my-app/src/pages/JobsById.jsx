@@ -28,21 +28,23 @@ function JobsById() {
 
     },[role])
     
-console.log(userInfo===null);
+
     const dispatch =useDispatch();
     const {jobDetail,loading}=useSelector(state =>state.jobDetails)
 
     useEffect(()=>{
     if(jobDetail){
         if(role==="jobSeeker"){
-            jobDetail.applicants.length===0 && setApplyDisable(false);
+            
+            jobDetail.applicants==0&&setApplied(false);
         
-        jobDetail.applicants.map((job)=>{
-            if(job._id==userInfoExtra._id){
+            jobDetail.applicants!==0 &&jobDetail.applicants.map((job)=>{
+            if(job.jobSeekerId.userId==userInfo._id){
                 setApplied(true);
-                 
+               console.log(true);    
             }else{
                 setApplied(false);
+               console.log(false);
             }
          })
         }
@@ -135,7 +137,7 @@ console.log(userInfo===null);
                               <li>Location : <span> {jobDetail&&jobDetail.address}</span></li>
                               <li>Vacancy : <span> {jobDetail&&jobDetail.noOfWorkers}</span></li>
                               <li>Salary :  <span> Rs.{jobDetail&&jobDetail.salary}</span></li>
-                              <li>Application date : <span> {jobDetail&&jobDetail.closingTime}</span></li>
+                              <li>Closing date : <span> {jobDetail&&jobDetail.closingTime}</span></li>
                           </ul>
                          <div className="apply-btn2">
                             {applied?<button className="btn btn-success" >Applied</button>:<button onClick={applyJob} className="btn btn-warning" disabled={applyDisable}>Apply Now</button>}

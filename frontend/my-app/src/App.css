@@ -331,3 +331,19 @@ body{
     background-color: #e5f7f0;
     border-color: #d8f7eb;
 }
+
+.applicationscon{
+    height: 80vh;
+    overflow:auto;
+}
+/* .applicationsscroll{
+    height: 90%;
+    
+} */
+.applicationsscroll > div{
+   height: 30vh;
+}
+.applicationsscroll > div >div{
+    height: 80%;
+ }
+

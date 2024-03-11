@@ -8,7 +8,6 @@ import '../Assets/css/JobGiverRegister.css';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { jobPostAction } from '../redux/actions/jobAction';
-import { giverProfileAction, userProfileAction } from '../redux/actions/userAction';
 import { Box, CircularProgress } from '@mui/material';
 
 const validationSchema = yup.object({
@@ -89,6 +88,7 @@ function JobPost() {
       title: '',
       jobDescription: '',
       salary: '',
+      salaryPeriod:"hour",
       noOfWorkers: '',
       ageLimit: '',
       closingTime: '',
@@ -109,6 +109,8 @@ function JobPost() {
     }
 
 })
+
+
   return (
     <>
       <Navbar />
@@ -134,11 +136,12 @@ function JobPost() {
           <>
             {payed ?
               <>
-
+              <div className='container'>
+                <h1 className='my-4 fw-medium'>Post Your Job!</h1>
                 <div className='container jobgiver-reg border border-2 rounded-1 my-5'>
 
-                  <h1 className='display-6 text-center heading-1 fw-bold'>Post Your Job</h1>
-                  <form className='' onSubmit={formik.handleSubmit}>
+                  
+                  <form className='m-5' onSubmit={formik.handleSubmit}>
 
                     <div className='row align-items-center'>
                       <div className='col-2'>
@@ -178,7 +181,7 @@ function JobPost() {
 
                     <br />
                     <div className="form-group">
-                      <label htmlFor="title">Job Tilte:</label>
+                      <label htmlFor="title">Job Title:</label>
 
                       <input
                         type="text"
@@ -205,13 +208,13 @@ function JobPost() {
                     <div className="form-group">
                       <label htmlFor="jobDescription">Description:</label>
 
-                      <input
+                      <textarea
                         type="text"
                         className={`form-control ${formik.touched.jobDescription && formik.errors.jobDescription ? 'is-invalid' : ''}`}
-                        placeholder="Enter jobDescription"
+                        placeholder="description about your job..."
                         id="jobDescription"
                         name='jobDescription'
-
+                        rows={4}
                         value={formik.values.jobDescription}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -225,8 +228,9 @@ function JobPost() {
 
                     <br />
 
-                    <div className="form-group">
-                      <label htmlFor="salary">Salary Range:</label>
+                    <div className="row"> 
+                    <div className="form-group col-md-6">
+                      <label htmlFor="salary">Salary:</label>
 
                       <input
                         type="text"
@@ -243,6 +247,32 @@ function JobPost() {
                         <div id="org" className="form-text invalid-feedback">{formik.errors.salary}</div>
                       ) : null}
 
+                    </div>
+                    <div className="form-group col-md-6">
+                      <label htmlFor="per">Per:</label>
+
+                      {/* <input
+                        type="text"
+                        className={`form-control ${formik.touched.salary && formik.errors.salary ? 'is-invalid' : ''}`}
+                        placeholder="Enter salary"
+                        id="salary"
+                        name='salary'
+
+                        value={formik.values.salary}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+
+                      />{formik.touched.salary && formik.errors.salary ? (
+                        <div id="org" className="form-text invalid-feedback">{formik.errors.salary}</div>
+                      ) : null} */}
+                      <select name="salaryPeriod" id="per"className={`form-control`} onChange={formik.handleChange}>
+                        <option value="hour">Hour</option>
+                        <option value="month">Month</option>
+                        <option value="day">Day</option>
+                       
+                      </select>
+
+                    </div>
                     </div>
                     <br />
 
@@ -289,10 +319,10 @@ function JobPost() {
                     <br />
 
                     <div className="form-group">
-                      <label htmlFor="closingTime">Closing Time:</label>
+                      <label htmlFor="closingTime">Closing Date:</label>
 
                       <input
-                        type="text"
+                        type="date"
                         className={`form-control ${formik.touched.closingTime && formik.errors.closingTime ? 'is-invalid' : ''}`}
                         placeholder="Enter closingTime"
                         id="closingTime"
@@ -334,7 +364,7 @@ function JobPost() {
                     <br />
 
                     <div className="form-group">
-                      <label htmlFor="requirements">requirements:</label>
+                      <label htmlFor="requirements">Requirements:</label>
 
                       <input
                         type="text"
@@ -363,18 +393,25 @@ function JobPost() {
 
 
                 </div>
+                </div>
               </>
               :
               <>
                 <div className='container verify notauthorised'>
                   <h1 className='display-4 text-center my-5'>
-                    Purchase a plan to continue
+                    you don't have any active package
                   </h1>
+                  <p className='lead fs-4 text-center mb-5'>
+                    Purchase a package to countinue
+                  </p>
                   <div className='text-center'>
-                  <Link to="/pricing"className='px-5 py-3 mt-5 btn btn-primary'>Go to pricing</Link>
+                    <Link to="/pricing" className='btn btn-lg btn-primary'>
+                      Go To Pricing
+                    </Link>
                   </div>
                 </div>
-                {/* {navigate("/pricing")} */}
+
+                
 
               </>
             }
@@ -384,17 +421,19 @@ function JobPost() {
           </>
 
           :
+
           <>
             {/* <div className='container notauthorised'>
 
               <h1 className='display-1 text-center my-5'>Wait untill you get verified</h1>
 
             </div> */}
-             <div class="container verify">
+
+             <div className="container verify">
                   <h1>Verification Pending</h1>
                   <p>Your application has been sent to the admin.</p>
                   <p>You will be notified within 24 hours.</p>
-                  <div class="message">Please wait until you get verified.</div>
+                  <div className="message">Please wait until you get verified.</div>
               </div>
 
 

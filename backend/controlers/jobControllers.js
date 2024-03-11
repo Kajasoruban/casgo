@@ -12,6 +12,7 @@ const postJob = asyncHandler(async (req, res) => {
         title,
         jobDescription,
         salary,
+        salaryPeriod,
         noOfWorkers,
         ageLimit,
         closingTime,
@@ -37,6 +38,7 @@ const postJob = asyncHandler(async (req, res) => {
         title,
         jobDescription,
         salary,
+        salaryPeriod,
         noOfWorkers,
         ageLimit,
         closingTime,
@@ -61,7 +63,7 @@ const postJob = asyncHandler(async (req, res) => {
 const getJobById= asyncHandler(async(req,res)=>{
 
     try {
-        const job = await Job.findById(req.params.id).populate("userId","name").populate("jobGiverId","nameOfOrganization address contactNo image").populate({path:"applicants",populate:{path:"userId",model:"users",select:"name email"}})
+        const job = await Job.findById(req.params.id).populate("userId","name").populate("jobGiverId","nameOfOrganization address contactNo image").populate({path:"applicants",populate:[{path:"jobSeekerId",model:"jobSeeker",select:"-jobHistory"},{path:"userId",model:"users",select:"name email"}]})
         res.status(200).json({
             success: true,
             job
@@ -235,6 +237,16 @@ const hireByEmail= async(req,res)=>{
             
 
             if(applicant){
+                
+                job.applicants.map(async(app)=>{
+                    
+                    if(app.jobSeekerId.equals(applicant._id)){
+                        app.applicationStatus=status;
+                        let updatedApp=await job.save();
+                        
+                    }
+                })
+
                 applicant.jobsHistory.map(async(job)=>{
                     if(job.jobId==jobId){
                         job.applicationStatus=status;

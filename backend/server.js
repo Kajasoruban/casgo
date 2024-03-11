@@ -91,8 +91,8 @@ app.post('/api/stripe/webhook', express.raw({type: 'application/json'}), (reques
                 userId:user._id,
                 customerId:customer.id,
                 duration:customer.metadata.duration,
-                startingTime:moment(startDate).format('MM/DD/YYYY HH:mm:ss'),
-                EndingTime:moment.unix(endDate).format('MM/DD/YYYY HH:mm:ss')
+                startingTime:moment(startDate).format('DD/MM/YYYY HH:mm:ss'),
+                EndingTime:moment.unix(endDate).format('DD/MM/YYYY HH:mm:ss')
             })
 
             const result=await payment.save()

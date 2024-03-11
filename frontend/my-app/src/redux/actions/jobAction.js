@@ -146,13 +146,18 @@ export const expireAction =(id) => async (dispatch)=>{
 export const hireAction =(jobId,email,status) => async (dispatch)=>{
     dispatch({type:HIRE_REQUEST});
     try {
-        const {data}=await axios.put(`/api/users/jobs/hire/${jobId}/${email}/${status}`);
+        const {data}=await axios.post(`/api/users/jobs/hire/${jobId}/${email}/${status}`);
         dispatch({
             type:HIRE_SUCCESS,
             payload:data
         })
-        // setTimeout(()=>{ window.location.reload(true)}, 500)
-        toast.warning("You package is expired") 
+        setTimeout(()=>{ window.location.reload(true)}, 1000)
+        if(status=="accepted"){
+            toast.success(`${email} got hired`) 
+        }else if(status=="rejected"){
+            toast.warning(`${email} got rejected`) 
+        }
+        
     } catch (error) {
         dispatch({
             type:HIRE_FAIL,
