@@ -84,7 +84,7 @@ function Applicants() {
                             <div  className='my-auto'>
                             <p> <PlaceIcon/> {applicant.jobSeekerId.address}</p>
                             <p> <LocalPhoneIcon/> {applicant.jobSeekerId.contactNo}</p>
-                            {applicant.applicationStatus=="accepted"?<button className="btn btn-success"><HowToRegIcon/>Hired</button>:applicant.applicationStatus=="rejected"?<button className="btn btn-danger"><PersonOffIcon/>Rejected</button>:<div className=''><button className="btn btn-primary mx-1" onClick={()=>handleHire(applicant.userId.email,"accepted")}>Hire</button><button className="btn btn-warning mx-1" onClick={()=> handleHire(applicant.userId.email,"rejected")}>Reject</button></div>}
+                            {applicant.applicationStatus=="accepted"?<button className="btn btn-success"><HowToRegIcon/>Hired</button>:applicant.applicationStatus=="rejected"?<button className="btn btn-danger"><PersonOffIcon/>Rejected</button>:<div className=''><button className="btn btn-success mx-1" onClick={()=>handleHire(applicant.userId.email,"accepted")}>Hire</button><button className="btn btn-danger mx-1" onClick={()=> handleHire(applicant.userId.email,"rejected")}>Reject</button></div>}
                            
                              </div>
                         </div>

@@ -230,6 +230,7 @@ const hireByEmail= async(req,res)=>{
         const {jobId,email,status}=req.params;
         const user =await User.findOne({email})
         const job=await Job.findById(jobId);
+        
         let notification;
         if(user){
 
@@ -252,10 +253,11 @@ const hireByEmail= async(req,res)=>{
                         job.applicationStatus=status;
                         let updated=await applicant.save();
                         if(updated){
+                            const giver=await jobRec.findById(job.jobGiverId);
                             if(status==='accepted'){
-                                notification={message:"Your Application has been accepted",description:'We will inform further details via mail. Best of luck👍',from:job.jobGiverId}
+                                notification={message:`Your Application to ${giver.nameOfOrganization} has been accepted`,description:`We will inform further details via mail. Best of luck👍`,from:job.jobGiverId}
                             }else if(status==='rejected'){
-                            notification={message:"Your Application has been rejected",description:'We have already selected enough applicants. Try next time👍',from:job.jobGiverId}
+                            notification={message:`Your Application to ${giver.nameOfOrganization} has been rejected`,description:`We have already selected enough applicants. Try next time👍`,from:job.jobGiverId}
                             }
                             user.notifications.push(notification);
                             await user.save()

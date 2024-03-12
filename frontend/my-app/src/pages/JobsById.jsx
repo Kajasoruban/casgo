@@ -37,7 +37,7 @@ function JobsById() {
         if(role==="jobSeeker"){
             
             jobDetail.applicants==0&&setApplied(false);
-        
+            // console.log(jobDetail.applicants);
             jobDetail.applicants!==0 &&jobDetail.applicants.map((job)=>{
             if(job.jobSeekerId.userId==userInfo._id){
                 setApplied(true);
