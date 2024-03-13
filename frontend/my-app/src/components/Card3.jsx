@@ -1,7 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import moment from 'moment';
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import PlaceIcon from '@mui/icons-material/Place';
 
-function Card3({ jobTitle, description, closingTime, address,salary, id ,img,status,organization}) {
+
+function Card3({ jobTitle, description, closingTime,createdAt,address,salary, id ,img,status,setDisable,disable}) {
   return (
     <>
     {/* <div className='col-4'>
@@ -16,26 +20,40 @@ function Card3({ jobTitle, description, closingTime, address,salary, id ,img,sta
     </div>
     </div> */}
 
-        <section className="search-result-item">
-            <a className="image-link" href="#"><img className="image" src={img}/>
-            </a>
-           
-            <div className="search-result-item-body">
-                <div className="row">
-                    <div className="col-sm-9">
-                    
-                        <h4 className="search-result-item-heading">{jobTitle}</h4>
-                        <p className="info">{address}</p>
-                        <p className="description">{description}</p>
-                    </div>
-                    <div className="col-sm-3 text-align-center">
-                        <p>company:{organization}</p>
-                        <p className="value3 mt-sm">Rs.{salary}</p>
-                        <p className="fs-mini text-muted">Closing:{closingTime}</p><button className={`btn ${status=="accepted"?"btn-success":status=="rejected"?"btn-danger":"btn-warning"}  btn-sm`}>{status}</button>
-                    </div>
+<div className='border bg-body rounded row '>
+              <div className='col-5  fs-5 d-flex'>
+                  <div className=''>
+                      <img className="mt-2 rounded border" style={{ width: "6rem", height: "6rem" }} src={img} />
+                  </div>
+                  <div className='ms-4 mt-3'>
+                      <p className="text-capitalize"><WorkOutlineIcon/> {jobTitle}</p>
+                      <p className=""><PlaceIcon/> {address}</p>
+                  </div>
+              </div>
+              
+              <div className='col-2  fs-6'>
+              <p className='mt-4'>{moment(createdAt).format('YYYY-MM-DD')}</p>
                 </div>
-            </div>
-        </section>
+
+
+              <div className='col-2  fs-6'>
+              <p className='mt-4'>{closingTime}</p>
+                </div>
+
+                <div className='col-1 '>
+                <p className={`mt-4 fs-5 fw-bold ${status=='accepted'?'text-success':status=='rejected'?'text-danger':'text-warning'}`}>{status}</p>
+                </div>
+
+        
+              <div className='col-2  '>
+
+                  {/* <Link className="btn  px-4 btn-warning mt-3 mb-2" to={`/jobgiver/jobPosted/${id}/applicants`}>Applications</Link> */}
+                  
+                  <button className={`btn px-5 text-danger mt-4`}>Delete</button>
+
+              </div>
+          </div>
+
     </>
   )
 }

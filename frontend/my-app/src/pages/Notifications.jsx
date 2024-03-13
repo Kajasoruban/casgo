@@ -37,7 +37,7 @@ function Notifications() {
         }
         
      }
-
+   
     const handleMarkAsRead=()=>{
         dispatch(markAsReadAction())
     }
@@ -57,7 +57,7 @@ function Notifications() {
       :
       notifications.length!==0 ?
       <>
-     <div className='container m-5'>
+     <div className='container m-5 noticon'>
       {/* {notifications.map((note,i)=>(
         <div key={i} className='border row mx-auto'>
            <div className='col-1'>
@@ -82,30 +82,31 @@ function Notifications() {
                                 if(note.read===false){
                                
                                  return(
-                                   <div key={i} className="p-3 d-flex align-items-center bg-light border-bottom osahan-post-header">
-                                   <div className="dropdown-list-image me-3">
-                                       <img className="rounded-circle" src={note&&note.from.image.url} alt="" />
-                                   </div>
-                                   <div className=" me-3">
-                                       <div className="text-truncate fw-bold">{note.message}</div>
-                                       <div className="small">{note.description}</div>
-                                   </div>
-                                   <span className="ms-auto mb-auto">
-                                       <div className="btn-group">
-                                           <button type="button" className="btn btn-light btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                               <MoreVertIcon/>
-                                           </button>
-                                           <div className="dropdown-menu dropdown-menu-right">
-                                               <button className="dropdown-item" type="button"><i className="mdi mdi-delete"></i> Delete</button>
-                                               <button className="dropdown-item" type="button"><i className="mdi mdi-close"></i> Turn Off</button>
-                                           </div>
-                                       </div>
-                                       <br />
-                                       <div className="text-right text-muted pt-1">
-                                        {note.createdAt&&created(note.createdAt)}
-                                       </div>
-                                   </span>
-                               </div>)}
+                                    <div key={i} className="p-3 d-flex align-items-center  ">
+                                    <div className="dropdown-list-image me-3">
+                                        <img className="rounded-circle" src={note && note.from.image.url} alt="" />
+                                    </div>
+                                    <div className=" me-3 ">
+                                        <div className="text-truncate fw-bold">{note.message}</div>
+                                        <div className="small">{note.description}</div>
+                                    </div>
+                                    <span className="ms-auto  d-flex">
+                                        <div className="text-center text-muted pt-1 me-2">
+                                            {note.createdAt && created(note.createdAt)}
+                                        </div>
+                                        <br />
+                                        <div className="btn-group">
+                                            <button type="button" className="btn btn-light btn-sm  rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <MoreVertIcon />
+                                            </button>
+                                            <div className="dropdown-menu dropdown-menu-right">
+                                                <button className="dropdown-item" type="button"><i className="mdi mdi-delete"></i> Delete</button>
+                                                <button className="dropdown-item" type="button"><i className="mdi mdi-close"></i> Turn Off</button>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                               )}
                                 
                               })}
                                   
@@ -120,30 +121,31 @@ function Notifications() {
                                 if(note.read===true){
                                
                                  return(
-                                   <div key={i} className="p-3 d-flex align-items-center border-bottom osahan-post-header">
-                                   <div className="dropdown-list-image me-3">
-                                       <img className="rounded-circle" src={note&&note.from.image.url} alt="" />
-                                   </div>
-                                   <div className=" me-3">
-                                       <div className="text-truncate fw-bold">{note.message}</div>
-                                       <div className="small">{note.description}</div>
-                                   </div>
-                                   <span className="ms-auto mb-auto">
-                                       <div className="btn-group">
-                                           <button type="button" className="btn btn-light btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                               <MoreVertIcon/>
-                                           </button>
-                                           <div className="dropdown-menu dropdown-menu-right">
-                                               <button className="dropdown-item" type="button"><i className="mdi mdi-delete"></i> Delete</button>
-                                               <button className="dropdown-item" type="button"><i className="mdi mdi-close"></i> Turn Off</button>
-                                           </div>
-                                       </div>
-                                       <br />
-                                       <div className="text-right text-muted pt-1">
-                                        {note.createdAt&&created(note.createdAt)}
-                                       </div>
-                                   </span>
-                               </div>)}
+                                     <div key={i} className="p-3 d-flex align-items-center  ">
+                                         <div className="dropdown-list-image me-3">
+                                             <img className="rounded-circle" src={note && note.from.image.url} alt="" />
+                                         </div>
+                                         <div className=" me-3 ">
+                                             <div className="text-truncate fw-bold">{note.message}</div>
+                                             <div className="small">{note.description}</div>
+                                         </div>
+                                         <span className="ms-auto  d-flex">
+                                             <div className="text-center text-muted pt-1 me-2">
+                                                 {note.createdAt && created(note.createdAt)}
+                                             </div>
+                                             <br />
+                                             <div className="btn-group">
+                                                 <button type="button" className="btn btn-light btn-sm  rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                     <MoreVertIcon />
+                                                 </button>
+                                                 <div className="dropdown-menu dropdown-menu-right">
+                                                     <button className="dropdown-item" type="button"><i className="mdi mdi-delete"></i> Delete</button>
+                                                     <button className="dropdown-item" type="button"><i className="mdi mdi-close"></i> Turn Off</button>
+                                                 </div>
+                                             </div>
+                                         </span>
+                                     </div>
+                               )}
                                 
                               })}
 

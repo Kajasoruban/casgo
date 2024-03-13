@@ -42,9 +42,50 @@ function Jobs() {
     <>
 
     <Navbar/>
+   
+    <div className='container-fluid border rounded bg-body-tertiary'>
+       <h2 className='text-center my-5'>Find Jobs!</h2>
+    </div>
+
+
+    <div className='container row'>
+      <div className='col-4'>
+        <div className='border rounded bg-body-tertiary d-flex flex-column'>
+          <div className='border'>
+            <p>Search for any key words</p>
+            <input type='text'/>
+          </div>
+
+          <div className='border'>
+          <label htmlFor="location">Filter by location:</label>
+          <br/>
+          <input list="locations" name="address" onChange={(e) => handleLocation(e)} id="location" />
+          <button className='btn btn-primary' onClick={() => { setAddress(filter) }}>Filter</button>
+
+          <datalist id="locations">
+          {setUniqueLocation&&setUniqueLocation.map((location,i)=>(
+                  <option key={i} value={location}/>
+            ))
+            
+          
+          }
+            
+          </datalist>
+          </div>
+         
+        </div>
+
+      </div>
+
+      <div className='col-8'>
+
+      </div>
+
+    </div>
+
     <br/>
     <div className="jobsection text-center">
-          <h1 className='heading-1'>Jobs</h1>
+        
 
 
         <div className="main-search-input-wrap my-5">
@@ -52,14 +93,14 @@ function Jobs() {
 
           <div className="main-search-input fl-wrap my-5 border border-1">
             <div className="main-search-input-item">
-              <input type="text"  value={querry} onChange={(e)=>handleSearch(e.target.value)} placeholder="Type any key words..." />
+              <input type="text" value={querry} onChange={(e) => handleSearch(e.target.value)} placeholder="Type any key words..." />
             </div>
 
-            <button className="main-search-button" onClick={()=>{setKeyword(querry)}}>Search</button>
+            <button className="main-search-button" onClick={() => { setKeyword(querry) }}>Search</button>
           </div>
           <label htmlFor="location">Filter by location:</label>
-          <input list="locations" name="address" onChange={(e)=>handleLocation(e)} id="location"/>
-          <button className='btn btn-primary' onClick={()=>{setAddress(filter)}}>Filter</button>
+          <input list="locations" name="address" onChange={(e) => handleLocation(e)} id="location" />
+          <button className='btn btn-primary' onClick={() => { setAddress(filter) }}>Filter</button>
 
           <datalist id="locations">
           {setUniqueLocation&&setUniqueLocation.map((location,i)=>(

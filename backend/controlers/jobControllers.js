@@ -8,7 +8,7 @@ import User from "../models/userModel.js";
 
 const postJob = asyncHandler(async (req, res) => {
 
-    const {
+    let {
         title,
         jobDescription,
         salary,
@@ -19,7 +19,10 @@ const postJob = asyncHandler(async (req, res) => {
         gender,
         requirements
     } = req.body;
-
+ 
+    
+    title = title.charAt(0).toUpperCase() + title.slice(1);
+    console.log(title);
 
     const userId = req.user._id;
     const { jobGiverId } = req.user;

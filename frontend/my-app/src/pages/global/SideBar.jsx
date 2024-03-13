@@ -52,7 +52,7 @@ const SideBar = () => {
           }
         }
         if (userInfoExtra) {
-          if (userInfoExtra.role && !loading) {
+          if (userInfoExtra.role=="jobRecruit" && !loading) {
             setRegistered(true)
             
           }
@@ -67,6 +67,11 @@ const SideBar = () => {
         // console.log(disable);
     }, []);
    
+    useEffect(()=>{
+  
+        registered && !loading && dispatch(giverProfileAction()) && dispatch(paymentHistoryAction())
+        
+      },[registered])
 
     //   let role= userInfoExtra?userInfoExtra.role:"";
     // let endDate="03/07/2024 21:45:00";
@@ -123,11 +128,7 @@ const SideBar = () => {
 
    
 
-    useEffect(()=>{
-  
-        registered && !loading && dispatch(giverProfileAction()) && dispatch(paymentHistoryAction())
-        
-      },[registered])
+    
 
        //log out 
     const logOut = () => {
