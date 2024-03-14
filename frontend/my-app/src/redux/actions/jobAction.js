@@ -128,8 +128,8 @@ export const expireAction =(id) => async (dispatch)=>{
             type:EXPIRE_SUCCESS,
             payload:data
         })
-        // setTimeout(()=>{ window.location.reload(true)}, 500)
         toast.warning("You package is expired") 
+        setTimeout(()=>{ window.location.reload(true)}, 2000)
     } catch (error) {
         dispatch({
             type:EXPIRE_FAIL,

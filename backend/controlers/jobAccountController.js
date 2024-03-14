@@ -17,6 +17,8 @@ const jobRecCreate= asyncHandler(async(req,res)=>{
     const joseekAlreadyExist=await jobSeek.findOne({userId});
     const  joRecAlreadyExist=await jobRec.findOne({userId});
 
+    address = address.charAt(0).toUpperCase() + address.slice(1);
+
     if(joseekAlreadyExist||joRecAlreadyExist){
         res.status(400);
         throw new Error("you already have account");

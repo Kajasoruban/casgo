@@ -173,6 +173,24 @@ border-radius: 1rem;
 body{
     background-color: #ededed;
   }
+
+
+.searchbar{
+    width: 70vw;
+    height: 10vh;
+}  
+
+.searchbar > div >input{
+    width: 90%;
+    height: 80%;
+    
+}
+.searchbar > div >button{
+    width: 90%;
+    height: 80%;
+    
+}
+
   
   .main-search-input {
       background: #fff;

@@ -51,7 +51,7 @@ function Navbar() {
           // console.log(p.paymentId.EndingTime);
           //  endDate = new Date(endDate);
           endDate = new Date(p.paymentId.EndingTime);
-
+         
           /* Browsers store the delay as a 32-bit signed integer internally. 
           This causes an integer overflow when using delays larger than 2,147,483,647 ms (about 24.8 days),
            resulting in the timeout being executed immediately. */
@@ -60,6 +60,7 @@ function Navbar() {
 
           if ((endDate.getTime() - currentDate.getTime()) < 86400000) {
             // console.log("count down start");
+            // console.log(endDate.getTime() - currentDate.getTime());
             timer = setTimeout(() => {
 
               dispatch(expireAction(p.paymentId._id));

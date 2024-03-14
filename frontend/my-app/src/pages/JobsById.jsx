@@ -10,7 +10,13 @@ import LoadingBox from '../components/LoadingBox';
 import moment from 'moment';
 import { appliedJobsAction } from '../redux/actions/userAction';
 
-
+import PlaceIcon from '@mui/icons-material/Place';
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import PaymentsIcon from '@mui/icons-material/Payments';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import HourglassDisabledIcon from '@mui/icons-material/HourglassDisabled';
+import PersonIcon from '@mui/icons-material/Person';
 
 function JobsById() {
     const navigate=useNavigate();
@@ -19,6 +25,25 @@ function JobsById() {
     let role= userInfoExtra?userInfoExtra.role:"" ;
     const [applyDisable,setApplyDisable]=useState(false);
     const [applied,setApplied]=useState(false);
+
+    const createdtime=(date)=>{
+        let creatDate=new Date(date)
+        let currentDate=new Date();
+        let dif=currentDate.getTime()-creatDate.getTime()
+        // let dif=24*60*60*1000
+        if(dif<=59*1000){
+            return Math.floor(dif/(1000))+'seconds ago'
+        }else if(dif<=59*60*1000){
+            return Math.floor(dif/(60*1000))+'minutes ago'
+        }else if(dif<=24*60*60*1000){
+            return Math.floor(dif/(60*60*1000))+'hours ago'
+        }else if(dif<=29*24*60*60*1000){
+            return Math.floor(dif/(24*60*60*1000))+'day ago'
+        }else{
+            return dif;
+        }
+        
+     }
     
     useEffect(()=>{
 
@@ -71,94 +96,109 @@ function JobsById() {
     <>
     <Navbar/>
 
-    <div className='display-2 text-center mt-5'>Jobs Details</div>
-    
-
 
     { loading ?<LoadingBox /> :
       
      <>
-    <div className="job-post-company pt-120 pb-120">
-            <div className="container">
-                <div className="row justify-content-between">
-                    
-                    <div className="col-xl-7 col-lg-8">
-                        
-                        <div className="">
-                            <div className="row">
-                                <div className="col-6">
-                                    <a href="#"><img src={jobDetail&&jobDetail.jobGiverId.image.url} width="300px" height="200px"alt=""/></a>
-                                </div>
-                                <div className="col-6">
-                                    <span className='lead'>
-                                        <h4>{jobDetail&&jobDetail.title}</h4>
-                                    </span>
-                                    <ul>
-                                       
-                                        <li><i className="fas fa-map-marker-alt"></i>{jobDetail&&jobDetail.address}</li>
-                                        <li>Rs.{jobDetail&&jobDetail.salary}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                         
-                       
-                        <div className="job-post-details">
-                            <div className="post-details1 mb-50">
-                               
-                                <div className="small-section-tittle">
-                                    <h4>Job Description</h4>
-                                </div>
-                                <p>{jobDetail&&jobDetail.jobDescription}</p>
-                            </div>
-                            <div className="post-details2  mb-50">
-                                
-                                <div className="small-section-tittle">
-                                    <h4>Required Knowledge, Skills, and Abilities</h4>
-                                </div>
-                                {jobDetail&&jobDetail.requirements}
-                            </div>
-                            
-                        </div>
+     
+     <div className='container-fluid border rounded bg-body-tertiary row'>
+  
+     <section className="col-10 g-5  mx-auto my-5">
+              <div className="d-flex justify-content-between align-items-center  ">
+                  <img className=" mx-3 rounded border" style={{ width: "10rem", height: "10rem" }} src={jobDetail&&jobDetail.jobGiverId.image.url} />
 
-                    </div>
-                 
-                    <div className="col-xl-4 col-lg-4">
-                        <div className="post-details3  mb-50">
-                           
-                           <div className="small-section-tittle">
-                               <h4>Job Overview</h4>
-                           </div>
-                          <ul> 
-                              <li>Posted date : <span>{jobDetail&&moment(jobDetail.createdAt).format('YYYY-MM-DD')}</span></li>
-                              <li>Location : <span> {jobDetail&&jobDetail.address}</span></li>
-                              <li>Vacancy : <span> {jobDetail&&jobDetail.noOfWorkers}</span></li>
-                              <li>Salary :  <span> Rs.{jobDetail&&jobDetail.salary}</span></li>
-                              <li>Closing date : <span> {jobDetail&&jobDetail.closingTime}</span></li>
-                          </ul>
-                         <div className="apply-btn2">
+
+                  
+                      <div className="  flex-fill text-start d-flex flex-column">
+                          <h4 className="mb-3"><WorkOutlineIcon /> {jobDetail&&jobDetail.title}</h4>
+                          <div>
+                          <span className=" text-muted"><PlaceIcon /> {jobDetail&&jobDetail.address}</span>
+                          <span className="ms-2 text-muted"><AccessTimeIcon/>{createdtime(jobDetail&&jobDetail.createdAt)}</span>
+                          <span className="ms-2 text-muted">Rs.{jobDetail&&jobDetail.salary} per {jobDetail&&jobDetail.salaryPeriod}</span>
+                          </div>
+                      </div>
+
+                      <div className="me-3  ">
+
+                      <div className="apply-btn2">
                             {applied?<button className="btn btn-success" >Applied</button>:<button onClick={applyJob} className="btn btn-warning" disabled={applyDisable}>Apply Now</button>}
                             
                          </div>
-                         <br/>
-                       </div>
-                        <div className="post-details4  mb-50">
-                           
-                           <div className="small-section-tittle">
-                               <h4>Company Information</h4>
-                           </div>
-                              {/* <span>casgo</span> */}
-                              {/* <p></p> */}
-                            <ul>
-                                <li>Name: <span> {jobDetail&&jobDetail.nameOfOrganization} </span></li>
-                                {/* <li>Web : <span> colorlib.com</span></li>
+
+                      </div>
+                
+              </div>
+          </section>
+
+     </div>
+
+
+
+
+
+                  <div className=" container  my-5">
+                      
+                          <div className="row justify-content-between">
+
+                              <div className="col-xl-7 col-lg-8">
+
+
+
+
+                                  <div className="job-post-details ">
+                                      <div className="post-details1 mb-5">
+
+                                          <div className="small-section-tittle mb-3">
+                                              <h4>Job Description</h4>
+                                          </div>
+                                          <p>{jobDetail && jobDetail.jobDescription}</p>
+                                      </div>
+                                      <div className="post-details2  mb-5">
+
+                                          <div className="small-section-tittle">
+                                              <h4>Required Knowledge, Skills, and Abilities</h4>
+                                          </div>
+                                          {jobDetail && jobDetail.requirements}
+                                      </div>
+
+                                  </div>
+
+                              </div>
+
+                          <div className="col-xl-4 col-lg-4 border rounded bg-body-tertiary">
+                              <div className="post-details4  mb-5">
+
+                                  <div className="small-section-tittle">
+                                      <h4 className=''>Company Information</h4>
+                                  </div>
+                               
+                                  <ul className='ms-3'>
+                                      <li>Name: <span> {jobDetail && jobDetail.nameOfOrganization} </span></li>
+                                      {/* <li>Web : <span> colorlib.com</span></li>
                                 <li>Email: <span>carrier.colorlib@gmail.com</span></li> */}
-                            </ul>
-                       </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                  </ul>
+                              </div>
+                              <div className="post-details3  mb-5">
+
+                                  <div className="small-section-tittle">
+                                      <h4>Job Overview*</h4>
+                                  </div>
+                                  <ul>
+
+                                      <li className='my-3 ms-3'><DateRangeIcon /> Posted date : <span>{jobDetail && moment(jobDetail.createdAt).format('YYYY-MM-DD')}</span></li>
+                                      <li className='my-3 ms-3'><PlaceIcon /> Location : <span> {jobDetail && jobDetail.address}</span></li>
+                                      <li className='my-3 ms-3'><PersonIcon /> Vacancy : <span> {jobDetail && jobDetail.noOfWorkers}</span></li>
+                                      <li className='my-3 ms-3'><PaymentsIcon /> Salary :  <span> Rs.{jobDetail && jobDetail.salary}</span></li>
+                                      <li className='my-3 ms-3'><HourglassDisabledIcon /> Closing date : <span> {jobDetail && jobDetail.closingTime}</span></li>
+                                  </ul>
+
+                                  <br />
+                              </div>
+
+                          </div>
+                          </div>
+                      
+                  </div>
     </>
     }
     

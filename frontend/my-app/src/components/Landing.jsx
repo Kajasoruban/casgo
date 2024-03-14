@@ -64,7 +64,7 @@ function Landing(){
               </div> */}
               <div className="row  ">
 
-              <div className=" top-0 mt-4  col-6   text-center">
+              <div className=" top-0 mt-4  col-5   text-center">
 
                 <div className=" ms-5">
                 <p className=" text-stroke-p display-3 mt-5 fw-bolder ">
@@ -84,9 +84,9 @@ function Landing(){
 
 
 
-              <div className="col-6">
+              <div className="col-7">
                 <img
-                src="https://img.freepik.com/free-vector/man-search-hiring-job-online-from-laptop_1150-52728.jpg?t=st=1710264440~exp=1710268040~hmac=0414504a06b1f0f4d91431e653949dde69d053c93676eece1180b8c2e480bdb1&w=1060"
+                src="https://img.freepik.com/free-vector/tiny-people-searching-business-opportunities_74855-19928.jpg?w=1060&t=st=1710379594~exp=1710380194~hmac=3d8163471eee0a0e88dea1bf47a10e57805d26fd7ab98582123b8ad1879b8eca"
                 className="d-block  c-img"
                 alt="Slide 1"
               />
@@ -123,7 +123,7 @@ function Landing(){
             <div className="row  ">
 
 
-            <div className="col-6 ">
+            <div className="col-7 ">
               <img
               src="https://img.freepik.com/free-vector/job-vacancy-isometric-background-with-applicants-employers-looking-into-resume-sheet-vector-illustration_1284-81716.jpg?t=st=1710264190~exp=1710267790~hmac=295887eefaa4f00bb41c61baafbcce0c4828a08e7a4e453493f456ca3de6bfb9&w=826"
               className="d-block  c-img"
@@ -131,7 +131,7 @@ function Landing(){
             />
             </div>
 
-            <div className=" top-0 mt-4  col-6  text-center">
+            <div className=" top-0 mt-4  col-5  text-center">
             <div className=" me-5">
               <p className=" text-stroke-p display-3 mt-5 fw-bolder ">
                Take a Break
@@ -201,7 +201,7 @@ function Landing(){
 
         {/* how it work section start */}
         <section className="how-it-works position-relative pt-130 xl-pt-110 my-5">
-          <div className="container-fluid">
+          <div className="container-fluid my-5">
          
            <br/><br/>
             <div className=" text-center mb-45 lg-mb-20">
@@ -220,7 +220,7 @@ function Landing(){
                     <div className="numb fw-500 d-flex align-items-center justify-content-center m-auto">
                       <span className='border border-2 bg-success rounded fs-3 fw-bold'>01</span>
                     </div>
-                    <div className=" fw-bold fs-4 text-lg text-dark mt-25 mb-10">
+                    <div className=" fw-bold fs-4 text-lg text-dark mt-2 mb-3">
                       Create Account
                     </div>
                     <p className="fs-5">
@@ -236,11 +236,11 @@ function Landing(){
                     <div className="numb fw-bold d-flex align-items-center justify-content-center m-auto">
                       <span className='border border-2 bg-success rounded fs-3 fw-bold'>02</span>
                     </div>
-                    <div className="fs-4 fw-bold text-lg text-dark mt-25 mb-10">
+                    <div className="fs-4 fw-bold text-lg text-dark mt-2 mb-3">
                       Choose the account type
                     </div>
                     <p className="fs-5">
-                      Select whether you want to become a job giver or job seeker and then complete your profile.
+                      Select whether you want to become <br/> a job giver or job seeker <br/> then complete your registration.
                     </p>
                   </div>
                 </div>
@@ -252,168 +252,100 @@ function Landing(){
                     <div className="numb fw-bold d-flex align-items-center justify-content-center m-auto">
                       <span className='border border-2 bg-success rounded fs-3 fw-bold'>03</span>
                     </div>
-                    <div className="fs-4 fw-bold text-lg text-dark mt-25 mb-10">
+                    <div className="fs-4 fw-bold text-lg text-dark mt-2 mb-3">
                       Apply job or Post job
                     </div>
                     <p className="fs-5">
-                      Apply & get your preferable jobs or Post job and get workers in no time.
+                      Apply & get your preferable jobs <br/> or <br/> Post job and get workers in time.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <hr className=""/>
+            {/* <hr className=""/> */}
           </div>
         </section>
         {/* how it work section end */}
 
 
-        {/* <div className="container" id="contact">
-          <h1 className="fw-bolder text-center my-5">Contact</h1>
+       
 
-          <div className="row">
-
-            <div className="col-lg-8 col-lg-offset-2 mx-auto my-5">
-
-
-              <form id="contact-form" method="post" action="" role="form">
-
-                <div className="messages"></div>
-
-                <div className="controls">
-
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label htmlFor="form_name">Firstname *</label>
-                        <input id="form_name" type="text" name="name" className="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." />
-                        <div className="help-block with-errors"></div>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label htmlFor="form_lastname">Lastname *</label>
-                        <input id="form_lastname" type="text" name="surname" className="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required." />
-                        <div className="help-block with-errors"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label htmlFor="form_email">Email *</label>
-                        <input id="form_email" type="email" name="email" className="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required." />
-                        <div className="help-block with-errors"></div>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label htmlFor="form_phone">Phone</label>
-                        <input id="form_phone" type="tel" name="phone" className="form-control" placeholder="Please enter your phone" />
-                        <div className="help-block with-errors"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="form-group">
-                        <label htmlFor="form_message">Message *</label>
-                        <textarea id="form_message" name="message" className="form-control" placeholder="Message.. *" rows="4" required data-error="Please,leave us a message."></textarea>
-                        <div className="help-block with-errors"></div>
-                      </div>
-                    </div>
-                    <div className="col-md-12">
-                      <input type="submit" className="btn btn-success btn-send" value="Send message" />
-                    </div>
-                  </div>
-
-                </div>
-
-              </form>
-
-            </div>
-
-          </div>
-
-        </div>
-        <hr /> */}
-
-<div class="contact3 py-5 container">
-  <div class="row no-gutters">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="card-shadow">
-            <img src="https://img.freepik.com/free-vector/customer-support-illustration_23-2148890148.jpg?t=st=1710263955~exp=1710267555~hmac=34c120626e4618fe7c42cc72fdecc3426bb7e4cc767b8276af97f27c7fc413e6&w=740" class="img-fluid"/>
+<div className="contact3 py-5 container">
+  <div className="row no-gutters">
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-6">
+          <div className="card-shadow">
+            <img src="https://img.freepik.com/free-vector/customer-support-illustration_23-2148890148.jpg?t=st=1710263955~exp=1710267555~hmac=34c120626e4618fe7c42cc72fdecc3426bb7e4cc767b8276af97f27c7fc413e6&w=740" className="img-fluid"/>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="contact-box ml-3">
-            <h1 class="fw-bold mt-5">Quick Contact</h1>
-            <form class="mt-4">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="form-group mt-2">
-                    <input class="form-control my-3" type="text" placeholder="name"/>
+        <div className="col-lg-6">
+          <div className="contact-box ml-3">
+            <h1 className="fw-bold mt-5">Quick Contact</h1>
+            <form className="mt-4">
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="form-group mt-2">
+                    <input className="form-control my-3" type="text" placeholder="name"/>
                   </div>
                 </div>
-                <div class="col-lg-12">
-                  <div class="form-group mt-2">
-                    <input class="form-control my-3" type="email" placeholder="email address"/>
+                <div className="col-lg-12">
+                  <div className="form-group mt-2">
+                    <input className="form-control my-3" type="email" placeholder="email address"/>
                   </div>
                 </div>
-                <div class="col-lg-12">
-                  <div class="form-group mt-2">
-                    <input class="form-control my-3" type="text" placeholder="phone"/>
+                <div className="col-lg-12">
+                  <div className="form-group mt-2">
+                    <input className="form-control my-3" type="text" placeholder="phone"/>
                   </div>
                 </div>
-                <div class="col-lg-12">
-                  <div class="form-group mt-2">
-                    <textarea class="form-control my-3" rows="5" placeholder="message"></textarea>
+                <div className="col-lg-12">
+                  <div className="form-group mt-2">
+                    <textarea className="form-control my-3" rows="5" placeholder="message"></textarea>
                   </div>
                 </div>
-                <div class="col-lg-12">
-                  <button type="submit" class="btn btn-danger-gradiant mt-3 text-white border-0 px-3 py-2"><span> SUBMIT</span></button>
+                <div className="col-lg-12">
+                  <button type="submit" className="btn btn-danger-gradiant mt-3 text-white border-0 px-3 py-2"><span> SUBMIT</span></button>
                 </div>
               </div>
             </form>
           </div>
         </div>
-        {/* <div class="col-lg-12">
-          <div class="card mt-4 border-0 mb-4">
-            <div class="row">
-              <div class="col-lg-4 col-md-4">
-                <div class="card-body d-flex align-items-center c-detail pl-0">
-                  <div class="mr-3 align-self-center">
+        {/* <div className="col-lg-12">
+          <div className="card mt-4 border-0 mb-4">
+            <div className="row">
+              <div className="col-lg-4 col-md-4">
+                <div className="card-body d-flex align-items-center c-detail pl-0">
+                  <div className="mr-3 align-self-center">
                     <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/contact/icon1.png"/>
                   </div>
-                  <div class="">
-                    <h6 class="font-weight-medium">Address</h6>
-                    <p class="">601 Sherwood Ave.
+                  <div className="">
+                    <h6 className="font-weight-medium">Address</h6>
+                    <p className="">601 Sherwood Ave.
                       <br/> San Bernandino</p>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4">
-                <div class="card-body d-flex align-items-center c-detail">
-                  <div class="mr-3 align-self-center">
+              <div className="col-lg-4 col-md-4">
+                <div className="card-body d-flex align-items-center c-detail">
+                  <div className="mr-3 align-self-center">
                     <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/contact/icon2.png"/>
                   </div>
-                  <div class="">
-                    <h6 class="font-weight-medium">Phone</h6>
-                    <p class="">251 546 9442
+                  <div className="">
+                    <h6 className="font-weight-medium">Phone</h6>
+                    <p className="">251 546 9442
                       <br/> 630 446 8851</p>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4">
-                <div class="card-body d-flex align-items-center c-detail">
-                  <div class="mr-3 align-self-center">
+              <div className="col-lg-4 col-md-4">
+                <div className="card-body d-flex align-items-center c-detail">
+                  <div className="mr-3 align-self-center">
                     <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/contact/icon3.png"/>
                   </div>
-                  <div class="">
-                    <h6 class="font-weight-medium">Email</h6>
-                    <p class="">
+                  <div className="">
+                    <h6 className="font-weight-medium">Email</h6>
+                    <p className="">
                       info@wrappixel.com
                       <br/> 123@wrappixel.com
                     </p>

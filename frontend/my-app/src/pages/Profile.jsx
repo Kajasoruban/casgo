@@ -132,7 +132,7 @@ function Profile() {
                                           <div className="text-center">
                                               {/* <!-- Image upload --> */}
                                               <div className="square position-relative display-2 mb-3">
-                                                  <img src={userInfoExtra ? userInfoExtra.image.url : "dubai road cross street"}/>
+                                                  <img src={userInfoExtra && !userInfoExtra.message ? userInfoExtra.image.url : "dubai road cross street"}/>
                                               </div>
                                               {/* <!-- Button --> */}
                                               <input type="file" id="customFile" className='form-control' name="file" hidden=""/>

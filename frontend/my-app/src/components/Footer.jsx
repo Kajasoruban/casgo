@@ -10,7 +10,7 @@ function Footer(){
         
         <footer className="text-center text-lg-start bg-body-tertiary text-muted">
         {/* <!-- Section: Social media --> */}
-        <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <section className="d-flex justify-content-center justify-content-lg-around p-4 border-bottom">
             {/* <!-- Left --> */}
             <div className="me-5 d-none d-lg-block">
             <span>Get connected with us on social networks:</span>

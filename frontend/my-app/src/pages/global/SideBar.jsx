@@ -14,7 +14,7 @@ import Person3Icon from '@mui/icons-material/Person3';
 import Avatar from '@mui/material/Avatar';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 // import logoDashboard from ''
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { giverProfileAction, notificationsAction, paymentHistoryAction, userLogoutAction, userProfileAction } from '../../redux/actions/userAction';
 import { useNavigate } from 'react-router-dom';
@@ -136,6 +136,7 @@ const SideBar = () => {
         window.location.reload(true);
         
     }
+    let location=useLocation()
 
 
     return (
@@ -171,20 +172,28 @@ const SideBar = () => {
                                         backgroundColor: " rgba(240, 192, 1, 0.5)",
                                         color: "#2b580c",
                                     },
+                                    [`&.active`]: {
+                                        backgroundColor: '#13395e',
+                                        color: '#b6c8d9',
+                                      },
                                 },
 
                                 icon: {
                                     [`&.${menuClasses.icon}`]: {
                                         color: "#2b580c",
                                         
-                                    }
+                                    },
+                                    [`&.active`]: {
+                                        backgroundColor: '#13395e',
+                                        color: '#b6c8d9',
+                                      },
                                 },
                             }}
 
                         >
                             {
                                 userInfo && userInfo.role === "admin" ?
-                                    <>  <MenuItem component={<Link to="/profile" />} icon={<Person3Icon />}> Personal Info </MenuItem>
+                                    <>  <MenuItem component={<Link to="/profile" />}  icon={<Person3Icon />}> Personal Info </MenuItem>
                                         <MenuItem component={<Link to="/admin/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
                                         <MenuItem component={<Link to="/admin/allusers" />} icon={<GroupAddIcon />}> Users </MenuItem>
                                         <MenuItem component={<Link to="/admin/approval" />} icon={<HowToRegIcon />}> Verification </MenuItem>
@@ -202,8 +211,8 @@ const SideBar = () => {
                                         
                                     </>:
                                     <>
-                                    <MenuItem component={<Link to="/profile" />} icon={<Person3Icon />}> Personal Info </MenuItem>
-                                    <MenuItem component={<Link to="/user/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem>
+                                    <MenuItem component={<Link to="/profile" />} active={true} icon={<Person3Icon />}> Personal Info </MenuItem>
+                                    {/* <MenuItem component={<Link to="/user/dashboard" />} icon={<DashboardIcon />}> Dashboard </MenuItem> */}
                                     <MenuItem component={<Link to="/jobseeker/appliedjobs" />} icon={<WorkHistoryIcon />}> Applied Jobs </MenuItem>
                                     <MenuItem component={<Link to="/notifications" />} icon={<NotificationsIcon />} sx={{position:"relative"}} > Notifications {!read&&<span className='notification2'></span>}</MenuItem>
                                     <MenuItem component={<Link to="/" />} icon={<HomeIcon />}> Back to Home </MenuItem>
