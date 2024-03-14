@@ -13,7 +13,7 @@ import mongoose from "mongoose";
 const jobRecCreate= asyncHandler(async(req,res)=>{
     
     const userId=req.user._id;
-    const {nameOfOrganization,address,contactNo,image}=req.body;
+    let {nameOfOrganization,address,contactNo,image}=req.body;
     const joseekAlreadyExist=await jobSeek.findOne({userId});
     const  joRecAlreadyExist=await jobRec.findOne({userId});
 

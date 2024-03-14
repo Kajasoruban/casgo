@@ -121,8 +121,9 @@ export const jobGiverSignUpAction = (user,image) => async (dispatch) => {
             type: jobGiverAction_SUCCESS,
             payload: data
         });
-        setTimeout(window.location.reload(true), 4000)
+        
         toast.success("Register Successfully!");
+        setTimeout(window.location.reload(true), 3000)
     } catch (error) {
         console.log(error);
         dispatch({
@@ -139,12 +140,13 @@ export const jobSeekerSignUpAction = (user) => async (dispatch) => {
     try {
         const { data } = await axios.post("/api/users/jobSeeker", user);
         localStorage.removeItem('userInfoExtra');
-        setTimeout(window.location.reload(true), 6000)
+        
         dispatch({
             type: jobSeekerAction_SUCCESS,
             payload: data
         });
         toast.success("Register Successfully!");
+        setTimeout(window.location.reload(true), 3000)
     } catch (error) {
         console.log(error);
         dispatch({

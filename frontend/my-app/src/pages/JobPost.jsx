@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import '../Assets/css/JobGiverRegister.css';
+import moment from 'moment';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { jobPostAction } from '../redux/actions/jobAction';
@@ -62,6 +63,54 @@ function JobPost() {
   const {paymentHistory} =useSelector(state => state.paymentHistory);
   let data = [];
     data = (paymentHistory !== undefined && paymentHistory.length > 0) ? paymentHistory : []
+
+    const created=(date)=>{
+      let creatDate=new Date(date)
+      let currentDate=new Date();
+      let dif=currentDate.getTime()-creatDate.getTime()
+      
+      return new Date(dif)
+   }
+  //  console.log(created());
+
+  //  console.log(data);
+
+   let endDate;
+  let currentDate = new Date();
+  console.log(moment(currentDate).format("YYYY-MM-DD"));
+ 
+
+   
+    if (data.length !== 0) {
+
+      data.map(p => {
+
+        if (p.paymentId.expired === false) {
+          // console.log(p.paymentId.EndingTime);
+          //  endDate = new Date(endDate);
+          endDate = new Date(p.paymentId.EndingTime);
+          // endDate=endDate.getTime-currentDate.getTime()
+          // console.log(endDate);
+         console.log(moment(endDate).format("YYYY-MM-DD"));
+
+          // if ((endDate.getTime() - currentDate.getTime()) < 86400000) {
+          //   // console.log("count down start");
+          //   // console.log(endDate.getTime() - currentDate.getTime());
+            
+
+
+          // }
+
+         
+        }
+
+   
+
+      })
+    }
+
+
+
 
 
   useEffect(()=>{
@@ -328,6 +377,9 @@ function JobPost() {
                         id="closingTime"
                         name='closingTime'
 
+                        min={moment(currentDate).format("YYYY-MM-DD")}
+                        max={moment(endDate).format("YYYY-MM-DD")}
+                      
                         value={formik.values.closingTime}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}

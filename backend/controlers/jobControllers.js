@@ -120,7 +120,7 @@ const showJobs = async (req, res) => {
     
     // console.log({...keyword,location: locationFilter});
     //enable pagination
-    const pageSize = 6;
+    const pageSize = 8;
     const page = Number(req.query.pageNumber) || 1;
     //const count = await Job.find({}).estimatedDocumentCount();  jobType: categ, .populate('jobType', 'jobTypeName')
     const count = await Job.find({ ...keyword, address: addressFilter ,active:true}).countDocuments();

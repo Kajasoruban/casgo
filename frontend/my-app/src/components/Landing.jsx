@@ -64,7 +64,7 @@ function Landing(){
               </div> */}
               <div className="row  ">
 
-              <div className=" top-0 mt-4  col-5   text-center">
+              <div className=" top-0 mt-4  col-6  text-center">
 
                 <div className=" ms-5">
                 <p className=" text-stroke-p display-3 mt-5 fw-bolder ">
@@ -84,7 +84,7 @@ function Landing(){
 
 
 
-              <div className="col-7">
+              <div className="col-6">
                 <img
                 src="https://img.freepik.com/free-vector/tiny-people-searching-business-opportunities_74855-19928.jpg?w=1060&t=st=1710379594~exp=1710380194~hmac=3d8163471eee0a0e88dea1bf47a10e57805d26fd7ab98582123b8ad1879b8eca"
                 className="d-block  c-img"
@@ -123,15 +123,15 @@ function Landing(){
             <div className="row  ">
 
 
-            <div className="col-7 ">
+            <div className="col-6 ">
               <img
-              src="https://img.freepik.com/free-vector/job-vacancy-isometric-background-with-applicants-employers-looking-into-resume-sheet-vector-illustration_1284-81716.jpg?t=st=1710264190~exp=1710267790~hmac=295887eefaa4f00bb41c61baafbcce0c4828a08e7a4e453493f456ca3de6bfb9&w=826"
+              src="https://static.vecteezy.com/system/resources/previews/020/811/045/non_2x/hiring-employee-open-recruitment-concept-job-vacancy-illustration-free-vector.jpg"
               className="d-block  c-img"
               alt="Slide 1"
             />
             </div>
 
-            <div className=" top-0 mt-4  col-5  text-center">
+            <div className=" top-0 mt-4  col-6  text-center">
             <div className=" me-5">
               <p className=" text-stroke-p display-3 mt-5 fw-bolder ">
                Take a Break

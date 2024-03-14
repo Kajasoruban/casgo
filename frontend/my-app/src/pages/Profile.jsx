@@ -132,7 +132,7 @@ function Profile() {
                                           <div className="text-center">
                                               {/* <!-- Image upload --> */}
                                               <div className="square position-relative display-2 mb-3">
-                                                  <img src={userInfoExtra && !userInfoExtra.message ? userInfoExtra.image.url : "dubai road cross street"}/>
+                                                  <img src={userInfoExtra && !userInfoExtra.message ? userInfoExtra.image.url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN9TaGrF3qmBtBoXN5TaTdijk8dUfq2z7w6a-QjVoEjtxv2f2IcWph0-e7avSfpgTjdg&usqp=CAU"}/>
                                               </div>
                                               {/* <!-- Button --> */}
                                               <input type="file" id="customFile" className='form-control' name="file" hidden=""/>
@@ -219,8 +219,8 @@ function Profile() {
                            
 
                           {/* <!-- Social media detail --> */}
-                          {/* <div className="row mb-5 gx-5"> */}
-                              {/* <div className="col-xxl-6 mb-5 mb-xxl-0">
+                          <div className="row mb-5 gx-5">
+                              <div className="col-xxl-6 mb-5 mb-xxl-0">
                                   <div className="bg-secondary-soft px-4 py-5 rounded">
                                       <div className="row g-3">
                                           <h4 className="mb-4 mt-0">Social media detail</h4>
@@ -257,10 +257,10 @@ function Profile() {
                                       </div> 
                                     
                                   </div>
-                              </div> */}
+                              </div>
 
                               {/* <!-- change password --> */}
-                              {/* <div className="col-xxl-6">
+                              <div className="col-xxl-6">
                                   <div className="bg-secondary-soft px-4 py-5 rounded">
                                       <div className="row g-3">
                                           <h4 className="my-4">Change Password</h4>
@@ -281,8 +281,8 @@ function Profile() {
                                           </div>
                                       </div>
                                   </div>
-                              </div> */}
-                          {/* </div>  */}
+                              </div>
+                          </div> 
                           {/* <!-- Row END --> */}
                           {/* <!-- button --> */}
                           <div className="m-3">
