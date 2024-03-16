@@ -80,11 +80,11 @@ function Notifications() {
                               <div className="box-body p-0">
                               {notifications.toReversed().map((note,i)=>{
                                 if(note.read===false){
-                               
+                              
                                  return(
                                     <div key={i} className="p-3 d-flex align-items-center  ">
                                     <div className="dropdown-list-image me-3">
-                                        <img className="rounded-circle" src={note && note.from.image.url} alt="" />
+                                        <img className="rounded-circle"  src={note && note.from.image.url} alt="" />
                                     </div>
                                     <div className=" me-3 ">
                                         <div className="text-truncate fw-bold">{note.message}</div>

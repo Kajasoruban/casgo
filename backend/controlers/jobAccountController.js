@@ -89,7 +89,7 @@ const ApproveById= asyncHandler(async(req,res)=>{
         
         let user=await User.findById(jobgiver.userId)
         if(user){
-            let notification={message:"Your account has been verified successfully",description:'purchase a package to post job',from:new mongoose.Types.ObjectId("65b5f83dd8821c9ee996b3b3")}
+            let notification={message:"Your account has been verified successfully",description:'purchase a package to post job',from:new mongoose.Types.ObjectId("65f467b113d0eb52df2a07d1")}
             user.notifications.push(notification);
             await user.save()
         }

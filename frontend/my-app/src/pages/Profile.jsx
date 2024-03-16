@@ -220,7 +220,7 @@ function Profile() {
 
                           {/* <!-- Social media detail --> */}
                           <div className="row mb-5 gx-5">
-                              <div className="col-xxl-6 mb-5 mb-xxl-0">
+                              {/* <div className="col-xxl-6 mb-5 mb-xxl-0">
                                   <div className="bg-secondary-soft px-4 py-5 rounded">
                                       <div className="row g-3">
                                           <h4 className="mb-4 mt-0">Social media detail</h4>
@@ -245,19 +245,11 @@ function Profile() {
                                               <input type="text" className="form-control" placeholder="" aria-label="Instragram" value="http://www.instragram.com"/>
                                           </div>
                                         
-                                          <div className="col-md-6">
-                                              <label className="form-label"><i className="fas fa-fw fa-basketball-ball text-dribbble me-2"></i>Dribble *</label>
-                                              <input type="text" className="form-control" placeholder="" aria-label="Dribble" value="http://www.dribble.com"/>
-                                          </div>
-                                          
-                                          <div className="col-md-6">
-                                              <label className="form-label"><i className="fab fa-fw fa-pinterest text-pinterest"></i>Pinterest *</label>
-                                              <input type="text" className="form-control" placeholder="" aria-label="Pinterest" value="http://www.pinterest.com"/>
-                                          </div>
+                                        
                                       </div> 
                                     
                                   </div>
-                              </div>
+                              </div> */}
 
                               {/* <!-- change password --> */}
                               <div className="col-xxl-6">
