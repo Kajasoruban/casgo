@@ -1,12 +1,38 @@
 import { Link, useNavigate } from "react-router-dom";
 import LoginModel from "./LoginModel";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import * as yup from 'yup';
+import { useFormik } from "formik";
 
+const validationSchema = yup.object({
+  name: yup
+  .string('Enter your name')
+  .required('name is required'),
+
+  email: yup
+  .string('Enter your email')
+  .required('email is required'),
+
+  phone: yup
+  .string('Enter your phone')
+  .min(10,"invalid phone number")
+  .required('phone No is required'),  
+
+  message: yup
+  .string('Enter your message')
+  .required('message is required'),  
+
+ 
+});
 
 
 
 function Landing(){
   const { userInfo } = useSelector(state => state.signIn);
+
   const navigate=useNavigate();
   
   const loginCheck=(route)=>{
@@ -17,6 +43,42 @@ function Landing(){
       navigate(route);
     }
   }
+
+
+
+  const contactMessage=async(values)=>{
+ 
+    try {
+      const response=await axios.post("/api/users/contactMessage",values)
+ 
+      if(response.data.success){  
+       
+        toast.success("Your message has been send to admin")
+      }
+    } catch (error) {
+      console.log(error);
+       toast.error("Failed to send message try again later")
+    }
+  }
+
+  const {handleSubmit,handleChange,handleBlur,values} = useFormik({
+    initialValues: {
+      name: '',
+      email:"",
+      phone: '',
+      message: ''
+    },
+    
+    validationSchema: validationSchema,
+    onSubmit: (values, actions) => {
+        contactMessage(values)
+        actions.resetForm();
+      
+    }
+
+})
+
+
 
     return (
       <>
@@ -282,26 +344,26 @@ function Landing(){
         <div className="col-lg-6">
           <div className="contact-box ml-3">
             <h1 className="fw-bold mt-5">Quick Contact</h1>
-            <form className="mt-4">
+            <form className="mt-4" onSubmit={handleSubmit} >
               <div className="row">
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <input className="form-control my-3" type="text" placeholder="name"/>
+                    <input className="form-control my-3" id="name" type="text" placeholder="name" name="name" value={values.name} onChange={handleChange}/>
                   </div>
                 </div>
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <input className="form-control my-3" type="email" placeholder="email address"/>
+                    <input className="form-control my-3" id="email" type="email" placeholder="email address"name="email" required value={values.email} onChange={handleChange} />
                   </div>
                 </div>
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <input className="form-control my-3" type="text" placeholder="phone"/>
+                    <input className="form-control my-3" id="phone" type="text" placeholder="phone" name="phone" value={values.phone} required onChange={handleChange} />
                   </div>
                 </div>
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <textarea className="form-control my-3" rows="5" placeholder="message"></textarea>
+                    <textarea className="form-control my-3" id="message" rows="5" placeholder="message" name="message"  value={values.message} required onChange={handleChange} ></textarea>
                   </div>
                 </div>
                 <div className="col-lg-12">

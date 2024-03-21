@@ -7,6 +7,7 @@ import generateToken from "../utils/generateToken.js";
 
 import cloudinary from "../utils/cloudinary.js";
 import Job from "../models/jobModel.js";
+import ContactMessages from "../models/contactPage.js";
 
 
 const authUser= asyncHandler(async(req,res)=>{
@@ -207,7 +208,24 @@ const markAsRead =async(req,res)=>{
 }
 
 
+const postContactMessages = async (req, res) => {
+    try {
+        const { name, email, phone, message } = req.body
+
+
+        const messageSaved = await ContactMessages.create({ name, email, phone, message })
+
+        if (messageSaved) {
+            res.status(201).json({ success: true, message: messageSaved })
+        }
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Failed to send message" })
+    }
+}
+
+
 
 export{
-    authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,allUsers,notifications,markAsRead
+    authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,allUsers,notifications,markAsRead,postContactMessages
 };

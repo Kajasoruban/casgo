@@ -33,6 +33,7 @@ import Cancel from './pages/Cancel';
 import PaymentHistory from './pages/JobGiver/PaymentHistory';
 import GiverDashBoard from './pages/JobGiver/GiverDashBoard';
 import Notifications from './pages/Notifications';
+import AdminRoutes from './components/AdminRoutes';
 
 
 const AdminDashboardHOC = Layout(AdminDashBoard);
@@ -84,10 +85,10 @@ function App() {
     <Route path="/jobseeker/appliedjobs" element={<UserRoute><AppliedJobsHOC/></UserRoute>}/>
   
     
-    <Route path="/admin/dashboard" element={<UserRoute><AdminDashboardHOC/></UserRoute>}/>
-    <Route path="/admin/allusers" element={<UserRoute><AdminAllUsersHOC/></UserRoute>}/>
-    <Route path="/admin/alljobs" element={<UserRoute><AdminAllJobsHOC/></UserRoute>}/>
-    <Route path="/admin/approval" element={<UserRoute><AdminApprovalHOC/></UserRoute>}/>
+    <Route path="/admin/dashboard" element={<AdminRoutes><AdminDashboardHOC/></AdminRoutes>}/>
+    <Route path="/admin/allusers" element={<AdminRoutes><AdminAllUsersHOC/></AdminRoutes>}/>
+    <Route path="/admin/alljobs" element={<AdminRoutes><AdminAllJobsHOC/></AdminRoutes>}/>
+    <Route path="/admin/approval" element={<AdminRoutes><AdminApprovalHOC/></AdminRoutes>}/>
 
     
 

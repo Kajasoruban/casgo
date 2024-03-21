@@ -1,6 +1,6 @@
 import express from "express";
 const router =express.Router();
-import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,allUsers,notifications,markAsRead } from "../controlers/userControler.js";
+import {authUser,registerUser,logoutUser,getUserProfile,updateUserProfile,allUsers,notifications,markAsRead,postContactMessages } from "../controlers/userControler.js";
 import{ postJob,getJobById,updatejob,delJob, showJobs,jobByJobGiverId,disableJobyById,hireByEmail} from "../controlers/jobControllers.js";
 import{jobRecCreate,getJobRecProfile,updateJobRecProfile,
         jobSeekerCreate,getJobSeekerProfile,updateJobSeekerProfile,createUserJobsHistory,jobHistoryById, jobGiverApproval, ApproveById,
@@ -20,6 +20,7 @@ router.put("/profile",protect,updateUserProfile);
 router.get('/allusers', protect,isAdmin,allUsers);  //done
 router.get('/notifications', protect,notifications);  //done
 router.put('/markasread', protect,markAsRead);   //done
+router.post('/contactMessage',postContactMessages);   
 
 //for job recruit
 router.post("/jobRecruit",protect,jobRecCreate);             //done
