@@ -124,6 +124,12 @@ app.use(express.urlencoded({     // to support URL-encoded bodies
 
 // app.use(express.json());
 // app.use(express.urlencoded({extended:true}));
+
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Private-Network', 'true');
+//   next();
+// });
+
 app.use(cookieParser());
 app.use(cors({
   origin: process.env.CLIENT_URL, 
