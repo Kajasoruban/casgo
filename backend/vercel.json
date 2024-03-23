@@ -1,14 +1,4 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "./server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    { "src": "/api/stripe/webhook", "methods": ["POST"], "dest": "./api/stripe/webhook" },
-    { "src": "/api/(.*)", "dest": "./server.js" }
-  ]
+	"version": 2,
+	"rewrites": [{ "source": "/(.*)", "destination": "./server.js" }]
 }
-
