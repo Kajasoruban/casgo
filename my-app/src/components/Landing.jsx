@@ -103,7 +103,7 @@ function Landing(){
   <div className="carousel-inner carouselbg container-fluid">
     <div className="carousel-item active c-item">
       <div className="row">
-        <div className="top-0 mt-sm-5 mt-md-4 col-md-6 text-center">
+        <div className="top-0  mt-md-4 col-md-6 text-center">
           <div className="ms-md-5 ">
             <p className="text-stroke-p display-3 mt-5 fw-bolder">Do Extra Earn Extra</p>
             <br />
@@ -133,7 +133,7 @@ function Landing(){
             alt="Slide 2"
           />
         </div>
-        <div className="top-0 mt-sm-5 mt-md-4 col-md-6 text-center">
+        <div className="top-0  mt-md-4 col-md-6 text-center">
           <div className="me-md-5 ">
             <p className="text-stroke-p display-3 mt-5 fw-bolder">Take a Break</p>
             <br />

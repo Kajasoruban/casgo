@@ -48,16 +48,23 @@ body {
     .logo{
         width: 7.5rem;
         height: 6rem;  
-        translate:-1rem -1rem
+        translate:-1rem -1rem;
     }
     .hamburg{
         margin-bottom: 2rem;
     }
+    .sidebar{
+        background-color: #f1eaca !important;
+        
+    }
+
+    .carouselbg{
+        height: 400px;
+    }
+   
 }
 
-.sidebar{
-    background-color: #f1eaca !important;
-}
+
 
 .notification{
     background: rgb(102, 255, 0);
