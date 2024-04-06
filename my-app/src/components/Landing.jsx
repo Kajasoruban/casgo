@@ -82,170 +82,92 @@ function Landing(){
 
     return (
       <>
-        <div
-          id="hero-carousel"
-          className="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div className="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#hero-carousel"
-              data-bs-slide-to="0"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#hero-carousel"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
+        <div id="hero-carousel" className="carousel slide" data-bs-ride="carousel">
+  <div className="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#hero-carousel"
+      data-bs-slide-to="0"
+      className="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#hero-carousel"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+  </div>
+
+  <div className="carousel-inner carouselbg container-fluid">
+    <div className="carousel-item active c-item">
+      <div className="row">
+        <div className="top-0 mt-sm-5 mt-md-4 col-md-6 text-center">
+          <div className="ms-md-5 ">
+            <p className="text-stroke-p display-3 mt-5 fw-bolder">Do Extra Earn Extra</p>
+            <br />
+            <h3 className="text-stroke-s text-left">
+              Are you looking for a part-time job in your weekends?
+            </h3>
+            <button className="btn btn-warning px-4 py-2 fs-5 mt-5 go-btn fw-bold">
+              Register as Job Seeker
+            </button>
           </div>
-
-          <div className="carousel-inner carouselbg  container-fluid  ">
-            <div className="carousel-item active c-item ">
-              {/* <img
-                src="https://img.freepik.com/free-vector/job-vacancy-isometric-background-with-applicants-employers-looking-into-resume-sheet-vector-illustration_1284-81716.jpg?w=826&t=st=1708105997~exp=1708106597~hmac=db54ff6997a9b2356219431791aa168bd81d7c3d149dc372a1cbcf145282fc71"
-                className="d-block  c-img"
-                alt="Slide 1"
-              /> */}
-              {/* <div className="carousel-caption top-0 mt-4">
-                <p className="mt-5 fs-2 text-uppercase text-stroke-p fw-bolder">
-                  Are you looking htmlFor a part time job in your weekends?
-                </p>
-                <h1 className="display-1 fw-bolder text-capitalize text-stroke-s">
-                  Do Extra Earn Extra
-                </h1>
-                <Link to="/jobseeker">
-                  <button className="btn btn-warning px-4 py-2 fs-5 mt-5 go-btn">
-                    Go
-                  </button>
-                </Link>
-              </div> */}
-              <div className="row  ">
-
-              <div className=" top-0 mt-4  col-6  text-center">
-
-                <div className=" ms-5">
-                <p className=" text-stroke-p display-3 mt-5 fw-bolder ">
-                  Do Extra <br/>Earn Extra
-                </p>
-                <br/>
-                <h3 className=" text-stroke-s text-left">
-                Are you looking for a part <br/>time job in your weekends?
-                </h3>
-               
-                  <button className="btn btn-warning px-4 py-2 fs-5 mt-5 go-btn fw-bold" onClick={()=>loginCheck("/jobseeker")}>
-                    Register as Job Seeker
-                  </button>
-              
-                </div>
-              </div>
-
-
-
-              <div className="col-6">
-                <img
-                src="https://img.freepik.com/free-vector/tiny-people-searching-business-opportunities_74855-19928.jpg?w=1060&t=st=1710379594~exp=1710380194~hmac=3d8163471eee0a0e88dea1bf47a10e57805d26fd7ab98582123b8ad1879b8eca"
-                className="d-block  c-img"
-                alt="Slide 1"
-              />
-              </div>
-              
-              
-              
-              </div>
-            </div>
-            <div className="carousel-item c-item" >
-              {/* <img
-                src="https://img.freepik.com/free-vector/choice-worker-concept_23-2148626348.jpg?w=740&t=st=1707557698~exp=1707558298~hmac=074ee08cc7570ec2b74959132c7f884a5c31173e51dd1849bf793e43c5b82f43"
-                className="d-block  c-img"
-                alt="Slide 2"
-                https://img.freepik.com/free-photo/job-hiring-vacancy-team-interview-career-recruiting_53876-121268.jpg?w=740&t=st=1708248703~exp=1708249303~hmac=936dcce7f26b9d7ada83c5accd46400a2d3037cf0a4e7445a5a83cf07b17ba64
-              />
-              <div className="carousel-caption top-0 mt-4">
-                <p className="text-uppercase fs-2 mt-5 text-stroke-p fw-bolder">
-                  Are you looking for part time workers on your busy days?
-                </p>
-                <p className="display-1 fw-bolder text-capitalize text-stroke-s">
-                  Your are at the right place
-                </p>
-
-                <Link to="/jobgiver">
-                  <button className="btn btn-warning px-4 py-2 fs-5 mt-5 go-btn">
-                    Go
-                  </button>
-                  https://res.cloudinary.com/dbczgzhd3/image/upload/v1708269425/m42rzpmywgz4spx0fjrx.jpg
-                </Link>
-              </div> */}
-
-
-            <div className="row  ">
-
-
-            <div className="col-6 ">
-              <img
-              src="https://static.vecteezy.com/system/resources/previews/020/811/045/non_2x/hiring-employee-open-recruitment-concept-job-vacancy-illustration-free-vector.jpg"
-              className="d-block  c-img"
-              alt="Slide 1"
-            />
-            </div>
-
-            <div className=" top-0 mt-4  col-6  text-center">
-            <div className=" me-5">
-              <p className=" text-stroke-p display-3 mt-5 fw-bolder ">
-               Take a Break
-              </p>
-              <br/>
-              <h3 className=" text-stroke-s text-left mt-3">
-              Are you looking for part time workers <br/> on your busy days?
-              </h3>
-             
-                <button className="btn btn-warning px-4 py-2 fs-5 mt-5 go-btn fw-bold" onClick={()=>loginCheck("/jobgiver")}>
-                  Register as Job Giver
-                </button>
-             
-              </div>
-            </div>
-
-
-
-            
-
-
-
-            </div>
-
-
-            </div>
-          </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#hero-carousel"
-            data-bs-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#hero-carousel"
-            data-bs-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Next</span>
-          </button>
         </div>
+        <div className="col-md-6 d-none d-md-block">
+          <img
+            src="https://img.freepik.com/free-vector/tiny-people-searching-business-opportunities_74855-19928.jpg?w=1060&t=st=1710379594~exp=1710380194~hmac=3d8163471eee0a0e88dea1bf47a10e57805d26fd7ab98582123b8ad1879b8eca"
+            className="d-block c-img"
+            alt="Slide 1"
+          />
+        </div>
+      </div>
+    </div>
+    <div className="carousel-item c-item">
+      <div className="row">
+        <div className="col-md-6 d-none d-md-block">
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/020/811/045/non_2x/hiring-employee-open-recruitment-concept-job-vacancy-illustration-free-vector.jpg"
+            className="d-block c-img"
+            alt="Slide 2"
+          />
+        </div>
+        <div className="top-0 mt-sm-5 mt-md-4 col-md-6 text-center">
+          <div className="me-md-5 ">
+            <p className="text-stroke-p display-3 mt-5 fw-bolder">Take a Break</p>
+            <br />
+            <h3 className="text-stroke-s text-left mt-3">
+              Are you looking for part-time workers on your busy days?
+            </h3>
+            <button className="btn btn-warning px-4 py-2 fs-5 mt-5 go-btn fw-bold">
+              Register as Job Giver
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    className="carousel-control-prev"
+    type="button"
+    data-bs-target="#hero-carousel"
+    data-bs-slide="prev"
+  >
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
+  </button>
+  <button
+    className="carousel-control-next"
+    type="button"
+    data-bs-target="#hero-carousel"
+    data-bs-slide="next"
+  >
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
+  </button>
+</div>
+
 
         {/* about section start */}
         
