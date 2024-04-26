@@ -110,7 +110,7 @@ function Landing(){
             <h3 className="text-stroke-s text-left">
               Are you looking for a part-time job in your weekends?
             </h3>
-            <button className="btn btn-warning px-4 py-2 fs-5 mt-5 go-btn fw-bold">
+            <button onClick={()=>loginCheck("/jobseeker")} className="btn btn-warning px-4 py-2 fs-5 mt-5 go-btn fw-bold">
               Register as Job Seeker
             </button>
           </div>
@@ -140,7 +140,7 @@ function Landing(){
             <h3 className="text-stroke-s text-left mt-3">
               Are you looking for part-time workers on your busy days?
             </h3>
-            <button className="btn btn-warning px-4 py-2 fs-5 mt-5 go-btn fw-bold">
+            <button onClick={()=>loginCheck("/jobgiver")} className="btn btn-warning px-4 py-2 fs-5 mt-5 go-btn fw-bold">
               Register as Job Giver
             </button>
           </div>
