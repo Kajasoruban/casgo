@@ -26,24 +26,26 @@ function JobsById() {
     const [applyDisable,setApplyDisable]=useState(false);
     const [applied,setApplied]=useState(false);
 
-    const createdtime=(date)=>{
-        let creatDate=new Date(date)
-        let currentDate=new Date();
-        let dif=currentDate.getTime()-creatDate.getTime()
+    const createdtime = (date) => {
+        let creatDate = new Date(date)
+        let currentDate = new Date();
+        let dif = currentDate.getTime() - creatDate.getTime();
         // let dif=24*60*60*1000
-        if(dif<=59*1000){
-            return Math.floor(dif/(1000))+'seconds ago'
-        }else if(dif<=59*60*1000){
-            return Math.floor(dif/(60*1000))+'minutes ago'
-        }else if(dif<=24*60*60*1000){
-            return Math.floor(dif/(60*60*1000))+'hours ago'
-        }else if(dif<=29*24*60*60*1000){
-            return Math.floor(dif/(24*60*60*1000))+'day ago'
+        if (dif <= 59 * 1000) {
+            return Math.floor(dif / (1000)) + ` ${(Math.floor(dif / (1000))===1?"second ago":"seconds ago")}`
+        } else if (dif <= 59 * 60 * 1000) {
+            return Math.floor(dif / (60 * 1000)) + ` ${(Math.floor(dif / (60*1000))===1?"minute ago":"minutes ago")}`
+        } else if (dif <= 23 * 60 * 60 * 1000) {
+            return Math.floor(dif / (60 * 60 * 1000)) + ` ${(Math.floor(dif / (60*60*1000))===1?"hour ago":"hours ago")}`
+        } else if (dif <= 29 * 24 * 60 * 60 * 1000) {
+            return Math.floor(dif / (24 * 60 * 60 * 1000)) + ` ${(Math.floor(dif / (24*60*60*1000))===1?"day ago":"days ago")}`
+        } else if(dif <= 11 * 30 * 24 * 60 * 60 * 1000){
+            return Math.floor(dif/(30*24*60*60*1000))+` ${(Math.floor(dif/(30*24*60*60*1000))===1?"month ago":"months ago")}`
         }else{
-            return dif;
+            return Math.floor(dif/(12*30*24*60*60*1000))+` ${(Math.floor(dif/(12*30*24*60*60*1000))===1?"year ago":"years ago")}`
         }
-        
-     }
+
+    }
     
     useEffect(()=>{
 

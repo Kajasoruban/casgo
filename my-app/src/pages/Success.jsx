@@ -11,7 +11,7 @@ function Success() {
                         <div className="message-box _success">
                             <i className="fa fa-check-circle" aria-hidden="true"></i>
                             <h2> Your payment was successful </h2>
-                        <p> Thank you for your payment. Now you can continue  </p> 
+                        <p> Thank you for your payment.Your package will be activated in a while. Now you can continue  </p> 
         <Link className='btn btn-success my-5' to="/pricing" >Continue</Link>     
                     </div> 
                 </div> 
